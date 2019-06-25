@@ -1,6 +1,6 @@
 # Microsoft Learn: Use developer tools to extend the Power Platform
 
-This project contains the solution packages for the exercises in the [**Use developer tools to extend the Power Platform**]( https://docs.microsoft.com/learn/modules/introduction-power-platform-extensibility-model/) Microsoft Learn module.
+This project contains the solution packages for the exercises in the [**Use developer tools to extend the Power Platform**]( https://docs.microsoft.com/en-us/learn/modules/use-developer-tools-extend/) Microsoft Learn module.
 
 # Contributing
 
