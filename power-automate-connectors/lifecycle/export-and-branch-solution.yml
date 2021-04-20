@@ -1,0 +1,49 @@
+name: export-and-branch-solution
+# Export solution from DEV environment
+#  unpack it and prepare, commit and push a git branch with the changes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export-from-dev:
+    runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        lfs: true
+
+    - name: who-am-i action
+      uses: microsoft/powerplatform-actions/who-am-i@v0
+      with:
+        environment-url: ${{ secrets.environment }}
+        user-name: ${{ secrets.user }}
+        password-secret: ${{ secrets.password }}
+
+    - name: export-solution action
+      uses: microsoft/powerplatform-actions/export-solution@v0
+      with:
+        environment-url: ${{ secrets.environment }}
+        user-name: ${{ secrets.user }}
+        password-secret: ${{ secrets.password }}
+        solution-name: ContosoInvoicingALM
+        solution-output-file: out/exported/ContosoInvoicingALM.zip
+
+    - name: unpack-solution action
+      uses: microsoft/powerplatform-actions/unpack-solution@v0
+      with:
+        solution-file: out/exported/ContosoInvoicingALM.zip
+        solution-folder: out/solutions/ContosoInvoicingALM
+        solution-type: 'Unmanaged'
+        overwrite-files: true
+
+    - name: branch-solution, prepare it for a PullRequest
+      uses: microsoft/powerplatform-actions/branch-solution@v0
+      with:
+        solution-folder: out/solutions/ContosoInvoicingALM
+        solution-target-folder: solutions/ContosoInvoicingALM
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        allow-empty-commit: true
