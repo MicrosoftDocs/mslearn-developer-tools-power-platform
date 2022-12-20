@@ -1,0 +1,44 @@
+{
+	"id": "673d6724-3338-4df8-a72a-44fd90e36cdc",
+	"name": "FSI-Demo Tenant",
+	"values": [
+		{
+			"key": "clientid",
+			"value": "{client id}",
+			"enabled": true
+		},
+		{
+			"key": "clientsecret",
+			"value": "{client secret}",
+			"enabled": true
+		},
+		{
+			"key": "authurl",
+			"value": "https://login.microsoftonline.com/common/oauth2/authorize?resource={{url}}",
+			"enabled": true
+		},
+		{
+			"key": "callback",
+			"value": "https://oauth.pstmn.io/v1/callback",
+			"enabled": true
+		},
+		{
+			"key": "webapiurl",
+			"value": "{{url}}/api/data/v{{version}}/",
+			"enabled": true
+		},
+		{
+			"key": "version",
+			"value": "9.2",
+			"enabled": true
+		},
+		{
+			"key": "url",
+			"value": "https://{dynamicsinstance}.crm.dynamics.com",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2022-11-10T19:08:46.244Z",
+	"_postman_exported_using": "Postman/10.0.31"
+}
