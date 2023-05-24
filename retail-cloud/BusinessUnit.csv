@@ -1,0 +1,17 @@
+Name,Type,Parent Business,Territory
+unq1ab7d2b336f0ed11a80b000d3a106,,,
+San Francisco,,unq1ab7d2b336f0ed11a80b000d3a106,
+Redmond,,unq1ab7d2b336f0ed11a80b000d3a106,
+New York,,unq1ab7d2b336f0ed11a80b000d3a106,
+Contoso Store 101,Store,Redmond,Redmond
+Fabrikam Store 401,Store,San Francisco,San Francisco
+Fabrikam Store 402,Store,San Francisco,San Francisco
+Fabrikam Store 403,Store,Redmond,Redmond
+Fabrikam Store 404,Store,Redmond,Redmond
+Fabrikam Store 405,Store,New York,New York
+Fabrikam Store 406,Store,New York,New York
+Contoso Store 102,Store,San Francisco,San Francisco
+Contoso Store 103,Store,Redmond,Redmond
+Contoso Store 104,Store,Redmond,Redmond
+Contoso Store 105,Store,New York,New York
+Contoso Store 106,Store,San Francisco,San Francisco
