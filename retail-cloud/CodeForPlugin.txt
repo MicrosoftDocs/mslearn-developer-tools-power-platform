@@ -1,0 +1,221 @@
+using Microsoft.SharePoint.Client;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace FetchProductDetailsPackage
+{
+    /// <summary>
+    /// Plugin development guide: https://docs.microsoft.com/powerapps/developer/common-data-service/plug-ins
+    /// Best practices and guidance: https://docs.microsoft.com/powerapps/developer/common-data-service/best-practices/business-logic/
+    /// </summary>
+    public class FetchProductData : PluginBase
+    {
+        static IReadOnlyDictionary<string, string> EnvVariables;
+      
+        protected static IReadOnlyDictionary<string, string> GetEnvironmentVariables(ILocalPluginContext ctx)
+        {
+            ctx.Trace($"Entered GetEnvironmentVariables");           
+           
+            var envVariables = new Dictionary<string, string>();
+
+            var query = new QueryExpression("environmentvariabledefinition")
+            {
+                ColumnSet = new ColumnSet("statecode", "defaultvalue", "valueschema",
+                    "schemaname", "environmentvariabledefinitionid", "type"),
+                LinkEntities =
+            {
+                new LinkEntity
+                {
+                    JoinOperator = JoinOperator.LeftOuter,
+                    LinkFromEntityName = "environmentvariabledefinition",
+                    LinkFromAttributeName = "environmentvariabledefinitionid",
+                    LinkToEntityName = "environmentvariablevalue",
+                    LinkToAttributeName = "environmentvariabledefinitionid",
+                    Columns = new ColumnSet("statecode", "value", "environmentvariablevalueid"),
+                    EntityAlias = "v"
+                }
+            }
+            };
+
+            var results = ctx.PluginUserService.RetrieveMultiple(query);
+            if (results?.Entities.Count > 0)
+            {
+                foreach (var entity in results.Entities)
+                {
+                    var schemaName = entity.GetAttributeValue<string>("schemaname");
+                    var value = entity.GetAttributeValue<AliasedValue>("v.value")?.Value?.ToString();
+                    var defaultValue = entity.GetAttributeValue<string>("defaultvalue");
+
+                    ctx.Trace($"- schemaName:{schemaName}, value:{value}, defaultValue:{defaultValue}");
+                    if (schemaName != null && !envVariables.ContainsKey(schemaName))
+                        envVariables.Add(schemaName, string.IsNullOrEmpty(value) ? defaultValue : value);
+                }
+            }
+
+            EnvVariables = envVariables;                  
+                
+
+            ctx.Trace($"Exiting GetEnvironmentVariables");
+            return EnvVariables;
+        }
+        public static T GetInputParameter<T>(IPluginExecutionContext context, string inputParameterName)
+        {
+            T parameter = default(T);
+
+            if (context.InputParameters.Contains(inputParameterName))
+            {
+                parameter = (T)context.InputParameters[inputParameterName];
+            }
+
+            return parameter;
+        }
+        public FetchProductData(string unsecureConfiguration, string secureConfiguration)
+            : base(typeof(FetchProductData))
+        {
+            // TODO: Implement your custom configuration handling
+            // https://docs.microsoft.com/powerapps/developer/common-data-service/register-plug-in#set-configuration-data
+        }
+
+        // Entry point for custom business logic execution
+        protected override void ExecuteDataversePlugin(ILocalPluginContext localPluginContext)
+        {
+            if (localPluginContext == null)
+            {
+                throw new ArgumentNullException(nameof(localPluginContext));
+            }
+
+            var context = localPluginContext.PluginExecutionContext;
+
+            // Obtain the tracing service
+            var tracingService = localPluginContext.TracingService;
+            var logger = localPluginContext.Logger;
+
+            //Call GetEnvironmentVariables method
+            var envVariable = GetEnvironmentVariables(localPluginContext);
+
+            if (!envVariable.TryGetValue("cont_SiteURL", out string siteUrl))
+                throw new Exception("Couldn't read environmentvariable cont_SiteURL!");
+
+            if (!envVariable.TryGetValue("cont_ClientId", out string clientId))
+                throw new Exception("Couldn't read environmentvariable cont_ClientId!");
+
+            if (!envVariable.TryGetValue("cont_ClientSecret", out string clientSecret))
+                throw new Exception("Couldn't read environmentvariable cont_ClientSecret!");
+
+            if (!envVariable.TryGetValue("cont_FolderName", out string folderName))
+                throw new Exception("Couldn't read environmentvariable cont_FolderName!");
+
+            if (!envVariable.TryGetValue("cont_FileName", out string fileName))
+                throw new Exception("Couldn't read environmentvariable cont_FileName!");
+
+            tracingService.Trace("Executing ExecuteDataversePlugin"); 
+
+            try
+            {
+                var input = GetInputParameter<Entity>(context, "productQuery");
+                var productQuery = (Entity)context.InputParameters["productQuery"];
+
+                var storeId = input.Contains("storeId") ? (string)input["storeId"] : null;
+                var productIdString = input.Contains("productIds") ? (string)input["productIds"] : null;
+                var productIds = productQuery.GetAttributeValue<string>("productIds").Split(',');
+
+                tracingService.Trace("msret_FetchProductsUpdated_Product-Store: {0}-{1}", productIdString, storeId);
+
+                //Fetch data from ERP
+                // Retrieve the JSON file from MS Teams sahrepoint folder using sharepoint URL , client ID and secret stored in environment variables
+
+                var json = string.Empty;
+
+                using (var clientContext = new PnP.Framework.AuthenticationManager().GetACSAppOnlyContext(siteUrl, clientId, clientSecret))
+                {
+
+                    Web oWebsite = clientContext.Web;
+
+                    Microsoft.SharePoint.Client.List list = clientContext.Web.Lists.GetByTitle("documents");
+                    clientContext.Load(list);
+                    clientContext.ExecuteQuery();
+                    FolderCollection fcol = list.RootFolder.Folders;
+                    clientContext.Load(fcol);
+                    clientContext.ExecuteQuery();
+                    List<string> lstFile = new List<string>();
+                    foreach (Microsoft.SharePoint.Client.Folder f in fcol)
+                    {
+                        tracingService.Trace("Folder name {0} ", f.Name);
+                        if (f.Name == folderName)
+                        {
+                            tracingService.Trace("Matching Folder name {0} ", f.Name);
+                            clientContext.Load(f.Files);
+                            clientContext.ExecuteQuery();
+                            FileCollection fileCol = f.Files;
+                            clientContext.Load(fileCol);
+                            clientContext.ExecuteQuery();
+                            foreach (Microsoft.SharePoint.Client.File file in fileCol)
+                            {
+                                if (file.Name == fileName)
+                                {
+                                    tracingService.Trace("File name {0} ", file.Name);
+
+                                    file.RefreshLoad();
+
+                                    ClientResult<Stream> data = file.OpenBinaryStream();
+                                    clientContext.ExecuteQuery();
+
+                                    using (var reader = new StreamReader(data.Value))
+                                    {
+                                        json = reader.ReadToEnd();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                //tracingService.Trace("msret_FetchProducts: {0}", json);
+                EntityCollection productsCollection = new EntityCollection();
+                var products = JsonConvert.DeserializeObject<List<ProductList>>(json);
+
+                // Filter the products based on the storeId and productIds
+                var productsData = products.Where(p => p.StoreId == productQuery.GetAttributeValue<string>("storeId") && productIds.Contains(p.ProductId));
+
+                products = productsData.ToList();
+               
+                if (!string.IsNullOrEmpty(storeId) && !string.IsNullOrEmpty(productIdString))
+                {
+                    foreach (var product in products)
+                    {
+                        var entity = new Entity("product");
+                        tracingService.Trace("msret_FetchProductsUpdated: {0}", product.ProductId);
+                        entity["productNumber"] = product.ProductId;
+                        entity["oldPrice"] = (decimal)product.OldPrice;
+                        entity["newPrice"] = (decimal)product.NewPrice;
+                        entity["count"] = (Int32)product.Count;
+                        entity["attributes"] = new Dictionary<string, string>();
+
+                        productsCollection.Entities.Add(entity);                       
+                    }
+                                      
+                }
+                context.OutputParameters["products"] = productsCollection;
+
+            }
+            catch (Exception ex)
+            {
+                tracingService.Trace("msret_FetchProducts: {0}", ex.ToString());
+                logger.LogError(ex, "msret_FetchProducts: {0}");
+                throw new InvalidPluginExecutionException("An error occurred in msret_FetchProducts.", ex);
+            }
+        }
+    }
+    public class ProductList
+    {
+        public string ProductId { get; set; }
+        public string StoreId { get; set; }
+        public float NewPrice { get; set; }
+        public float OldPrice { get; set; }
+        public int Count { get; set; }
+    }
+}
