@@ -1,0 +1,393 @@
+{
+    "resourceType": "Bundle",
+    "type": "batch",
+    "entry": [
+        {
+            "fullUrl": "urn:uuid:4c73b472-442b-4920-b899-aadc599f1d75",
+            "resource": {
+                "resourceType": "Patient",
+                "id": "4c73b472-442b-4920-b899-aadc599f1d75",
+                "extension": [
+                    {
+                        "extension": [
+                            {
+                                "url": "ombCategory",
+                                "valueCoding": {
+                                    "system": "urn:oid:2.16.840.1.113883.6.238",
+                                    "code": "2106-3",
+                                    "display": "White"
+                                }
+                            },
+                            {
+                                "url": "text",
+                                "valueString": "White"
+                            }
+                        ],
+                        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+                    },
+                    {
+                        "extension": [
+                            {
+                                "url": "ombCategory",
+                                "valueCoding": {
+                                    "system": "urn:oid:2.16.840.1.113883.6.238",
+                                    "code": "2186-5",
+                                    "display": "Not Hispanic or Latino"
+                                }
+                            },
+                            {
+                                "url": "text",
+                                "valueString": "Not Hispanic or Latino"
+                            }
+                        ],
+                        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/patient-mothersMaidenName",
+                        "valueString": "Faviola526 Schuppe920"
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+                        "valueCode": "M"
+                    },
+                    {
+                        "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+                        "valueAddress": {
+                            "city": "Chicopee",
+                            "state": "Massachusetts",
+                            "country": "US"
+                        }
+                    },
+                    {
+                        "url": "http://synthetichealth.github.io/synthea/disability-adjusted-life-years",
+                        "valueDecimal": 2.281068087504309
+                    },
+                    {
+                        "url": "http://synthetichealth.github.io/synthea/quality-adjusted-life-years",
+                        "valueDecimal": 39.71893191249569
+                    }
+                ],
+                "identifier": [
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "MR",
+                                    "display": "Medical Record Number"
+                                }
+                            ],
+                            "text": "Medical Record Number"
+                        },
+                        "system": "http://hospital.smarthealthit.org",
+                        "value": "4c73b472-442b-4920-b899-aadc599f1d75"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "SS",
+                                    "display": "Social Security Number"
+                                }
+                            ],
+                            "text": "Social Security Number"
+                        },
+                        "system": "http://hl7.org/fhir/sid/us-ssn",
+                        "value": "999-01-0002"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "DL",
+                                    "display": "Driver's License"
+                                }
+                            ],
+                            "text": "Driver's License"
+                        },
+                        "system": "urn:oid:2.16.840.1.113883.4.3.25",
+                        "value": "S11173027"
+                    },
+                    {
+                        "type": {
+                            "coding": [
+                                {
+                                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                    "code": "PPN",
+                                    "display": "Passport Number"
+                                }
+                            ],
+                            "text": "Passport Number"
+                        },
+                        "system": "http://standardhealthrecord.org/fhir/StructureDefinition/passportNumber",
+                        "value": "X53019369X"
+                    }
+                ],
+                "name": [
+                    {
+                        "use": "official",
+                        "family": "One",
+                        "given": [
+                            "Patient"
+                        ],
+                        "prefix": [
+                            "Mr."
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "555-795-6145",
+                        "use": "home"
+                    }
+                ],
+                "gender": "male",
+                "deceasedDateTime": "1989-11-04T02:41:10-05:00",
+                "address": [
+                    {
+                        "extension": [
+                            {
+                                "extension": [
+                                    {
+                                        "url": "latitude",
+                                        "valueDecimal": 42.467538912779496
+                                    },
+                                    {
+                                        "url": "longitude",
+                                        "valueDecimal": -71.16311914964801
+                                    }
+                                ],
+                                "url": "http://hl7.org/fhir/StructureDefinition/geolocation"
+                            }
+                        ],
+                        "line": [
+                            "115 Reynolds Throughway Unit 51"
+                        ],
+                        "city": "Woburn",
+                        "state": "MA",
+                        "country": "US"
+                    }
+                ],
+                "birthDate": "1972-02-05", 
+                "maritalStatus": {
+                    "coding": [
+                        {
+                            "system": "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus",
+                            "code": "M",
+                            "display": "M"
+                        }
+                    ],
+                    "text": "M"
+                },
+                "multipleBirthInteger": 2,
+                "communication": [
+                    {
+                        "language": {
+                            "coding": [
+                                {
+                                    "system": "urn:ietf:bcp:47",
+                                    "code": "en-US",
+                                    "display": "English"
+                                }
+                            ],
+                            "text": "English"
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Patient/4c73b472-442b-4920-b899-aadc599f1d75"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:b4a4c3fa-277c-4e38-b5be-5ebc50f45575",
+            "resource": {
+                "resourceType": "Practitioner",
+                "id": "b4a4c3fa-277c-4e38-b5be-5ebc50f45575",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-practitioner"
+                    ]
+                },
+                "extension": [
+                    {
+                        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+                        "valueInteger": 50
+                    }
+                ],
+                "identifier": [
+                    {
+                        "system": "http://hl7.org/fhir/sid/us-npi",
+                        "value": "9999999929"
+                    }
+                ],
+                "active": true,
+                "name": [
+                    {
+                        "family": "One",
+                        "given": [
+                            "Practitioner"
+                        ],
+                        "prefix": [
+                            "Dr."
+                        ]
+                    }
+                ],
+                "telecom": [
+                    {
+                        "extension": [
+                            {
+                                "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-direct",
+                                "valueBoolean": true
+                            }
+                        ],
+                        "system": "email",
+                        "value": "Practitioner.One@example.com",
+                        "use": "work"
+                    }
+                ],
+                "address": [
+                    {
+                        "line": [
+                            "18101 OAKWOOD BLVD"
+                        ],
+                        "city": "Oakland Park",
+                        "state": "MI",
+                        "postalCode": "48124",
+                        "country": "US"
+                    }
+                ],
+                "gender": "male"
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Practitioner/b4a4c3fa-277c-4e38-b5be-5ebc50f45575"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:8b02a604-8bab-4d2b-9220-34fdbd0c839d",
+            "resource": {
+                "resourceType": "Location",
+                "id": "8b02a604-8bab-4d2b-9220-34fdbd0c839d",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-location"
+                    ]
+                },
+                "identifier": [
+                    {
+                        "system": "https://github.com/synthetichealth/synthea",
+                        "value": "8b02a604-8bab-4d2b-9220-34fdbd0c839d"
+                    }
+                ],
+                "status": "active",
+                "name": "HOSPITAL - One",
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "3135937125"
+                    }
+                ],
+                "address": {
+                    "line": [
+                        "18101 OAKWOOD BLVD"
+                    ],
+                    "city": "Detroit",
+                    "state": "MI",
+                    "postalCode": "48124",
+                    "country": "US"
+                },
+                "position": {
+                    "longitude": -83.211488,
+                    "latitude": 42.313057
+                },
+                "managingOrganization": {
+                    "identifier": {
+                        "system": "https://github.com/synthetichealth/synthea",
+                        "value": "584ab274-238d-4be2-bdc2-2d0a91a6a94f"
+                    },
+                    "display": "HOSPITAL - One"
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Location/8b02a604-8bab-4d2b-9220-34fdbd0c839d"
+            }
+        },
+        {
+            "fullUrl": "urn:uuid:584ab274-238d-4be2-bdc2-2d0a91a6a94f",
+            "resource": {
+                "resourceType": "Organization",
+                "id": "584ab274-238d-4be2-bdc2-2d0a91a6a94f",
+                "meta": {
+                    "profile": [
+                        "http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization"
+                    ]
+                },
+                "extension": [
+                    {
+                        "url": "http://synthetichealth.github.io/synthea/utilization-encounters-extension",
+                        "valueInteger": 50
+                    },
+                    {
+                        "url": "http://synthetichealth.github.io/synthea/utilization-procedures-extension",
+                        "valueInteger": 0
+                    },
+                    {
+                        "url": "http://synthetichealth.github.io/synthea/utilization-labs-extension",
+                        "valueInteger": 0
+                    },
+                    {
+                        "url": "http://synthetichealth.github.io/synthea/utilization-prescriptions-extension",
+                        "valueInteger": 0
+                    }
+                ],
+                "identifier": [
+                    {
+                        "system": "https://github.com/synthetichealth/synthea",
+                        "value": "584ab274-238d-4be2-bdc2-2d0a91a6a94f"
+                    }
+                ],
+                "active": true,
+                "type": [
+                    {
+                        "coding": [
+                            {
+                                "system": "http://terminology.hl7.org/CodeSystem/organization-type",
+                                "code": "prov",
+                                "display": "Healthcare Provider"
+                            }
+                        ],
+                        "text": "Healthcare Provider"
+                    }
+                ],
+                "name": "HOSPITAL - One",
+                "telecom": [
+                    {
+                        "system": "phone",
+                        "value": "3135937125"
+                    }
+                ],
+                "address": [
+                    {
+                        "line": [
+                            "18101 OAKWOOD BLVD"
+                        ],
+                        "city": "DETROIT",
+                        "state": "MI",
+                        "postalCode": "48124",
+                        "country": "US"
+                    }
+                ]
+            },
+            "request": {
+                "method": "PUT",
+                "url": "Organization/584ab274-238d-4be2-bdc2-2d0a91a6a94f"
+            }
+        }
+    ]
+}
