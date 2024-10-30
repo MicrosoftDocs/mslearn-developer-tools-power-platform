@@ -1,0 +1,188 @@
+{
+    "name": "Job List",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of thejob list and could includeversion and revisionidentification.Required attribute.The ID is used in other parts ofthe model when the job listneeds to be identified.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the job list.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "workType",
+            "description": "Describes the category of work.Defined values areproduction, maintenance, quality,inventory, or mixed.\u201cMixed\u201d can be used when theoperations definition containsseveral types of operationsrequests and/or segmentrequirements..\u201cMixed\u201d can be used when theoperations definition containsseveral types of operationsrequests and/or segmentrequirements.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "production",
+                "maintenance",
+                "quality",
+                "inventory",
+                "mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "startTime",
+            "description": "The starting time for theassociated job list",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "endTime",
+            "description": "The ending time for theassociated job list",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "publishedDate",
+            "description": "The date and time on whichthe job list was published orgenerated.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Stream",
+        "ingestionRate": "Daily",
+        "storage": "Hot"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:JobList;1",
+        "@type": "Interface",
+        "displayName": "Job list",
+        "description": "A job list shall be defined as a collection of job orders for a specific period of time and selected work centers or other resources",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "The job orders contained by this job list.",
+                "target": "dtmi:digitaltwins:isa95:JobOrder;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. Optionally, hierarchy scope defines the scope of the equipment class, such as the site or area where it is defined.",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "workType",
+                "displayName": "Work type",
+                "writable": true,
+                "description": "Describes the category of work.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "production",
+                            "enumValue": "production"
+                        },
+                        {
+                            "name": "maintenance",
+                            "enumValue": "maintenance"
+                        },
+                        {
+                            "name": "quality",
+                            "enumValue": "quality"
+                        },
+                        {
+                            "name": "inventory",
+                            "enumValue": "inventory"
+                        },
+                        {
+                            "name": "mixed",
+                            "enumValue": "mixed"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "startTime",
+                "displayName": "Start Time",
+                "description": "The starting time for the associated job list.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "endTime",
+                "displayName": "End Time",
+                "description": "The ending time for the associated job list.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "publishedDate",
+                "displayName": "Published Date",
+                "description": "The date and time on which the work master or work directive was published or generated",
+                "schema": "dateTime",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

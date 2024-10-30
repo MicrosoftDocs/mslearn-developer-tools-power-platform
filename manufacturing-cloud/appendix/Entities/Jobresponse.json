@@ -1,0 +1,317 @@
+{
+    "name": "Job response",
+    "columns": [
+        {
+            "name": "id",
+            "description": "An identification within theassociated job response.Required attribute.The ID is used in other parts ofthe model when the jobresponse needs to beidentified.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the request data",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "workType",
+            "description": "Describes the category of work.Defined values areproduction, maintenance, quality,inventory, or mixed.\u201cMixed\u201d can be used when theworks Request containsseveral types of worksrequests and/or segmentrequirements..\u201cMixed\u201d can be used when theworks Request containsseveral types of worksrequests and/or segmentrequirements.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "production",
+                "maintenance",
+                "quality",
+                "inventory",
+                "mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "jobOrder",
+            "description": "An identification of theassociated job order.Job responses may not relateto a job order, it may be areport on all work for a specifictime or reported on by plantfloor events.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "startTime",
+            "description": "The starting time of this jobresponse",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "endTime",
+            "description": "The endingtime of this job response",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "jobState",
+            "description": "Indicates the state of the workresponse.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "closed",
+                "suspended",
+                "held",
+                "aborted",
+                "completed",
+                "running",
+                "ready",
+                "waiting"
+            ],
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Stream",
+        "ingestionRate": "Daily",
+        "storage": "Hot"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:JobResponse;1",
+        "@type": "Interface",
+        "displayName": "Job response",
+        "description": "The responses from manufacturing that are associated with a job order shall be defined as a job response.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "correspondsToWorkMaster",
+                "displayName": "Corresponds to",
+                "description": "The work master(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:WorkMaster;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToWorkDirective",
+                "displayName": "Corresponds to",
+                "description": "The work directive(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:WorkDirective;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToSpecification",
+                "displayName": "Corresponds to",
+                "description": "The workflow specification(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:WorkflowSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToSpecificationNode",
+                "displayName": "Corresponds to",
+                "description": "The workflow specification node(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:WorkflowSpecificationNode;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToJobOrder",
+                "displayName": "Corresponds to",
+                "description": "The job order(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:JobOrder;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsData",
+                "displayName": "Contains",
+                "description": "Data associated with this job response",
+                "target": "dtmi:digitaltwins:isa95:JobResponseData;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsPersonnel",
+                "displayName": "Contains",
+                "description": "The personnel actual(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:PersonnelActual;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsEquipment",
+                "displayName": "Contains",
+                "description": "The equipment actual(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:EquipmentActual;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsPhysicalAsset",
+                "displayName": "Contains",
+                "description": "The physical asset actual(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetActual;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsMaterial",
+                "displayName": "Contains",
+                "description": "The material actual(s) related to this job response",
+                "target": "dtmi:digitaltwins:isa95:MaterialActual;1"
+            },
+            {
+                "@type": "Property",
+                "name": "workType",
+                "displayName": "Work type",
+                "writable": true,
+                "description": "Describes the category of work.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "production",
+                            "enumValue": "production"
+                        },
+                        {
+                            "name": "maintenance",
+                            "enumValue": "maintenance"
+                        },
+                        {
+                            "name": "quality",
+                            "enumValue": "quality"
+                        },
+                        {
+                            "name": "inventory",
+                            "enumValue": "inventory"
+                        },
+                        {
+                            "name": "mixed",
+                            "enumValue": "mixed"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "jobOrder",
+                "displayName": "Job order",
+                "description": "An identification of the associated job order.",
+                "comment": "Job responses may not relate to a job order, it may be a report on all work for a specific time or reported on by plant floor events. ",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "startTime",
+                "displayName": "Start Time",
+                "description": "The starting time of this job response.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "endTime",
+                "displayName": "End Time",
+                "description": "The ending time of this job response.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. Optionally, hierarchy scope defines the scope of the equipment class, such as the site or area where it is defined.",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "jobState",
+                "displayName": "Job state",
+                "description": "Indicates the state of the work response.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "waiting",
+                            "enumValue": "waiting"
+                        },
+                        {
+                            "name": "ready",
+                            "enumValue": "ready"
+                        },
+                        {
+                            "name": "running",
+                            "enumValue": "running"
+                        },
+                        {
+                            "name": "completed",
+                            "enumValue": "completed"
+                        },
+                        {
+                            "name": "aborted",
+                            "enumValue": "aborted"
+                        },
+                        {
+                            "name": "held",
+                            "enumValue": "held"
+                        },
+                        {
+                            "name": "suspended",
+                            "enumValue": "suspended"
+                        },
+                        {
+                            "name": "closed",
+                            "enumValue": "closed"
+                        }
+                    ]
+                },
+                "writable": true
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional informationand descriptions of the request data",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

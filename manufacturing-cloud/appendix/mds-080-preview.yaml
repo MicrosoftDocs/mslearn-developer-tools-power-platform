@@ -1,0 +1,1848 @@
+openapi: 3.0.1
+info:
+  title: Microsoft.Industry.Manufacturing.MDS.Service
+  version: '0.8.0-preview'
+paths:
+  /dmm/admin/version:
+    get:
+      tags:
+        - Admin
+      summary: get all DMM versions
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: 2024-09-30-preview
+      responses:
+        '200':
+          description: Success
+    post:
+      tags:
+        - Admin
+      summary: Create new DMM Data version
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: 2024-09-30-preview
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/CreateDataVersionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataVersionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataVersionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateDataVersionRequest'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+    put:
+      tags:
+        - Admin
+      summary: Switch to existing DMM Data version
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: 2024-09-30-preview
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DataVersionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataVersionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DataVersionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DataVersionRequest'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+        '304':
+          description: Not Modified
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - Admin
+      summary: Delete existing DMM Data version
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: 2024-09-30-preview
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/DataVersionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataVersionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/DataVersionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/DataVersionRequest'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/dmm/cleanup/{entityName}':
+    delete:
+      tags:
+        - Admin
+      summary: Cleanup records.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: entityName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          description: ''
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          description: ''
+          schema:
+            type: string
+            format: date-time
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: 2024-09-30-preview
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Server Error
+  '/dmm/cleanup/status/{jobId}':
+    get:
+      tags:
+        - Admin
+      summary: Cleanup Job Status
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: jobId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: 2024-09-30-preview
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /dmm/health:
+    get:
+      tags:
+        - MDS
+      summary: Get Manufacturing data solutions health.
+      description: "\nRequired roles: Admin, User"
+      parameters:
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MDSHealth'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MDSHealth'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MDSHealth'
+  /dmm/entities:
+    post:
+      tags:
+        - MDS
+      summary: Create register entity.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+    get:
+      tags:
+        - MDS
+      summary: Get register entity.
+      description: "\nRequired roles: Admin, User"
+      parameters:
+        - name: top
+          in: query
+          description: ''
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EntityResponse'
+        '204':
+          description: No Content
+    put:
+      tags:
+        - MDS
+      summary: Update registered entity.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+        '201':
+          description: Created
+        '304':
+          description: Not Modified
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    patch:
+      tags:
+        - MDS
+      summary: Patch registered entity.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: If-Match
+          in: header
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/EntityPatch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntityPatch'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EntityPatch'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EntityPatch'
+        required: true
+      responses:
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+        '412':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/dmm/entities/{entityName}':
+    get:
+      tags:
+        - MDS
+      summary: Get register entity.
+      description: "\nRequired roles: Admin, User"
+      parameters:
+        - name: entityName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityResponse'
+    delete:
+      tags:
+        - MDS
+      summary: Delete entity API.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: entityName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      responses:
+        '200':
+          description: Success
+  '/dmm/entities/{entityName}/metadata':
+    get:
+      tags:
+        - MDS
+      summary: Get register entity metadata tags.
+      description: "\nRequired roles: Admin, User"
+      parameters:
+        - name: entityName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityMetadata'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityMetadata'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  '/dmm/mappings/{name}':
+    post:
+      tags:
+        - MDS
+      summary: Register Mapping Table.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: name
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+        '409':
+          description: Conflict
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+    get:
+      tags:
+        - MDS
+      summary: Fetch Mapping Table.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: name
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          description: ''
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - MDS
+      summary: Update Mapping Table.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: name
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MappingsTableModel'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+        - MDS
+      summary: Delete Mapping Table.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: name
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: query
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: force-delete
+          in: query
+          description: ''
+          required: true
+          schema:
+            type: boolean
+        - name: api-version
+          in: query
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/dmm/opcuamappings/{entityName}':
+    post:
+      tags:
+        - MDS
+      summary: Creates an OPCUA mapping for the specified entity.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: entityName
+          in: path
+          description: The name of the entity.
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        description: The OPC UA mapping request model.
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/OPCUAMappingRequestModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OPCUAMappingRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/OPCUAMappingRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/OPCUAMappingRequestModel'
+        required: true
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    get:
+      tags:
+        - MDS
+      summary: Gets all OPC UA mappings for the specified entity name from Cosmos DB.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: entityName
+          in: path
+          description: The name of the entity.
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OpcuaMappingResponseModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OpcuaMappingResponseModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OpcuaMappingResponseModel'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - MDS
+      summary: Update if new OPCUANamespace in mappings and replace it if already existing.
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: entityName
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/OPCUAMappingRequestModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OPCUAMappingRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/OPCUAMappingRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/OPCUAMappingRequestModel'
+        required: true
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /dmm/entities/validate:
+    post:
+      tags:
+        - MDS
+      summary: Validate and Return stats for UpdteEntity API
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        description: ''
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Entity'
+        required: true
+      responses:
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseModel'
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '200':
+          description: Success
+  '/dmm/entities/status/{type}/{jobId}':
+    get:
+      tags:
+        - MDS
+      summary: Get job status for given entity
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: jobId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: path
+          description: type to fetch job status
+          required: true
+          schema:
+            type: string
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        default:
+          description: Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /dmm/query:
+    post:
+      tags:
+        - Query
+      description: "\nRequired roles: Admin, User"
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Success
+  /dmm/query/relatedNodes:
+    post:
+      tags:
+        - Query
+      description: "\nRequired roles: Admin, User"
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedNodes'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedNodes'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedNodes'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedNodes'
+      responses:
+        '200':
+          description: Success
+  /dmm/query/relatedEntitiesData:
+    post:
+      tags:
+        - Query
+      description: "\nRequired roles: Admin, User"
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedEntitiesData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedEntitiesData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedEntitiesData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedEntitiesData'
+      responses:
+        '200':
+          description: Success
+  /dmm/query/ingestionStatus:
+    get:
+      tags:
+        - Query
+      description: "\nRequired roles: Admin"
+      parameters:
+        - name: operator
+          in: query
+          schema:
+            $ref: '#/components/schemas/TimeSeriesOperator'
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: '2023-03-31'
+      responses:
+        '200':
+          description: Success
+  /dmm/query/relatedEntitiesDataHistory:
+    post:
+      tags:
+        - Query
+      description: "\nRequired roles: Admin, User"
+      parameters:
+        - name: paginate
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: api-version
+          in: query
+          description: The requested API version
+          required: true
+          schema:
+            type: string
+            default: 2024-02-29-preview
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedEntitiesData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedEntitiesData'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedEntitiesData'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/QueryRequestRelatedEntitiesData'
+      responses:
+        '200':
+          description: Success
+components:
+  schemas:
+    BaseColumn:
+      type: object
+      properties:
+        name:
+          maxLength: 63
+          minLength: 0
+          type: string
+          nullable: true
+      additionalProperties: false
+    Column:
+      type: object
+      properties:
+        name:
+          maxLength: 63
+          minLength: 0
+          type: string
+          nullable: true
+        displayName:
+          maxLength: 63
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/SupportedDatatypes'
+        mandatory:
+          type: boolean
+        semanticRelevantFlag:
+          type: boolean
+        primaryKey:
+          type: boolean
+        groupBy:
+          type: boolean
+        enumValues:
+          maxItems: 63
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    CreateDataVersionRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DataSamplingRate:
+      enum:
+        - Undefined
+        - MilliSeconds
+        - Seconds
+        - Minutes
+        - Hours
+      type: string
+    DataStore:
+      enum:
+        - ADX
+        - Cosmos
+        - Blob
+      type: string
+    DataVersionRequest:
+      type: object
+      properties:
+        versionId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Entity:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        version:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        isDefault:
+          type: boolean
+        tags:
+          $ref: '#/components/schemas/EntityMetadata'
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+          nullable: true
+        dtdlSchemaUrl:
+          type: string
+          nullable: true
+        dtdlSchema:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/JToken'
+          nullable: true
+        isBaseEntity:
+          type: boolean
+          nullable: true
+        storageInfo:
+          $ref: '#/components/schemas/StorageInfo'
+        semanticRelevantFlag:
+          type: boolean
+      additionalProperties: false
+    EntityDataType:
+      enum:
+        - Undefined
+        - Reference
+        - Operational
+      type: string
+    EntityMetadata:
+      type: object
+      properties:
+        entityType:
+          $ref: '#/components/schemas/EntityDataType'
+        ingestionFormat:
+          $ref: '#/components/schemas/IngestionFormat'
+        ingestionRate:
+          $ref: '#/components/schemas/IngestionRate'
+        storageType:
+          $ref: '#/components/schemas/StorageType'
+        dataSamplingRate:
+          $ref: '#/components/schemas/DataSamplingRate'
+      additionalProperties: false
+    EntityPatch:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseColumn'
+          nullable: true
+      additionalProperties: false
+    EntityResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        tags:
+          $ref: '#/components/schemas/EntityMetadata'
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+          nullable: true
+        dtdlSchema:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/JToken'
+          nullable: true
+        storageInfo:
+          $ref: '#/components/schemas/StorageInfo'
+        semanticRelevantFlag:
+          type: boolean
+        version:
+          type: integer
+          format: int32
+        etag:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ErrorResponseModel:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Filter:
+      required:
+        - fieldName
+        - operator
+        - value
+      type: object
+      properties:
+        fieldName:
+          minLength: 1
+          type: string
+        operator:
+          $ref: '#/components/schemas/QueryOperator'
+        value:
+          minLength: 1
+          type: string
+        nextOperator:
+          $ref: '#/components/schemas/QueryNextOperator'
+      additionalProperties: false
+    IngestionFormat:
+      enum:
+        - Undefined
+        - Batch
+        - Stream
+      type: string
+    IngestionRate:
+      enum:
+        - Undefined
+        - Minutes
+        - Hourly
+        - Daily
+        - Weekly
+        - Monthly
+      type: string
+    JToken:
+      type: array
+      items:
+        $ref: '#/components/schemas/JToken'
+    JobStatusResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MDSHealth:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        version:
+          type: integer
+          format: int32
+        message:
+          type: string
+          nullable: true
+        setupStatus:
+          $ref: '#/components/schemas/OperationStatus'
+        setupInfo:
+          $ref: '#/components/schemas/MDSHealthSetupInfo'
+        errorMessage:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    MDSHealthSetupInfo:
+      type: object
+      properties:
+        registerEntityStatus:
+          $ref: '#/components/schemas/OperationStatus'
+        dataVersionStatus:
+          $ref: '#/components/schemas/OperationStatus'
+      additionalProperties: false
+    MappingsTableModel:
+      type: object
+      additionalProperties: false
+    OPCUAMappingRequestModel:
+      type: object
+      properties:
+        targetEntity:
+          type: string
+          nullable: true
+        updateRelatedNode:
+          type: boolean
+        mappingData:
+          type: array
+          items:
+            $ref: '#/components/schemas/OPCUAMappingTwin'
+          nullable: true
+        relationshipType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OPCUAMappingTwin:
+      type: object
+      properties:
+        dmmKeys:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+          nullable: true
+        opcuaName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OpcuaMappingResponseModel:
+      type: object
+      properties:
+        entityName:
+          type: string
+          nullable: true
+        dmmKeys:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+          nullable: true
+        opcuaName:
+          type: string
+          nullable: true
+        targetEntity:
+          type: string
+          nullable: true
+        updateRelatedNode:
+          type: boolean
+        relationshipType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OperationStatus:
+      enum:
+        - Accepted
+        - InProgress
+        - TransientFailure
+        - Succeeded
+        - Failed
+        - Deleting
+        - Canceled
+        - Unknown
+        - Skipped
+      type: string
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    QueryNextOperator:
+      enum:
+        - AND
+        - OR
+      type: string
+    QueryOperator:
+      enum:
+        - EQ
+        - NEQ
+        - LEQ
+        - LT
+        - GEQ
+        - GT
+        - CONTAINS
+        - NCONTAINS
+        - STARTSWITH
+        - NSTARTSWITH
+        - ENDSWITH
+        - NENDSWITH
+        - IN
+        - NIN
+        - BETWEEN
+        - NBETWEEN
+        - HAS
+        - NHAS
+        - REGEXMATCH
+      type: string
+    QueryRequest:
+      required:
+        - entityName
+      type: object
+      properties:
+        entityName:
+          minLength: 1
+          type: string
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+          nullable: true
+        sort:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sort'
+          nullable: true
+        projectedFields:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+          nullable: true
+        timeSeries:
+          $ref: '#/components/schemas/TimeSeries'
+        maxRecords:
+          type: integer
+          format: int32
+          nullable: true
+        pageIndex:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    QueryRequestRelatedEntitiesData:
+      required:
+        - relatedEntities
+        - sourceEntity
+      type: object
+      properties:
+        sourceEntity:
+          $ref: '#/components/schemas/SecondaryQueryRequest'
+        relatedEntities:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryRequest'
+        timeSeries:
+          $ref: '#/components/schemas/TimeSeries'
+        pathEntityList:
+          type: array
+          items:
+            type: string
+          nullable: true
+        maxHops:
+          type: integer
+          format: int32
+        maxRecords:
+          type: integer
+          format: int32
+          nullable: true
+        pageIndex:
+          type: integer
+          format: int32
+      additionalProperties: false
+    QueryRequestRelatedNodes:
+      required:
+        - entityName
+        - filters
+      type: object
+      properties:
+        entityName:
+          minLength: 1
+          type: string
+        filters:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+        timeSeries:
+          $ref: '#/components/schemas/TimeSeries'
+        maxRecords:
+          type: integer
+          format: int32
+          nullable: true
+        pageIndex:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    SecondaryQueryRequest:
+      required:
+        - entityName
+      type: object
+      properties:
+        entityName:
+          minLength: 1
+          type: string
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+          nullable: true
+      additionalProperties: false
+    Sort:
+      required:
+        - fieldName
+      type: object
+      properties:
+        fieldName:
+          minLength: 1
+          type: string
+        asc:
+          type: boolean
+      additionalProperties: false
+    StorageInfo:
+      type: object
+      properties:
+        defaultStore:
+          $ref: '#/components/schemas/DataStore'
+        adtModelId:
+          type: string
+          nullable: true
+        adxTableName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StorageType:
+      enum:
+        - Undefined
+        - Hot
+        - Warm
+        - Cold
+      type: string
+    SupportedDatatypes:
+      enum:
+        - String
+        - Integer
+        - Double
+        - Enum
+        - Alphanumeric
+        - URIreference
+        - DateTime
+        - Dynamic
+      type: string
+    TimeSeries:
+      required:
+        - operator
+        - parameters
+      type: object
+      properties:
+        operator:
+          $ref: '#/components/schemas/TimeSeriesOperator'
+        parameters:
+          type: array
+          items:
+            type: string
+            format: date-time
+      additionalProperties: false
+    TimeSeriesOperator:
+      enum:
+        - BETWEEN
+        - EQ
+        - LT
+        - GT
+      type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://login.microsoftonline.com/Add-Your-Tenant-Id/oauth2/v2.0/authorize
+          scopes:
+            api://Add-Your-App-Registration-Id/ManufacturingAdmin: MCI4M
+            api://Add-Your-App-Registration-Id/ManufacturingUser: MCI4M
+security:
+  - oauth2: [ ]

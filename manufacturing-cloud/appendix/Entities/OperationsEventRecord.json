@@ -1,0 +1,155 @@
+{
+    "name": "Operations event record",
+    "columns": [
+        {
+        "name": "id",
+        "description": "A unique identification of a specific operations event record.",
+        "type": "String",
+        "mandatory": "true",
+        "semanticRelevantFlag": "true",
+        "groupBy": "true",
+        "primaryKey": "true",
+        "isProperNoun": "false"
+        },
+        {
+          "name": "description",
+          "description": "Contains additional information and description of the operations event record",
+          "type": "String",
+          "mandatory": "false",
+          "semanticRelevantFlag": "true",
+          "groupBy": "false",
+          "primaryKey": "false",
+          "isProperNoun": "false"
+        },
+        {
+            "name": "action",
+            "description": "The action performed on the operations event record entry within the operations event record.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "added",
+                "changed",
+                "deleted",
+                "observed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "effectiveTimestamp",
+            "description": "The date and time for which the operations event record and its action was/is effective. The effective timestamp attribute explicitly states the time of the real-world event.If no entry is provided, the effective timestamp is the effective timestamp represented in the operations event.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "recordTimestamp",
+            "description": "The date and time the publisher recorded/transacted the action. The record timestamp attribute explicitly states the time that the publisher/sender took the reported action. If no entry is provided, the record timestamp is the record timestamp represented in the operations event.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsEventRecord;1",
+        "@type": "Interface",
+        "displayName": "Operations event record",
+        "description": "The bundle of operations event record entry objects that are pertinent to the real-world MOM event shall be defined as an operations event record",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "recordsActionOn",
+                "displayName": "Records action on",
+                "description": "This operations record acts as a container for operations record entry(s) with common action attribute applied",
+                "comment": "Multiplicity: 1",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventRecordEntry;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "specifiedBy",
+                "displayName": "Specified by",
+                "description": "The operations event definition record specification defines the allowed information objects contained within this operations event record. The specified actions must match the action attribute in this operations event record entry",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventDefinitionRecordSpecification;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "This parent operations event record is whole of the child operations event record(s) as the part",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventRecord;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and description of the operations event record",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "action",
+                "displayName": "Action",
+                "description": "The action performed on the operations event record entry within the operations event record",
+                "writable": true,            
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "added",
+                            "enumValue": "added"
+                        },
+                        {
+                            "name": "changed",
+                            "enumValue": "changed"
+                        },
+                        {
+                            "name": "deleted",
+                            "enumValue": "deleted"
+                        },
+                        {
+                            "name": "observed",
+                            "enumValue": "observed"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "effectiveTimestamp",
+                "displayName": "Effective timestamp",
+                "description": "The date and time for which the operations event record and its action was/is effective. The effective timestamp attribute explicitly states the time of the real-world event.If no entry is provided, the effective timestamp is the effective timestamp represented in the operations event",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "recordTimestamp",
+                "displayName": "Record timestamp",
+                "description": "The date and time the publisher recorded/transacted the action. The record timestamp attribute explicitly states the time that the publisher/sender took the reported action. If no entry is provided, the record timestamp is the record timestamp represented in the operations event",
+                "schema": "dateTime",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

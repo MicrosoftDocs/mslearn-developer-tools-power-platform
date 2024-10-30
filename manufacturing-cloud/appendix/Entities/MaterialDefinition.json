@@ -1,0 +1,203 @@
+{
+    "name": "Material Definition",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a specific material definition, within the scope of the information exchanged (operations capability, operations schedule, operations performance, \u2026) Required attribute. The ID is used in other parts of the model when the material definition needs to be identified, such as the operations capability for this material definition, or an operations response identifying the material definition used.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "description",
+            "description": "Additional information about the material definition.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the rolebased equipment hierarchy. Optionally, hierarchy scope defines the scope of the material definition, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyType",
+            "description": "Defines the type of the assembly. Defined types are -  physical: the components of the assembly are physically connected or in the same area; logical: the components of the assembly are not necessarily physically connected or in the same area.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Physical",
+                "Logical"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyRelationship",
+            "description": "Defines the type of the relationships. Defined types are -  permanent: an assembly that is not intended to be split during the production process; transient: a temporary assembly using during production, such as a pallet of different materials or a batch kit.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Permanent",
+                "Transient"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "inventorymangementsystemrefid",
+            "description": "Reference to Material and Inventory Management System Material Master",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Reference to Material and Inventory Management MES Material Master ID",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Daily",
+        "storage": "Hot"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:MaterialDefinition;1",
+        "@type": "Interface",
+        "displayName": "Material definition",
+        "description": "A representation of a material with similar characteristics for the purpose of manufacturing operations definition, scheduling, capability and performance shall be presented as a material definition",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:Resource;1",
+            "dtmi:digitaltwins:isa95:TestableObject;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isAssembledFrom",
+                "displayName": "Is assembled from",
+                "description": "This material definition is part of the related object as the whole",
+                "target": "dtmi:digitaltwins:isa95:MaterialDefinition;1",
+                "comment": "Relationship type: Composition"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasPropertiesOf",
+                "displayName": "Has properties of",
+                "description": "The material definition property(s) of this material definition.",
+                "target": "dtmi:digitaltwins:isa95:MaterialDefinitionProperty;1",
+                "comment": "Relationship type: Composition"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isMemberOfClass",
+                "displayName": "Is a member of class",
+                "description": "This material definition objects support this material class. ",
+                "target": "dtmi:digitaltwins:isa95:MaterialClass;1",
+                "comment": "Relationship type: Association"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the material definition",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyType",
+                "displayName": "Assembly type",
+                "writable": true,
+                "description": "Defines the type of the assembly",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "physical",
+                            "enumValue": "Physical",
+                            "description": "the components of the assembly are physically connected or in the same area"
+                        },
+                        {
+                            "name": "logical",
+                            "enumValue": "Logical",
+                            "description": "the components of the assembly are not necessarily physically connected or in the same area"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyRelationship",
+                "displayName": "Assembly relationship",
+                "writable": true,
+                "description": "Defines the type of the relationships",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "permanent",
+                            "enumValue": "Permanent",
+                            "description": "an assembly that is not intended to be split during the production process"
+                        },
+                        {
+                            "name": "transient",
+                            "enumValue": "Transient",
+                            "description": "a temporary assembly using during production, such as a pallet of different materials or a batch kit"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

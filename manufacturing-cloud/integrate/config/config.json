@@ -1,0 +1,663 @@
+{
+    "entity_list": [
+        {
+            "entity_name": "Operations Request",
+            "mapping_list": [
+                {
+                    "input_file_names": "Schedule.csv",
+                    "to_from_fields": {
+                        "id": "{OR}",
+                        "description": "{OR-Description}",
+                        "startTime": "{startTime}",
+                        "endTime": "{endTime}",
+                        "requestState": "{ScheduleStatus}"
+                    },
+                    "enums": {
+                        "{ScheduleStatus}": {
+                            "Completed": "completed",
+                            "PAUSE": "suspended",
+                            "RELEASED": "released",
+                            "Started": "running"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Hierarchy Scope",
+            "mapping_list": [
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "HS-{WorkCenter}",
+                        "equipmentID": "{WorkCenter}",
+                        "equipmentLevel": "Work Cell"
+                    }
+                },
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "HS-{Facility}",
+                        "equipmentID": "{Facility}",
+                        "equipmentLevel": "Site"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Equipment",
+            "mapping_list": [
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "{WorkCenter}",
+                        "equipmentLevel": "workCell"
+                    }
+                },
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "{Facility}",
+                        "equipmentLevel": "site"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Segment Requirement",
+            "mapping_list": [
+                {
+                    "input_file_names": "Schedule.csv",
+                    "to_from_fields": {
+                        "id": "SR_{SR}",
+                        "description": "{SR-Description}",
+                        "operationsType": "Production",
+                        "earliestStartTime": "{startTime}",
+                        "latestEndTime": "{endTime}",
+                        "duration": "{Duration}",
+                        "durationUnitOfMeasure": "Hours"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Equipment requirement",
+            "mapping_list": [
+                {
+                    "input_file_names": "Schedule.csv",
+                    "to_from_fields": {
+                        "id": "ER_{SR}",
+                        "description": "{WorkCenter}",
+                        "operationalLocation": "{WorkCenter}",
+                        "equipmentUse": "{WorkCenter}",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "hours"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Material requirement",
+            "mapping_list": [
+                {
+                    "input_file_names": "Schedule.csv",
+                    "to_from_fields": {
+                        "id": "{ID}Produced",
+                        "materialUse": "Material produced",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "{quantityUnitOfMeasure}"
+                    }
+                },
+                {
+                    "input_file_names": "Schedule.csv",
+                    "to_from_fields": {
+                        "id": "{ID}Consumed",
+                        "materialUse": "Material consumed",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "{quantityUnitOfMeasure}"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Material Actual",
+            "mapping_list": [
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "{ID}Actual-Produced",
+                        "storageLocation": "{StorageLocation}",
+                        "materialUse": "Material produced",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "{quantityUnitOfMeasure}"
+                    }
+                },
+                {
+                    "input_file_names": "Consumption.csv",
+                    "to_from_fields": {
+                        "id": "{ID}Actual-Consumed",
+                        "materialUse": "Material consumed",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "{quantityUnitOfMeasure}"
+                    }
+                },
+                {
+                    "input_file_names": "Scrap.csv",
+                    "to_from_fields": {
+                        "id": "{ID}Actual-Scrap",
+                        "materialUse": "Inventoried",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "{quantityUnitOfMeasure}"
+                    }
+                },
+                {
+                    "input_file_names": "Scrap.csv",
+                    "to_from_fields": {
+                        "id": "{ID}Actual-Scrap",
+                        "materialUse": "Material consumed",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "{quantityUnitOfMeasure}"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Material Definition",
+            "mapping_list": [
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "{Product}"
+                    }
+                },
+                {
+                    "input_file_names": "Consumption.csv",
+                    "to_from_fields": {
+                        "id": "{Product}"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Segment Data",
+            "mapping_list": [
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "{Shift}",
+                        "description": "Shift",
+                        "value": "{Shift}",
+                        "valueUnitOfMeasure": "NA"
+                    }
+                },
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "Crew-{Crew}",
+                        "description": "Crew",
+                        "value": "{Crew}",
+                        "valueUnitOfMeasure": "NA"
+                    }
+                },
+                {
+                    "input_file_names": "Scrap.csv",
+                    "to_from_fields": {
+                        "id": "{Shift}",
+                        "description": "Shift",
+                        "value": "{Shift}",
+                        "valueUnitOfMeasure": "NA"
+                    }
+                },
+                {
+                    "input_file_names": "Scrap.csv",
+                    "to_from_fields": {
+                        "id": "Crew-{Crew}",
+                        "description": "Crew",
+                        "value": "{Crew}",
+                        "valueUnitOfMeasure": "NA"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Material Lot",
+            "mapping_list": [
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "{Lot}",
+                        "status": "Approved",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "{quantityUnitOfMeasure}"
+                    }
+                },
+                {
+                    "input_file_names": "Scrap.csv",
+                    "to_from_fields": {
+                        "id": "Scrap-{Lot}",
+                        "status": "Scrap",
+                        "quantity": "{Quantity}",
+                        "quantityUnitOfMeasure": "{quantityUnitOfMeasure}"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Operations event",
+            "mapping_list": [
+                {
+                    "input_file_names": "Downtime.csv",
+                    "to_from_fields": {
+                        "id": "{ID}-{WorkCenter}",
+                        "description": "{Description}",
+                        "effectiveTimestamp": "{StartTime}",
+                        "operationsType": "Maintenance",
+                        "enterpriseFunction": "Maintenance management",
+                        "category": "{Category}"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Operations event property",
+            "mapping_list": [
+                {
+                    "input_file_names": "Downtime.csv",
+                    "to_from_fields": {
+                        "id": "{ID}",
+                        "description": "Downtime in {WorkCenter}",
+                        "value": "{DowntimeDuration}",
+                        "valueUnitOfMeasure": "minutes"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Test result",
+            "mapping_list": [
+                {
+                    "input_file_names": "Scrap.csv",
+                    "to_from_fields": {
+                        "id": "{ID}",
+                        "description": "{Description}",
+                        "evaluationDate": "{PostingDate}",
+                        "evaluatedCriterionResult": "Fail"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Segment Response",
+            "mapping_list": [
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "SRPS-{SR}-{ID}",
+                        "description": "{SR-Description}",
+                        "postingDate": "{PostingDate}"
+                    }
+                },
+                {
+                    "input_file_names": "Scrap.csv",
+                    "to_from_fields": {
+                        "id": "SRPS-SCRAP{SR}-{ID}",
+                        "description": "{SR-Description}",
+                        "postingDate": "{PostingDate}"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Equipment Actual",
+            "mapping_list": [
+                {
+                    "input_file_names": "ProductionDetails.csv",
+                    "to_from_fields": {
+                        "id": "{ID}EA_{SR}",
+                        "description": "{WorkCenter}",
+                        "equipmentUse": "{WorkCenter}",
+                        "quantity": "0",
+                        "quantityUnitOfMeasure": "hours"
+                    }
+                },
+                {
+                    "input_file_names": "Scrap.csv",
+                    "to_from_fields": {
+                        "id": "{ID}SCRAP-EA_{SR}",
+                        "description": "{WorkCenter}",
+                        "equipmentUse": "{WorkCenter}",
+                        "quantity": "0",
+                        "quantityUnitOfMeasure": "hours"
+                    }
+                }
+            ]
+        },
+        {
+            "entity_name": "Equipment Property",
+            "mapping_list": [
+                {
+                    "input_file_names": "Telemetry.csv",
+                    "to_from_fields": {
+                        "id": "{Tag}",
+                        "description": "Temperature",
+                        "value": "{value}",
+                        "valueUnitOfMeasure": "Celsius",
+                        "sourceTimeStamp": "{timestamp}"
+                    }
+                }
+            ]
+        }
+    ],
+    "relationship_list": [
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Material Actual",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Material Actual",
+            "source_join_column": "SR,PostingDate",
+            "target_join_column": "SR,PostingDate",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "Consumption.csv"
+        },
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Material Actual",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "Scrap.csv"
+        },
+        {
+            "source_entity_name": "Material Actual",
+            "target_entity_name": "Material Lot",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Material Actual",
+            "target_entity_name": "Material Lot",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "Scrap.csv"
+        },
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Segment Requirement",
+            "source_join_column": "SR",
+            "target_join_column": "SR",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "Schedule.csv"
+        },
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Segment Requirement",
+            "source_join_column": "SR",
+            "target_join_column": "SR",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "Schedule.csv"
+        },
+        {
+            "source_entity_name": "Segment Requirement",
+            "target_entity_name": "Material requirement",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Schedule.csv",
+            "target_file_name": "Schedule.csv"
+        },
+        {
+            "source_entity_name": "Equipment requirement",
+            "target_entity_name": "Equipment",
+            "source_join_column": "SR",
+            "target_join_column": "SR",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "equipmentLevel = 'workCell'",
+            "source_file_name": "Schedule.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Operations Request",
+            "target_entity_name": "Segment Requirement",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Schedule.csv",
+            "target_file_name": "Schedule.csv"
+        },
+        {
+            "source_entity_name": "Equipment Actual",
+            "target_entity_name": "Equipment",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "equipmentLevel = 'workCell'",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Equipment Actual",
+            "target_entity_name": "Equipment",
+            "source_join_column": "WorkCenter",
+            "target_join_column": "WorkCenter",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "equipmentLevel = 'workCell'",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Segment Requirement",
+            "target_entity_name": "Equipment requirement",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Schedule.csv",
+            "target_file_name": "Schedule.csv"
+        },
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Segment Data",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Segment Data",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "Scrap.csv"
+        },
+        {
+            "source_entity_name": "Test result",
+            "target_entity_name": "Material Lot",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "Scrap.csv"
+        },
+        {
+            "source_entity_name": "Operations event",
+            "target_entity_name": "Operations event property",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Downtime.csv",
+            "target_file_name": "Downtime.csv"
+        },
+        {
+            "source_entity_name": "Operations event",
+            "target_entity_name": "Operations event property",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Downtime.csv",
+            "target_file_name": "Downtime.csv"
+        },
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Equipment Actual",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Segment Response",
+            "target_entity_name": "Equipment Actual",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "Scrap.csv"
+        },
+        {
+            "source_entity_name": "Hierarchy Scope",
+            "target_entity_name": "Hierarchy Scope",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "equipmentLevel = 'Site'",
+            "target_join_column_filter": "equipmentLevel = 'Work Cell'",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Equipment",
+            "target_entity_name": "Hierarchy Scope",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "equipmentLevel = 'workCell'",
+            "target_join_column_filter": "equipmentLevel = 'Work Cell'",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Equipment",
+            "target_entity_name": "Hierarchy Scope",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "equipmentLevel = 'site'",
+            "target_join_column_filter": "equipmentLevel = 'Site'",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Operations event",
+            "target_entity_name": "Hierarchy Scope",
+            "source_join_column": "WorkCenter",
+            "target_join_column": "WorkCenter",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "equipmentLevel = 'Work Cell'",
+            "source_file_name": "Downtime.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Material Actual",
+            "target_entity_name": "Material Definition",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Material Actual",
+            "target_entity_name": "Material Definition",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Consumption.csv",
+            "target_file_name": "Consumption.csv"
+        },
+        {
+            "source_entity_name": "Material Actual",
+            "target_entity_name": "Material Definition",
+            "source_join_column": "Product",
+            "target_join_column": "Product",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Material requirement",
+            "target_entity_name": "Material Definition",
+            "source_join_column": "Product",
+            "target_join_column": "Product",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Schedule.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Material Lot",
+            "target_entity_name": "Material Definition",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "ProductionDetails.csv"
+        },
+        {
+            "source_entity_name": "Material Lot",
+            "target_entity_name": "Material Definition",
+            "source_join_column": "ID",
+            "target_join_column": "ID",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "Scrap.csv",
+            "target_file_name": "Scrap.csv"
+        },
+        {
+            "source_entity_name": "Equipment",
+            "target_entity_name": "Equipment Property",
+            "source_join_column": "WorkCenter",
+            "target_join_column": "SPLIT(Tag, '_', 0)",
+            "source_join_column_filter": "",
+            "target_join_column_filter": "",
+            "source_file_name": "ProductionDetails.csv",
+            "target_file_name": "Telemetry.csv"
+        }
+    ]
+}

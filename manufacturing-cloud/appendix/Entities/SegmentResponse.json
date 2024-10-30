@@ -1,0 +1,348 @@
+{
+    "name": "Segment Response",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Uniquely identifies an instance ofa segment response executed.Required attribute.It has to be notted that the same processsegment, operations definition, oroperations segment can bereferenced multiple times in asegment response.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of thesegment response",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationsType",
+            "description": "Describes the category of operation.Required attribute.Describes the category ofoperation.Required attribute.Defined values areproduction, maintenance, quality,inventory, or mixed.\u201cMixed\u201d can be used when theoperations Request containsseveral types of operationsrequests and/or segmentrequirements..\u201cMixed\u201d can be used when theoperations Request containsseveral types of operationsrequests and/or segmentrequirements.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Production",
+                "Maintenance",
+                "Quality",
+                "Inventory",
+                "Mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "actualStartTime",
+            "description": "The actual start time of thissegment response",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "actualEndTime",
+            "description": "The actual endingtime of this segmentresponse",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "postingDate",
+            "description": "The date and time used forposting resource actuals tosupporting applicationsPosting Date indicates the dateand time that the resourceactuals should be financially andlegally posted to accountingledgers and to support planningapplications.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "segmentState",
+            "description": "Indicates the state of thesegment response.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "forecast",
+                "released",
+                "cancelled",
+                "waiting",
+                "ready",
+                "running",
+                "completed",
+                "aborted",
+                "held",
+                "suspended",
+                "closed"
+            ],
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Weekly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:SegmentResponse;1",
+        "@type": "Interface",
+        "displayName": "Segment response",
+        "description": "Information on a segment of an operations response shall be presented as a segment response.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "correspondsToDefinition",
+                "displayName": "Corresponds To",
+                "description": "The operations definition reference that corresponds to this segment response",
+                "target": "dtmi:digitaltwins:isa95:OperationsDefinition;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToSegment",
+                "displayName": "Corresponds To",
+                "description": "The associated operations segments that corresponds to this segment response",
+                "target": "dtmi:digitaltwins:isa95:OperationsSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToAProcessSegment",
+                "displayName": "Corresponds To a",
+                "description": "An identification of the process segment associated with this segment response.",
+                "maxMultiplicity": 1,
+                "target": "dtmi:digitaltwins:isa95:ProcessSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToRequirement",
+                "displayName": "Corresponds To",
+                "description": "The segments requirement(s) that corresponds to this segment response",
+                "target": "dtmi:digitaltwins:isa95:SegmentRequirement;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "The related object(s) makes up part of this segment response as the whole.",
+                "target": "dtmi:digitaltwins:isa95:SegmentResponse;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsData",
+                "displayName": "Contains",
+                "description": "The segment parameters related to this segment response",
+                "target": "dtmi:digitaltwins:isa95:SegmentData;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsPersonnel",
+                "displayName": "Contains",
+                "description": "The personnel actual(s) related to this segment response",
+                "target": "dtmi:digitaltwins:isa95:PersonnelActual;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsEquipment",
+                "displayName": "Contains",
+                "description": "The equipment actual(s) related to this segment response",
+                "target": "dtmi:digitaltwins:isa95:EquipmentActual;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsPhysicalAsset",
+                "displayName": "Contains",
+                "description": "The physical asset actual(s) related to this segment response",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetActual;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsMaterial",
+                "displayName": "Contains",
+                "description": "The material actual(s) related to this segment response",
+                "target": "dtmi:digitaltwins:isa95:MaterialActual;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToWorkResponse",
+                "displayName": "Corresponds To work response",
+                "description": "The associated work response that corresponds to this segment response",
+                "target": "dtmi:digitaltwins:isa95:WorkResponse;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToJobResponse",
+                "displayName": "Corresponds to job response",
+                "description": "The associated job response that corresponds to this segment response",
+                "target": "dtmi:digitaltwins:isa95:JobResponse;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the process segment",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "operationsType",
+                "displayName": "Operations type",
+                "description": "Describes the category of the activity",
+                "comment": "Required attribute. Possible values are: production, maintenance, quality, inventory, or mixed",
+                "writable": true,
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "production",
+                            "enumValue": "Production"
+                        },
+                        {
+                            "name": "maintenance",
+                            "enumValue": "Maintenance"
+                        },
+                        {
+                            "name": "quality",
+                            "enumValue": "Quality"
+                        },
+                        {
+                            "name": "inventory",
+                            "enumValue": "Inventory"
+                        },
+                        {
+                            "name": "mixed",
+                            "enumValue": "Mixed",
+                            "comment": " can be used when the activity contains several categories of process segments"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "actualStartTime",
+                "displayName": "Actual Start Time",
+                "description": "The actual start time of this segment response.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "actualEndTime",
+                "displayName": "Latest End Time",
+                "description": "The actual end time of this segment response.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "postingDate",
+                "displayName": "Posting Date",
+                "description": "The date and time used for posting resource actuals to supporting applications.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "segmentState",
+                "displayName": "Segment state",
+                "description": "Indicates the state of the segment response.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "forecast",
+                            "enumValue": "forecast"
+                        },
+                        {
+                            "name": "released",
+                            "enumValue": "released"
+                        },
+                        {
+                            "name": "cancelled",
+                            "enumValue": "cancelled"
+                        },
+                        {
+                            "name": "waiting",
+                            "enumValue": "waiting"
+                        },
+                        {
+                            "name": "ready",
+                            "enumValue": "ready"
+                        },
+                        {
+                            "name": "running",
+                            "enumValue": "running"
+                        },
+                        {
+                            "name": "completed",
+                            "enumValue": "completed"
+                        },
+                        {
+                            "name": "aborted",
+                            "enumValue": "aborted"
+                        },
+                        {
+                            "name": "held",
+                            "enumValue": "held"
+                        },
+                        {
+                            "name": "suspended",
+                            "enumValue": "suspended"
+                        },
+                        {
+                            "name": "closed",
+                            "enumValue": "closed"
+                        }
+                    ]
+                },
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

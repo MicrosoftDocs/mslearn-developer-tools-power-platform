@@ -1,0 +1,374 @@
+{
+    "name": "Equipment Capability",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Defines a unique instanceof the equipment capabilityfor a specified element ofthe equipment hierarchymodelEnterprise, site, area, workcenter, or work unit.Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the Equipment Capability defnition",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based Physical Asset hierarchy. Optionally, hierarchy scope defines the scope of the Equipment class Schedule, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationalLocation",
+            "description": "Identifies the operational locationof the Equipment resource(s)specified by this Equipment Capability.",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationalLocationType",
+            "description": "Indicates whether the operationallocation attribute refers to anoperational location object orcontains a description of theoperational location.Mandatory where an operationallocation attribute is specified.Defined values areoperational location: operationallocation attribute references anoperational location;description: operational locationattribute contains a description ofthe operational location, such asa street address.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Operational Location",
+                "Description"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "capabilityType",
+            "description": "Defines the type ofcapability.Defined types are:committed: capacity thatis committed for futureproductive use;unattainable: capacitythat is not attainable forfuture productive usegiven the equipmentcondition, equipmentutilization, personnelavailability or materialavailability;\uf02d available: capacity that isavailable for additionalfuture productive use;\uf02d used: a historical valuethat defines the portion ofthe capacity withacceptable quality;\uf02d unused: a historical valuethat defines the portion ofthe capacity that was notused or had unacceptablequality; and\uf02d total: the sum of usedand unused capability orthe sum of available,unattainable andcommitted capability.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "committed",
+                "unattainable",
+                "available",
+                "used",
+                "unused",
+                "total"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "reason",
+            "description": "Defines the reason for thecapability type.",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "confidenceFactor",
+            "description": "Measure of the confidenceof the ability to obtain thecapacity value",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "equipmentUse",
+            "description": "Defines the expected Capability use of theEquipment class or equipment",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "startTime",
+            "description": "The starting timeassociated with theequipment capability.If omitted, then thecapability is associated tothe parent operationscapability start time.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "endTime",
+            "description": "The ending time associatedwith the equipmentcapability.If omitted, then thecapability is associated tothe parent operationscapability end time",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "Specifies the quantity of theequipment capabilitydefined.",
+            "type": "Double",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "The unit of measure of theassociated quantity.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assetsystemrefid",
+            "description": "Asset/ERP System of Record Identifier for Physical Asset (AssetID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Manufacturing system Ref ID (MES Person Referrence ID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:EquipmentCapability;1",
+        "@type": "Interface",
+        "displayName": "Equipment capability",
+        "description": "A representation of the capability of equipment or equipment classes that is committed, available, or unattainable for a specific time shall be presented as an equipment capability.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "The related object(s) makes up part of this equipment capability as the whole",
+                "target": "dtmi:digitaltwins:isa95:EquipmentCapability;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasValuesOf",
+                "displayName": "has values of",
+                "description": "The values in the equipment capability property are for this equipment capability.",
+                "target": "dtmi:digitaltwins:isa95:EquipmentCapabilityProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToEquipmentClass",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the equipment model as explained in Clause 3.3.8. Identifies the associated equipment class or set of equipment classes of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:EquipmentClass;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToEquipment",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the equipment model as explained in Clause 3.3.8. Identifies the associated equipment or set of equipment of the specification for a specific process segment. Typically, either equipment class or equipment is defined",
+                "target": "dtmi:digitaltwins:isa95:Equipment;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "capabilityType",
+                "displayName": "capability type",
+                "description": "Defines the type of capability. ",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "committed",
+                            "enumValue": "committed",
+                            "comment": ": capacity that is committed for future productive use."
+                        },
+                        {
+                            "name": "unattainable",
+                            "enumValue": "unattainable",
+                            "comment": "capacity that is not attainable for future productive use given the equipment condition, equipment utilization, personnel availability or material availability."
+                        },
+                        {
+                            "name": "available",
+                            "enumValue": "available",
+                            "comment": "capacity that is available for additional future productive use."
+                        },
+                        {
+                            "name": "used",
+                            "enumValue": "used",
+                            "comment": "a historical value that defines the portion of the capacity with acceptable quality."
+                        },
+                        {
+                            "name": "unused",
+                            "enumValue": "unused",
+                            "comment": " a historical value that defines the portion of the capacity that was not used or had unacceptable quality."
+                        },
+                        {
+                            "name": "total",
+                            "enumValue": "total",
+                            "comment": "the sum of used and unused capability or the sum of available, unattainable and committed capability."
+                        }
+                    ]
+                },
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "reason",
+                "displayName": "Reason",
+                "description": "Defines the reason for the capability type.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "confidenceFactor",
+                "displayName": "Confidence Factor",
+                "description": "Measure of the confidence of the ability to obtain the capacity value.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "operationalLocation",
+                "displayName": "Operational location",
+                "description": "Identifies the operational location of the equipment specified by this equipment segment specification",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "operationalLocationType",
+                "displayName": "Operational location type",
+                "description": "Indicates whether the operational location attribute refers to an operational location object or contains a description of the operational location. Mandatory where an operational location attribute is specified",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "operationalLocation",
+                            "enumValue": "Operational Location",
+                            "displayName": "Operational Location",
+                            "description": "operational location attribute references an operational location;"
+                        },
+                        {
+                            "name": "description",
+                            "enumValue": "Description",
+                            "displayName": "Description",
+                            "description": "operational location attribute contains a description of the operational location, such as a street address."
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "equipmentUse",
+                "displayName": "Equipment use",
+                "description": "Defines the capability use of the equipment class or equipment",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "startTime",
+                "displayName": "Start Time",
+                "description": "The starting time associated with the equipment capability.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "endTime",
+                "displayName": "End Time",
+                "description": "The ending time associated with the equipment capability.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "Specifies the amount of resources used in the parent segment",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

@@ -1,0 +1,164 @@
+{
+    "name": "Operations record entry template",
+    "columns": [
+        {
+            "name": "id",
+            "description": "The identifier of the operations record entry template.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information and descriptions of the operations record entry template.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "informationObject",
+            "description": "An embedded information object. If data is referenced in this operations record entry template, the attribute is not used. The format of the information object is specified in this operations record specification template.",
+            "type": "string",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "informationObjectID",
+            "description": "The reference to external data (information object) which is stored external to this operations record entry template. If data is embedded in this operations record entry template, the attribute is not used. The format of the reference is specified in the operations record specification template.",
+            "type": "string",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "informationObjectType",
+            "description": "Identifies the type of information object type that an operations record entry template is based upon. The allowed information object types are defined in the operations record specification template.",
+            "type": "string",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "effectiveTimestamp",
+            "description": "The date and time that the operations record entry template was/is effective. If no effective timestamp is provided with operations record entry template, the effective timestamp is represented by the effective timestamp attribute in the operations record template.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "recordTimestamp",
+            "description": "The date and time the publisher recorded / transacted the action. If no entry is provided, the record timestamp is the record timestamp attribute in the operations record template.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsRecordEntryTemplate;1",
+        "@type": "Interface",
+        "displayName": "Operations record entry template",
+        "description": "The operations record entry template object shall be a single information object as an object defined in this part and Part 4 of this standard, and any third-party manufacturing operations message profile within an operations record template. There shall be one or more operations record entry template objects in an operations event record template",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "This parent operations record entrytemplate is whole of the child operations record entry template(s) as the part",
+                "target": "dtmi:digitaltwins:isa95:OperationsRecordEntryTemplate;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToAnEntryIn",
+                "displayName": "Corresponds to an entry in",
+                "description": "An embedded information object. If data is referenced in this operations record entry template, the attribute is not used. The format of the information object is specified in the operations record specification template",
+                "target": "dtmi:digitaltwins:isa95:BaseModel;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToAnExternalEntryIn",
+                "displayName": "Corresponds to an entry in",
+                "description": "The reference to external data (information object) which is stored external to this operations record entry template. If data is embedded in this operations record entry template, the attribute is not used. The format of the reference is specified in the operations record specification template",
+                "target": "dtmi:digitaltwins:isa95:BaseModel;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the operations record entry template",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "informationObject",
+                "displayName": "Information object",
+                "description": "An embedded information object. If data is referenced in this operations record entry template, the attribute is not used. The format of the information object is specified in this operations record specification template",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "informationObjectID",
+                "displayName": "Information object ID",
+                "description": "The reference to external data (information object) which is stored external to this operations record entry template. If data is embedded in this operations record entry template, the attribute is not used. The format of the reference is specified in this operations record specification template",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "informationObjectType",
+                "displayName": "Information object type",
+                "description": "Identifies the type of information object type that an operations record entry template is based upon. The allowed information object types are defined in the operations record specification template",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "effectiveTimestamp",
+                "displayName": "Effective timestamp",
+                "description": "The date and time that the operations record entry template was/is effective. If no effective timestamp is provided with operations record entry template, the effective timestamp is represented by the effective timestamp attribute in the operations record template",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "recordTimestamp",
+                "displayName": "Record timestamp",
+                "description": "The date and time the publisher recorded / transacted the action. If no entry is provided, the record timestamp is the record timestamp attribute in the operations record template",
+                "schema": "dateTime",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

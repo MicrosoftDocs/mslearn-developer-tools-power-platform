@@ -1,0 +1,414 @@
+{
+    "name": "Material Segment Specification",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a specific Material segment specification.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information and descriptions of the Material segment specification definition.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based Material hierarchy. Optionally, hierarchy scope defines the scope of the Material class definition, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "storageLocation",
+            "description": "Identifies the storage location of the Material resource(s) specified by this Material segment specification.",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "storageLocationType",
+            "description": "Indicates whether the storage location attribute refers to an operational location, equipment or physical asset object, or contains a description of the storage location. Mandatory where a storage location is specified. Defined values are - operational location: storage location attribute references an operational location; - equipment: storage location attribute references an equipment object; physical asset: storage location attribute references a physical asset; and  description: storage location attribute contains a description of the storage location, such as a street address.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Operational location",
+                "Equipment",
+                "Physical asset",
+                "Description"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyType",
+            "description": "Defines the type of the assembly. Defined types are -  physical: the components of the assembly are physically connected or in the same area; logical: the components of the assembly are not necessarily physically connected or in the same area.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Physical",
+                "Logical"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyRelationship",
+            "description": "Defines the type of the relationships. Defined types are -  permanent: an assembly that is not intended to be split during the production process; transient: a temporary assembly using during production, such as a pallet of different materials or a batch kit.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Permanent",
+                "Transient"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "materialUse",
+            "description": "Defines the expected use of the material class, material definition, material lot, or material sublot in the context of the process segment. Defined values for production operations are consumable, material consumed, material produced, by-product produced, co-product produced, and yield produced. Defined values for maintenance operations are consumable, material consumed, and material produced. Defined values for quality test operations are consumable, destructive sample, returned sample, and retained sample. Defined values for Inventory operations are consumable, material consumed, material produced, and inventoried.",
+            "type": "Enum",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "enumValues": [
+                "Consumable",
+                "Material consumed",
+                "Material produced",
+                "By-Product produced",
+                "Co-Product produced",
+                "Yield produced",
+                "Destructive sample",
+                "Returned sample",
+                "Retained sample",
+                "Inventoried"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "Specifies the quantity of Material resource required for the parent process segment.",
+            "type": "Double",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "The unit of measure of the associated quantity.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "inventorysystemrefid",
+            "description": "Inventory/ERP System of Record Identifier for Material (AssetID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Manufacturing system Ref ID (MES Person Referrence ID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:MaterialSegmentSpecification;1",
+        "@type": "Interface",
+        "displayName": "Material segment specification",
+        "description": "Material resources that are required for a process segment shall be presented as material segment specifications",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "IsAssembledFrom",
+                "displayName": "Is assembled from",
+                "description": "The related object(s) makes up part of this material segment specification as the whole",
+                "target": "dtmi:digitaltwins:isa95:MaterialSegmentSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "specifies",
+                "displayName": "Specifies",
+                "description": "The test specification(s) used to evaluate this testable object.",
+                "target": "dtmi:digitaltwins:isa95:TestSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasPropertiesOf",
+                "displayName": "has properties of",
+                "description": "The material segment specification property(s) of this material segment specification",
+                "target": "dtmi:digitaltwins:isa95:MaterialSegmentSpecificationProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToClass",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material class or set of material classes of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:MaterialClass;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToDefinition",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material definition or set of material definition of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:MaterialDefinition;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToLot",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material lot or set of material lot of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:MaterialLot;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToSublot",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material sublot or set of material sublot of the specification for a specific process segment. Typically, either a material class or material definition is specified",
+                "target": "dtmi:digitaltwins:isa95:MaterialSublot;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the process segment",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "storageLocation",
+                "displayName": "Storage location",
+                "description": "Identifies the storage location of  the material resource(s) specified by this material segment specification",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "storageLocationType",
+                "displayName": "Storage location type",
+                "description": "Indicates whether the storage location attribute refers to an operational location, equipment or physical asset object, or contains a description of the storage location",
+                "comment": "Mandatory where a storage location is specified",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "operationalLocation",
+                            "enumValue": "Operational location",
+                            "comment": "storage location attribute references an operational location"
+                        },
+                        {
+                            "name": "equipment",
+                            "enumValue": "Equipment",
+                            "comment": "storage location attribute references an equipment object"
+                        },
+                        {
+                            "name": "physicalAsset",
+                            "enumValue": "Physical asset",
+                            "comment": " storage location attribute references a physical asset"
+                        },
+                        {
+                            "name": "description",
+                            "enumValue": "Description",
+                            "comment": "storage location attribute contains a description of the storage location, such as a street address"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyType",
+                "displayName": "Assembly type",
+                "writable": true,
+                "description": "Defines the type of the assembly",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "physical",
+                            "enumValue": "Physical",
+                            "description": "the components of the assembly are physically connected or in the same area"
+                        },
+                        {
+                            "name": "logical",
+                            "enumValue": "Logical",
+                            "description": "the components of the assembly are not necessarily physically connected or in the same area"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyRelationship",
+                "displayName": "Assembly relationship",
+                "writable": true,
+                "description": "Defines the type of the relationships",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "permanent",
+                            "enumValue": "Permanent",
+                            "description": "an assembly that is not intended to be split during the production process"
+                        },
+                        {
+                            "name": "transient",
+                            "enumValue": "Transient",
+                            "description": "a temporary assembly using during production, such as a pallet of different materials or a batch kit"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "materialUse",
+                "displayName": "Material use",
+                "description": "Defines the expected use of the material class, material definition, material lot, or material sublot in the context of the process segment.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "consumable",
+                            "displayName": "Consumable",
+                            "enumValue": "Consumable"
+                        },
+                        {
+                            "name": "materialConsumed",
+                            "displayName": "Material consumed",
+                            "enumValue": "Material consumed"
+                        },
+                        {
+                            "name": "materialProduced",
+                            "displayName": "Material produced",
+                            "enumValue": "Material produced"
+                        },
+                        {
+                            "name": "byProductProduced",
+                            "displayName": "By-Product produced",
+                            "enumValue": "By-Product produced"
+                        },
+                        {
+                            "name": "coProductProduced",
+                            "displayName": "Co-Product produced",
+                            "enumValue": "Co-Product produced"
+                        },
+                        {
+                            "name": "yieldProduced",
+                            "displayName": "Yield produced",
+                            "enumValue": "Yield produced"
+                        },
+                        {
+                            "name": "destructiveSample",
+                            "displayName": "Destructive sample",
+                            "enumValue": "Destructive sample"
+                        },
+                        {
+                            "name": "returnedSample",
+                            "displayName": "Returned sample",
+                            "enumValue": "Returned sample"
+                        },
+                        {
+                            "name": "retainedSample",
+                            "displayName": "Retained sample",
+                            "enumValue": "Retained sample"
+                        },
+                        {
+                            "name": "inventoried",
+                            "displayName": "Inventoried",
+                            "enumValue": "Inventoried"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "Specifies the personnel resource required for the parent process segment",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

@@ -1,0 +1,488 @@
+{
+    "name": "Operations event definition",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Identification of the operations event definition.Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information and descriptions of the operations event definition.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based equipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "Priority",
+            "description": "List of the priorities that act as a guide to the relative level of importance of an operations event.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationsEventType",
+            "description": "The type of Level 3operations event.Defined values areevent, alert, and alarm.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Event",
+                "Alert",
+                "Alarm"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationsEventLevel",
+            "description": "Defines the domain level of the operations event publisher.Defined values are Level 3 and Level 4.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                3,
+                4
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationsType",
+            "description": "Describes the category of operation.Required attribute.Defined values areproduction, inventory, quality, maintenance, and mixed.\u201cMixed\u201d can be used when the operations event does not refer to a specific operations activity or refers to several operation activities.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Production",
+                "Inventory",
+                "Quality",
+                "Maintenance",
+                "Mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "momFunction",
+            "description": "Defines the MOM function of the operations event publisher.Defined values from Part 3 MOM Activity Model areresource management, definition management, detailed scheduling, dispatching, execution management, data collection, performance analysis, and tracking.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Resource management",
+                "Definition management",
+                "Detailed scheduling",
+                "Dispatching",
+                "Execution management",
+                "Data collection",
+                "Performance analysis",
+                "Tracking"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "enterpriseFunction",
+            "description": "Defines the enterprise function of the operations event publisher.Defined values from Part 1 Functional Model areorder processing, operations scheduling, production control, material and energy control, procurement, quality assurance, product inventory control, product cost accounting, product shipping administration, maintenance management, marketing and sales, R&D, and engineering.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Order processing",
+                "Operations scheduling",
+                "Production control",
+                "Material and energy control",
+                "Procurement",
+                "Quality assurance",
+                "Product inventory control",
+                "Product cost accounting",
+                "Product shipping administration",
+                "Maintenance management",
+                "Marketing and sales",
+                "R&D",
+                "Engineering"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "category",
+            "description": "General grouping associated with an operations event definition.EXAMPLEScheduling, PM, Lab, Receiving",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "source",
+            "description": "The activity that generated the operations event.NOTE: This can be typically a process step or system application component.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "acknowledgment",
+            "description": "The operations event definition IDs of any expected subsequent notification.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsEventDefinition;1",
+        "@type": "Interface",
+        "displayName": "Operations event definition",
+        "description": "Definition and structure of operations event occurrences shall be shown as an operations event definition. The operations event definition of an operations event is identified by the definition ID attribute in the operations event occurrence. Those constructing or interpreting an operations event obtain and validate the structure and definition from the operations event definition",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isAssembledFrom",
+                "displayName": "Is assembled from",
+                "description": "The nested operations event definition(s) makes up part of this operations event definition as the whole",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventDefinition;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isAMemberOf",
+                "displayName": "Is a member of",
+                "description": "Operations event class(s) supported by this operations event definition. The operations event definition supports the operations event class property(s) and operations event class record specification associated with the operations event class",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventClass;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasRecordSpecificationsOf",
+                "displayName": "Has record specifications of",
+                "description": "The operations event definition record specification(s) related to this operations event definition",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventDefinitionRecordSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasPropertiesOf",
+                "displayName": "Has properties of",
+                "description": "The operations event definition property(s) specifies this operations event definition",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventDefinitionProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions of the operations event definition",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. Optionally, hierarchy scope defines the scope of the equipment class, such as the site or area where it is defined.",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "Priority",
+                "displayName": "Priority",
+                "description": "List of the priorities that act as a guide to the relative level of importance of an operations event",
+                "comment": "Production examples: {1,2,3}; Maintenance examples: {Low, Medium, High}",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "operationsEventType",
+                "displayName": "Operations event type",
+                "description": "The type of Level 3 operations event",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "event",
+                            "enumValue": "Event",
+                            "displayName": "Event"
+                        },
+                        {
+                            "name": "alert",
+                            "enumValue": "Alert",
+                            "displayName": "Alert"
+                        },
+                        {
+                            "name": "alarm",
+                            "enumValue": "Alarm",
+                            "displayName": "Alarm"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "operationsEventLevel",
+                "displayName": "Operations event level",
+                "description": "Defines the domain level of the operations event publisher",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "integer",
+                    "enumValues": [
+                        {
+                            "name": "level3",
+                            "enumValue": 3,
+                            "displayName": "Level 3"
+                        },
+                        {
+                            "name": "level4",
+                            "enumValue": 4,
+                            "displayName": "Level 4"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "operationsType",
+                "displayName": "Operations type",
+                "description": "Describes the category of operation",
+                "comment": "Required attribute",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "production",
+                            "displayName": "Production",
+                            "enumValue": "Production"
+                        },
+                        {
+                            "name": "inventory",
+                            "displayName": "Inventory",
+                            "enumValue": "Inventory"
+                        },
+                        {
+                            "name": "quality",
+                            "displayName": "Quality",
+                            "enumValue": "Quality"
+                        },
+                        {
+                            "name": "maintenance",
+                            "displayName": "Maintenance",
+                            "enumValue": "Maintenance"
+                        },
+                        {
+                            "name": "mixed",
+                            "displayName": "Mixed",
+                            "enumValue": "Mixed",
+                            "comment": "Mixed can be used when the operations event does not refer to a specific operations activity or refers to several operation activities"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "momFunction",
+                "displayName": "MOM function",
+                "description": "Defines the MOM function of the operations event publisher",
+                "comment": "Defined values from Part 3 MOM Activity Model are",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "resourceManagement",
+                            "enumValue": "Resource management",
+                            "displayName": "Resource management"
+                        },
+                        {
+                            "name": "definitionManagement",
+                            "enumValue": "Definition management",
+                            "displayName": "Definition management"
+                        },
+                        {
+                            "name": "detailedScheduling",
+                            "enumValue": "Detailed scheduling",
+                            "displayName": "Detailed scheduling"
+                        },
+                        {
+                            "name": "dispatching",
+                            "enumValue": "Dispatching",
+                            "displayName": "Dispatching"
+                        },
+                        {
+                            "name": "executionManagement",
+                            "enumValue": "Execution management",
+                            "displayName": "Execution management"
+                        },
+                        {
+                            "name": "dataCollection",
+                            "enumValue": "Data collection",
+                            "displayName": "Data collection"
+                        },
+                        {
+                            "name": "performanceAnalysis",
+                            "enumValue": "Performance analysis",
+                            "displayName": "Performance analysis"
+                        },
+                        {
+                            "name": "tracking",
+                            "enumValue": "Tracking",
+                            "displayName": "Tracking"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "enterpriseFunction",
+                "displayName": "Enterprise function",
+                "description": "Defines the enterprise function of the operations event publisher",
+                "comment": "Defined values from Part 1 Functional Model are",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "orderProcessing",
+                            "enumValue": "Order processing",
+                            "displayName": "Order processing"
+                        },
+                        {
+                            "name": "operationsScheduling",
+                            "enumValue": "Operations scheduling",
+                            "displayName": "Operations scheduling"
+                        },
+                        {
+                            "name": "productionControl",
+                            "enumValue": "Production control",
+                            "displayName": "Production control"
+                        },
+                        {
+                            "name": "materialAndEnergyControl",
+                            "enumValue": "Material and energy control",
+                            "displayName": "Material and energy control"
+                        },
+                        {
+                            "name": "procurement",
+                            "enumValue": "Procurement",
+                            "displayName": "Procurement"
+                        },
+                        {
+                            "name": "qualityAssurance",
+                            "enumValue": "Quality assurance",
+                            "displayName": "Quality assurance"
+                        },
+                        {
+                            "name": "productInventoryControl",
+                            "enumValue": "Product inventory control",
+                            "displayName": "Product inventory control"
+                        },
+                        {
+                            "name": "productCostAccounting",
+                            "enumValue": "Product cost accounting",
+                            "displayName": "Product cost accounting"
+                        },
+                        {
+                            "name": "productShippingAdministration",
+                            "enumValue": "Product shipping administration",
+                            "displayName": "Product shipping administration"
+                        },
+                        {
+                            "name": "maintenanceManagement",
+                            "enumValue": "Maintenance management",
+                            "displayName": "Maintenance management"
+                        },
+                        {
+                            "name": "marketingAndSales",
+                            "enumValue": "Marketing and sales",
+                            "displayName": "Marketing and sales"
+                        },
+                        {
+                            "name": "rAndD",
+                            "enumValue": "R&D",
+                            "displayName": "R&D"
+                        },
+                        {
+                            "name": "engineering",
+                            "enumValue": "Engineering",
+                            "displayName": "Engineering"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "category",
+                "displayName": "Category",
+                "description": "General grouping associated with an operations event definition",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "source",
+                "displayName": "Source",
+                "description": "The activity that generated the operations event",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "acknowledgment",
+                "displayName": "Acknowledgment",
+                "description": "The operations event definition IDs of any expected subsequent notification",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

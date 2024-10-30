@@ -1,0 +1,267 @@
+{
+    "name": "work Performance",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of thework performance and couldinclude version and revisionidentification.Required attribute.The ID is used in other parts ofthe model when the workperformance needs to beidentified.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of thework Performance.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "workType",
+            "description": "Describes the category of work.Required attribute.Describes the category ofwork.Required attribute.Defined values areproduction, maintenance, quality,inventory, or mixed.\u201cMixed\u201d can be used when theworks Schedule containsseveral types of worksrequests and/or segmentrequirements..\u201cMixed\u201d can be used when theworks Schedule containsseveral types of worksrequests and/or segmentrequirements.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "production",
+                "maintenance",
+                "quality",
+                "inventory",
+                "mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "startTime",
+            "description": "The starting time for theassociated work performance.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "endTime",
+            "description": "The ending time for theassociated work performance.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "publishedDate",
+            "description": "The date and time on which thework performance waspublished or generated.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "workState",
+            "description": "Indicates the state of the workperformance",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "waiting",
+                "ready",
+                "running",
+                "completed",
+                "aborted",
+                "held",
+                "suspended",
+                "closed"
+            ],
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Stream",
+        "ingestionRate": "Weekly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:WorkPerformance;1",
+        "@type": "Interface",
+        "displayName": "Work performance",
+        "description": "Work performance shall be defined as a collection of work responses that is a report on requested manufacturing information.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOfPerformance",
+                "displayName": "Is made up of",
+                "description": "The related object(s) makes up part of this work performance as the whole.",
+                "target": "dtmi:digitaltwins:isa95:WorkPerformance;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOfResponse",
+                "displayName": "Is made up of",
+                "description": "The work response(s) related to this work performance.",
+                "target": "dtmi:digitaltwins:isa95:WorkResponse;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsTo",
+                "displayName": "Corresponds to",
+                "description": "An identification of the associated work schedule.",
+                "target": "dtmi:digitaltwins:isa95:WorkSchedule;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. Optionally, hierarchy scope defines the scope of the equipment class, such as the site or area where it is defined.",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "workType",
+                "displayName": "Work type",
+                "writable": true,
+                "description": "Describes the category of work.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "production",
+                            "enumValue": "production"
+                        },
+                        {
+                            "name": "maintenance",
+                            "enumValue": "maintenance"
+                        },
+                        {
+                            "name": "quality",
+                            "enumValue": "quality"
+                        },
+                        {
+                            "name": "inventory",
+                            "enumValue": "inventory"
+                        },
+                        {
+                            "name": "mixed",
+                            "enumValue": "mixed"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "startTime",
+                "displayName": "Start Time",
+                "description": "The starting time of the associated work performance.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "endTime",
+                "displayName": "End Time",
+                "description": "The ending time of the associated work performance.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "publishedDate",
+                "displayName": "Published Date",
+                "description": "The date and time on which the work performance was published or generated",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "workState",
+                "displayName": "Work state",
+                "description": "Indicates the state of the work performance.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "waiting",
+                            "enumValue": "waiting"
+                        },
+                        {
+                            "name": "ready",
+                            "enumValue": "ready"
+                        },
+                        {
+                            "name": "running",
+                            "enumValue": "running"
+                        },
+                        {
+                            "name": "completed",
+                            "enumValue": "completed"
+                        },
+                        {
+                            "name": "aborted",
+                            "enumValue": "aborted"
+                        },
+                        {
+                            "name": "held",
+                            "enumValue": "held"
+                        },
+                        {
+                            "name": "suspended",
+                            "enumValue": "suspended"
+                        },
+                        {
+                            "name": "closed",
+                            "enumValue": "closed"
+                        }
+                    ]
+                },
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

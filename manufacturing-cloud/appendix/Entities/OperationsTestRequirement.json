@@ -1,0 +1,41 @@
+{
+    "name": "OperationsTestRequirement",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsTestRequirement;1",
+        "@type": "Interface",
+        "displayName": "Operations test requirement",
+        "description": "The operations test requirements are represented as abstract interface objects to simplify the operations test model diagram",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "specifies",
+                "displayName": "Specifies",
+                "description": "The test specification(s) used to evaluate this operations test requirement",
+                "target": "dtmi:digitaltwins:isa95:TestSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToAnElementIn",
+                "displayName": "Corresponds to an element in",
+                "description": "A cross-model association to an element in the resource model for the testable object as explained in Clause 3.3.8. Identifies the associated testable object of this operations test requirement for a specific segment requirement",
+                "target": "dtmi:digitaltwins:isa95:TestableObject;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "mapsToAPropertyElementIn",
+                "displayName": "Maps to a property element in",
+                "description": "A cross-model dependency to a property element in the resource model for the testable object property as explained in Clause 3.3.8",
+                "target": "dtmi:digitaltwins:isa95:TestableObjectProperty;1"
+            }
+        ]
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

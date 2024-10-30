@@ -1,0 +1,175 @@
+{
+    "name": "Operations event definition property",
+    "columns": [
+        {
+            "name": "id",
+            "description": "An identification of the specific property, unique under the scope of the parent personnel class object.Required attribute.EXAMPLEThe property \u201cHas Class 1 Safety Training\u201d (with values of Yes or No) can be defined under several different personnel class definitions, such as fork lift operator and pipe fitter classes, but has a different meaning for each class.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Additional information and description about the personnel class property.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "propertyType",
+            "description": "Defines the type of the property. Defined types areclass type: the property value is defined for the class and there is no value associated with an instance;instance type: the property value of the class is undefined; anddefault type: the property value is defined for the class as the default instance value, but individual instances of the class may redefine specific values.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "ClassType",
+                "InstanceType",
+                "DefaultType"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The value, set of values, or range of the property.This presents a range of possible numeric values, a list of possible values, or it can be empty if any value is valid.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The unit of measure of the associated property value.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferenceid",
+            "description": "Reference ID of an external dictionary entry, meta-model reference ID, ontology value or column in a DB table",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferencedictionary",
+            "description": "Reference of an external dictionary, meta-model reference, ontology or a DB table",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferenceuri",
+            "description": "URI locator for External reference",
+            "type": "URIreference",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsEventDefinitionProperty;1",
+        "@type": "Interface",
+        "displayName": "Operations event definition property",
+        "description": "Properties of an operations event definition shall be defined as operations event definition properties. An operations event definition shall be further characterized through zero or more operations event definition properties. Operations event definition properties may contain nested operations event definition properties",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "mapsTo",
+                "displayName": "Maps to",
+                "description": "If the operations event definition supports an operations event class, the operations event class property(s) are applied in the operations event definition property(s). This operations event definition property maps to the corresponding operations event class property",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventClassProperty;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The nested operations event definition property(s) makes up part of this operations event definition property as the whole",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventDefinitionProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information and description about the operations event definition property",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "propertyType",
+                "displayName": "Property type",
+                "description": "Defines the type of the property.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "classType",
+                            "enumValue": "ClassType",
+                            "displayName": "Class Type",
+                            "description": "The property value is defined for the class and there is no value associated with an instance"
+                        },
+                        {
+                            "name": "instanceType",
+                            "enumValue": "InstanceType",
+                            "displayName": "Instance Type",
+                            "description": "the property value of the class is undefined"
+                        },
+                        {
+                            "name": "defaultType",
+                            "enumValue": "DefaultType",
+                            "displayName": "Default Type",
+                            "description": "The property value is defined for the class as the default instance value, but individual instances of the class may redefine specific values."
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The value, set of values, or range of the property.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The unit of measure of the associated property value",
+                "schema": "string"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

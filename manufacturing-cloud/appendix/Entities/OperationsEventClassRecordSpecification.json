@@ -1,0 +1,41 @@
+{
+    "name": "Operations event class record specification",
+    "columns": [
+        {
+            "name": "id",
+            "description": "The identifier of the operations event class record specification",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },   
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsEventClassRecordSpecification;1",
+        "@type": "Interface",
+        "displayName": "Operations event class record specification",
+        "description": "Operations event classes define common structures of operations event definitions using operations event class record specifications. Operations event definitions as members of an operations event class that contain operations event class record specifications must support the record specification entries indicated in the operations event class. The structure and semantics of the operations event class record specification is the same as the operations event definition record specification",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "This parent operations event definition record specification is whole of the child operations event definition record specification(s) as the part",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventDefinitionRecordSpecification;1"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

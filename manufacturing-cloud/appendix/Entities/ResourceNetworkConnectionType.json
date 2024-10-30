@@ -1,0 +1,75 @@
+{
+    "name": "ResourceNetworkConnectionType",
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Hot"
+    },
+    "semanticRelevantFlag": "True",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Objects in the information model which require unique identifications contain an ID attribute, which are unique within the scope of the exchanged information",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "True",
+            "primaryKey": "True",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information and descriptions",
+            "mandatory": "False",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "False",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "type",
+            "description": "The connection type",
+            "mandatory": "False",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "False",
+            "type": "String",
+            "isProperNoun": "false"
+        }
+    ],
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ResourceNetworkConnectionType;1",
+        "@type": "Interface",
+        "displayName": "Resource network connection type",
+        "description": "A definition of a type of a resource network connection shall be defined as a resource network connection type.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "hasPropertiesOf",
+                "displayName": "Has properties of",
+                "description": "The resource network connection type property(s) related to this resource network connection type.",
+                "target": "dtmi:digitaltwins:isa95:ResourceNetworkConnectionTypeProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Component",
+                "name": "type",
+                "displayName": "Type",
+                "description": "The connection type",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            }
+        ]
+    }
+}

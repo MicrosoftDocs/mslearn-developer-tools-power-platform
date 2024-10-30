@@ -1,0 +1,17 @@
+{
+    "name": "Resource",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:Resource;1",
+        "@type": "Interface",
+        "displayName": "Resource",
+        "description": "Abstract model for all resource models (person, equipment, physical asset, material definition, material lot, material sublot, work master, process segment, operation definition, operational location, operations segment, test specification, test result)",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ]
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

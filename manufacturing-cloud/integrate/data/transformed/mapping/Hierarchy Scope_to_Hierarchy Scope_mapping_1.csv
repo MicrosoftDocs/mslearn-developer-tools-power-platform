@@ -1,0 +1,5 @@
+Source type,Source PrimaryKey,Target Type,Target PrimaryKey,Relationship Type
+Hierarchy Scope,HS-HYDHYDSite,Hierarchy Scope,HS-BREADBLAST04BREADBLAST04WorkCell,contains
+Hierarchy Scope,HS-HYDHYDSite,Hierarchy Scope,HS-BREADBLAST07BREADBLAST07WorkCell,contains
+Hierarchy Scope,HS-HYDHYDSite,Hierarchy Scope,HS-BREADBLAST06BREADBLAST06WorkCell,contains
+Hierarchy Scope,HS-HYDHYDSite,Hierarchy Scope,HS-BREADBLAST05BREADBLAST05WorkCell,contains

@@ -1,0 +1,70 @@
+{
+    "name": "ResourceClassProperty",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ResourceClassProperty;1",
+        "@type": "Interface",
+        "displayName": "Resource class property",
+        "description": "Abstract model for all resource class property models (person class, equipment class, physical asset class, material class)",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the resource class property",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "propertyType",
+                "displayName": "Property type",
+                "description": "Defines the type of the property.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "classType",
+                            "enumValue": "ClassType",
+                            "displayName": "Class Type",
+                            "description": "The property value is defined for the class and there is no value associated with an instance"
+                        },
+                        {
+                            "name": "instanceType",
+                            "enumValue": "InstanceType",
+                            "displayName": "Instance Type",
+                            "description": "the property value of the class is undefined"
+                        },
+                        {
+                            "name": "defaultType",
+                            "enumValue": "DefaultType",
+                            "displayName": "Default Type",
+                            "description": "The property value is defined for the class as the default instance value, but individual instances of the class may redefine specific values."
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The value, set of values, or range of the property.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The unit of measure of the associated property value",
+                "schema": "string"
+            }
+        ]
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

@@ -1,0 +1,156 @@
+{
+    "name": "Operations record template",
+    "columns": [
+        {
+            "name": "id",
+            "description": "The identifier of the operations record template.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+          "name": "description",
+          "description": "Contains additional information and description of the operations record template",
+          "type": "String",
+          "mandatory": "false",
+          "semanticRelevantFlag": "true",
+          "groupBy": "false",
+          "primaryKey": "false",
+          "isProperNoun": "false"
+        },
+        {
+            "name": "action",
+            "description": "The action performed on the operations record entry template(s) within the operations record template. Defined values are added, changed, deleted, and observed.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "added",
+                "changed",
+                "deleted",
+                "observed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "effectiveTimestamp",
+            "description": "The date and time that the operations record entry template was/is effective as the time of the real-world event’s recording. If no effective timestamp is provided with operations record entry template, the effective timestamp is represented by the effective timestamp attribute in the operations record template.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "recordTimestamp",
+            "description": "The date and time the publisher recorded/transacted the action. Record timestamp explicitly states the time that the publisher took the action of the operations record template.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsRecordTemplate;1",
+        "@type": "Interface",
+        "displayName": "Operations record template",
+        "description": "The bundle of operations record entry template objects pertinent to a specified real-world manufacturing recording activity shall be defined as an operations record template",
+        "comment": "Abstract - According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "recordsActionOn",
+                "displayName": "Records action on",
+                "description": "This operations record template acts as a container for operations record entry template (s) applying a common action for each operations record template",
+                "target": "dtmi:digitaltwins:isa95:OperationsRecordEntryTemplate;1",
+                "comment": "Cardiniality is 1..*"
+            },
+            {
+                "@type": "Relationship",
+                "name": "specifiedBy",
+                "displayName": "Specified by",
+                "description": "The operations record specification template defines the information object(s) allowed to be contained within an operations record entry template in this operation record template. The specified action must match the value in the attribute, action, in this operations record template",
+                "target": "dtmi:digitaltwins:isa95:OperationsRecordSpecificationTemplate;1",
+                "comment": "Mandatory",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "This parent operations record template is whole of the child operations record template(s) as the part",
+                "target": "dtmi:digitaltwins:isa95:OperationsRecordTemplate;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and description of the operations record template",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "action",
+                "displayName": "Action",
+                "description": "The action performed on the operations record entry template(s) within the operations record template. Defined values are added, changed, deleted and observed",
+                "writable": true,            
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "added",
+                            "enumValue": "added"
+                        },
+                        {
+                            "name": "changed",
+                            "enumValue": "changed"
+                        },
+                        {
+                            "name": "deleted",
+                            "enumValue": "deleted"
+                        },
+                        {
+                            "name": "observed",
+                            "enumValue": "observed"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "effectiveTimestamp",
+                "displayName": "Effective timestamp",
+                "description": "The date and time that the operations record entry template was/is effective as the time of the real-world event’s recording. If no effective timestamp is provided with operations record entry template, the effective timestamp is represented by the effective timestamp attribute in the operations record template",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "recordTimestamp",
+                "displayName": "Record timestamp",
+                "description": "The date and time the publisher recorded/transacted the action. Record timestamp explicitly states the time that the publisher took the action of the operations record template",
+                "schema": "dateTime",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

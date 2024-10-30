@@ -1,0 +1,186 @@
+{
+    "name": "Process Segment Dependency",
+    "columns": [
+        {
+            "name": "id",
+            "description": "The identification of the unique instance of the segment dependency.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information and descriptions of the segment dependency definition.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "dependencyType",
+            "description": "Defines the execution dependency constraints of one segment to another segment.as the type of the execution or dependency factor between the segments. Defined values are (explained using dependency type between segment A and segment B) - at start: start B at A start; - after start: start B after A start; - after end: start B after A end; - not follow: B cannot follow A; - possible parallel: B may run in parallel to A; - not in parallel: B may not run in parallel to A; - no later after start: start B no later than dependency factor after A start: - no earlier after start: start B no earlier than dependency factor after A start; - no later after end: start B no later than dependency factor after A end; - no earlier after end: B no earlier than dependency factor after A end.",
+            "type": "Enum",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "enumValues": [
+                "at start",
+                "after start",
+                "after end",
+                "not follow",
+                "possible parallel",
+                "not in parallel",
+                "no later after start",
+                "no earlier after start",
+                "no later after end",
+                "no earlier after end"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "dependencyFactor",
+            "description": "Factor used by dependency",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "dependencyFactorUnitOfMeasure",
+            "description": "The units of measure of the dependency factor",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ProcessSegmentDependency;1",
+        "@type": "Interface",
+        "displayName": "Segment dependency",
+        "description": "Process dependencies that are independent of any particular product or operations task shall be presented as segment dependencies.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "processSegmentFrom",
+                "displayName": "Has an execution dependency on",
+                "description": "The source process segment(s) that the target process segment(s) are dependent. Process segment has an association class relationship with segment dependency",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "processSegmentTo",
+                "displayName": "Has an execution dependency on",
+                "description": "The target process segment(s) that are dependent on source process segment(s).Process segment has an association class relationship with segment dependency",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegment;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "dependencyType",
+                "displayName": "Dependency Type",
+                "description": "Defines the execution dependency constraints of one segment to another segment.as the type of the execution or dependency factor between the segments",
+                "writable": true,
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "atStart",
+                            "enumValue": "at start",
+                            "description": "start B at A start"
+                        },
+                        {
+                            "name": "afterStart",
+                            "enumValue": "after start",
+                            "description": "start B after A start"
+                        },
+                        {
+                            "name": "afterEnd",
+                            "enumValue": "after end",
+                            "description": "start B after A end"
+                        },
+                        {
+                            "name": "notFollow",
+                            "enumValue": "not follow",
+                            "description": "B cannot follow A;"
+                        },
+                        {
+                            "name": "possibleParallel",
+                            "enumValue": "possible parallel",
+                            "description": "B may run in parallel to A"
+                        },
+                        {
+                            "name": "notInParallel",
+                            "enumValue": "not in parallel",
+                            "description": "B may not run in parallel to A"
+                        },
+                        {
+                            "name": "noLaterAfterStart",
+                            "enumValue": "no later after start",
+                            "description": "start B no later than dependency factor after A start"
+                        },
+                        {
+                            "name": "noEarlierAfterStart",
+                            "enumValue": "no earlier after start",
+                            "description": "start B no earlier than dependency factor after A start"
+                        },
+                        {
+                            "name": "noLaterAfterEnd",
+                            "enumValue": "no later after end",
+                            "description": "start B no later than dependency factor after A end"
+                        },
+                        {
+                            "name": "noEarlierAfterEnd",
+                            "enumValue": "no earlier after end",
+                            "description": " B no earlier than dependency factor after A end"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "dependencyFactor",
+                "displayName": "Dependency factor",
+                "description": "Factor used by dependency",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "dependencyFactorUnitOfMeasure",
+                "displayName": "Dependency factor unit of measure",
+                "description": "The units of measure of the dependency factor",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

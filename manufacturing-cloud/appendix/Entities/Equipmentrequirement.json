@@ -1,0 +1,293 @@
+{
+    "name": "Equipment requirement",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of aspecific Equipmentrequirement.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the Equipment requirement.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based Physical Asset hierarchy. Optionally, hierarchy scope defines the scope of the Equipment class Schedule, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationalLocation",
+            "description": "Identifies the operational locationof the Equipment resource(s)specified by this Equipment requirement.",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationalLocationType",
+            "description": "Indicates whether the operationallocation attribute refers to anoperational location object orcontains a description of theoperational location.Mandatory where an operationallocation attribute is specified.Defined values areoperational location: operationallocation attribute references anoperational location;description: operational locationattribute contains a description ofthe operational location, such asa street address.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Operational Location",
+                "Description"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "equipmentUse",
+            "description": "Defines the expected use of theEquipment class or equipment in thecontext of the operation requirement.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "Specifies the amount ofequipment resources required forthe parent segment. Applies toeach member of the equipmentand equipment class sets.",
+            "type": "Double",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "The unit of measure of theassociated quantity.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "equipmentLevel",
+            "description": "A definition of the level of theassociated element of theequipment model. Equipmentlevel attribute defines the genericlevel.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Enterprise",
+                "Site",
+                "Area",
+                "Work Center",
+                "Work Unit"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assetsystemrefid",
+            "description": "Asset/ERP System of Record Identifier for Physical Asset (AssetID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Manufacturing system Ref ID (MES Person Referrence ID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Weekly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:EquipmentRequirement;1",
+        "@type": "Interface",
+        "displayName": "Equipment requirement",
+        "description": "The identification of the number, type, duration, and scheduling of specific equipment and equipment classifications or equipment constraints needed to support the c urrent operations request shall be presented as an equipment requirement",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:OperationsTestRequirement;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "The related object(s) makes up part of this equipment requirement as the whole",
+                "target": "dtmi:digitaltwins:isa95:EquipmentRequirement;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasValuesOf",
+                "displayName": "has values of",
+                "description": "The values in the equipment requirement property are for this equipment requirement.",
+                "target": "dtmi:digitaltwins:isa95:EquipmentRequirementProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToEquipmentClass",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the equipment model as explained in Clause 3.3.8. Identifies the associated equipment class or set of equipment classes of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:EquipmentClass;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToEquipment",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the equipment model as explained in Clause 3.3.8. Identifies the associated equipment or set of equipment of the specification for a specific process segment. Typically, either equipment class or equipment is defined",
+                "target": "dtmi:digitaltwins:isa95:Equipment;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "operationalLocation",
+                "displayName": "Operational location",
+                "description": "Identifies the operational location of the equipment specified by this equipment segment specification",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "operationalLocationType",
+                "displayName": "Operational location type",
+                "description": "Indicates whether the operational location attribute refers to an operational location object or contains a description of the operational location. Mandatory where an operational location attribute is specified",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "operationalLocation",
+                            "enumValue": "Operational Location",
+                            "displayName": "Operational Location",
+                            "description": "operational location attribute references an operational location;"
+                        },
+                        {
+                            "name": "description",
+                            "enumValue": "Description",
+                            "displayName": "Description",
+                            "description": "operational location attribute contains a description of the operational location, such as a street address."
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "equipmentUse",
+                "displayName": "Equipment use",
+                "description": "Defines the expected use of the equipment class or equipment in the context of the process segment",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "Specifies the amount of resources required",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "equipmentLevel",
+                "displayName": "Equipment level",
+                "writable": true,
+                "description": "Identification of the equipment level if the equipment element is defined",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "Enterprise",
+                            "enumValue": "Enterprise"
+                        },
+                        {
+                            "name": "Site",
+                            "enumValue": "Site"
+                        },
+                        {
+                            "name": "Area",
+                            "enumValue": "Area"
+                        },
+                        {
+                            "name": "WorkCenter",
+                            "displayName": "Work Center",
+                            "enumValue": "Work Center"
+                        },
+                        {
+                            "name": "WorkUnit",
+                            "displayName": "Work Unit",
+                            "enumValue": "Work Unit"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

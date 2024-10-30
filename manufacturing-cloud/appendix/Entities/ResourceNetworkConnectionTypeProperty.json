@@ -1,0 +1,99 @@
+{
+    "name": "ResourceNetworkConnectionTypeProperty",
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Hot"
+    },
+    "semanticRelevantFlag": "True",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Objects in the information model which require unique identifications contain an ID attribute, which are unique within the scope of the exchanged information",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "True",
+            "primaryKey": "True",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information and descriptions",
+            "mandatory": "False",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "False",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The value, set of values, or range of the property.",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "True",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The unit of measure of the associated property value",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "True",
+            "type": "String",
+            "isProperNoun": "false"
+        }
+    ],
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ResourceNetworkConnectionTypeProperty;1",
+        "@type": "Interface",
+        "displayName": "Resource network connection type property",
+        "description": "A 'from' reference to a resource shall be defined as a from resource reference.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "mapsTo",
+                "displayName": "Maps To",
+                "description": "The resource network connection property(s) derived from this resource network connection type property supporting its parent object. Only applied, if navigation is required.",
+                "target": "dtmi:digitaltwins:isa95:ResourceNetworkConnectionProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The nested resource network connection type properties of this network connection type property.",
+                "target": "dtmi:digitaltwins:isa95:ResourceNetworkConnectionTypeProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The value, set of values, or range of the property.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The unit of measure of the associated property value",
+                "schema": "string"
+            }
+        ]
+    }
+}

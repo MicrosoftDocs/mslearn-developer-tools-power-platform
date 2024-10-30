@@ -1,0 +1,248 @@
+{
+    "name": "Physical Asset specification",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of aspecific Physical Assetspecification.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the Physical Asset specification definition.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based Physical Asset hierarchy. Optionally, hierarchy scope defines the scope of the Physical Asset class definition, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "physicalLocation",
+            "description": "Identifies the operational locationof the Physical Asset resource(s)specified by this Physical Asset specification.",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "physicalLocationType",
+            "description": "Indicates whether the operationallocation attribute refers to anoperational location object orcontains a description of theoperational location.Mandatory where an operationallocation attribute is specified.Defined values areoperational location: operationallocation attribute references anoperational location;description: operational locationattribute contains a description ofthe operational location, such asa street address.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "operationalLocation",
+                "description"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "physicalAssetUse",
+            "description": "Defines the expected use of thePhysical Asset class or Physical Asset in thecontext of the operation segment.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "Specifies the quantity of Physical Asset resourcerequired for the parent operationsegment.",
+            "type": "Double",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "The unit of measure of theassociated quantity.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assetsystemrefid",
+            "description": "Asset/ERP System of Record Identifier for Physical Asset (AssetID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Manufacturing system Ref ID (MES Person Referrence ID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:PhysicalAssetSpecification;1",
+        "@type": "Interface",
+        "displayName": "Physical Asset specification",
+        "description": "Physical asset resources that are required for a operations segment shall be presented as physical asset specifications",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "The related object(s) makes up part of this physical asset specification as the whole",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "specifies",
+                "displayName": "Specifies",
+                "description": "The test specification(s) used to evaluate this testable object.",
+                "target": "dtmi:digitaltwins:isa95:TestSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasPropertiesOf",
+                "displayName": "has properties of",
+                "description": "The physical asset specification property(s) of this physical asset specification",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetSpecificationProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToPhysicalAssetClass",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the physical asset model as explained in Clause 3.3.8. Identifies the associated physical asset class or set of physical asset classes of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetClass;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToPhysicalAsset",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the physical asset model as explained in Clause 3.3.8. Identifies the associated physical asset or set of physical assets of the specification for a specific process segment. Typically, either physical asset class or physical asset is specified, but not both",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAsset;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "physicalLocation",
+                "displayName": "Physical location",
+                "description": "Identifies the physical location of the physical asset(s) specified by this physical asset segment specification",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "physicalLocationType",
+                "displayName": "Physical location type",
+                "description": "Indicates whether the physical location attribute refers to an operational location object or contains a description of the physical location. Mandatory where a physical location attribute is specified",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "operationalLocation",
+                            "enumValue": "operationalLocation",
+                            "displayName": "Operational Location",
+                            "description": "physical location attribute references an operational location"
+                        },
+                        {
+                            "name": "description",
+                            "enumValue": "description",
+                            "displayName": "Description",
+                            "description": " physical location attribute contains a description of the physical location, such as a street address."
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "physicalAssetUse",
+                "displayName": "Physical asset use",
+                "description": "Defines the expected use of the physical asset class or physical asset in the context of the process segment",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "Specifies the amount of resources required",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}
