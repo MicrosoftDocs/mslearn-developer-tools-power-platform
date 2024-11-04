@@ -1,0 +1,14 @@
+{
+    "subscription_id": "<tenent sunscription id>",
+    "resource_group_name": "<resource group name>",
+    "aks_cluster_name": "<aks cluster name>",
+    "function_app_name": "<function app name>",
+    "cosmos_account_name": "<cosmos account name>",
+    "cosmos_db_name": "<cosmos db name>",
+    "entitystore_collection_throughput": 10000,
+    "adx_cluster_url": "<adx cluster url>",
+    "adx_db_name": "<adx db name>",
+    "redis_host": "<redis host name>",
+    "bjs_storage_account_url": "https://<bjs_storage_account_name>.table.core.windows.net/",
+    "function_app_storage_account_url": "https://<functionapp_storage_account_name>.table.core.windows.net/"
+  }
