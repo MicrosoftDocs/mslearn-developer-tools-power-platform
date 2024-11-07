@@ -1,9 +1,9 @@
 openapi: 3.0.1
 info:
   title: Microsoft.Industry.Manufacturing.MDS.Copilot.Server
-  version: '0.8.0-preview'
+  version: '1.0'
 paths:
-  /copilot/v3/exampleQuery:
+  /mds/copilot/v3/exampleQuery:
     put:
       tags:
         - CopilotExamples
@@ -109,7 +109,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ExampleQuery'
-  /copilot/v3/aliases:
+  /mds/copilot/v3/aliases:
     put:
       tags:
         - CopilotV3AliasDictionary
@@ -227,14 +227,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AliasDictionaryResponseModel'
-  '/copilot/v3/aliases/{id}':
+  '/mds/copilot/v3/aliases/{id}':
     delete:
       tags:
         - CopilotV3AliasDictionary
       summary: deletes the Alias information
       description: "\nRequired roles: Admin"
       parameters:
-        - name: ID
+        - name: id
           in: path
           description: ''
           required: true
@@ -278,7 +278,7 @@ paths:
       summary: Get alias by key
       description: "\nRequired roles: Admin"
       parameters:
-        - name: ID
+        - name: id
           in: path
           required: true
           schema:
@@ -333,7 +333,7 @@ paths:
       summary: Updates the status of the Alias
       description: "\nRequired roles: Admin"
       parameters:
-        - name: ID
+        - name: id
           in: path
           required: true
           schema:
@@ -409,7 +409,7 @@ paths:
             text/json:
               schema:
                 type: string
-  '/copilot/v3/exampleQuery/{exampleId}':
+  '/mds/copilot/v3/exampleQuery/{exampleId}':
     patch:
       tags:
         - CopilotV3Examples
@@ -485,7 +485,7 @@ paths:
     get:
       tags:
         - CopilotV3Examples
-      summary: Endpoint to get the example query with example ID
+      summary: Endpoint to get the example query with example id
       description: "\nRequired roles: Admin"
       parameters:
         - name: exampleId
@@ -560,7 +560,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  /copilot/v3/instructions:
+  /mds/copilot/v3/instructions:
     get:
       tags:
         - CopilotV3Instructions
@@ -646,7 +646,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  '/copilot/v3/instructions/{instructionId}':
+  '/mds/copilot/v3/instructions/{instructionId}':
     get:
       tags:
         - CopilotV3Instructions
@@ -741,7 +741,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  '/copilot/v3/instructions/{instructionId}/versions/{instructionVersion}':
+  '/mds/copilot/v3/instructions/{instructionId}/versions/{instructionVersion}':
     patch:
       tags:
         - CopilotV3Instructions
@@ -837,7 +837,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  '/copilot/v3/operations/{operationId}':
+  '/mds/copilot/v3/operations/{operationId}':
     get:
       tags:
         - CopilotV3Operations
@@ -881,7 +881,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  /copilot/v3/query:
+  /mds/copilot/v3/query:
     post:
       tags:
         - CopilotV3Query
@@ -977,7 +977,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  /copilot/v3/feedback:
+  /mds/copilot/v3/feedback:
     post:
       tags:
         - CopilotV3Query
@@ -1009,7 +1009,7 @@ paths:
       responses:
         '200':
           description: Success
-  /copilot/v3/validate:
+  /mds/copilot/v3/validate:
     post:
       tags:
         - CopilotV3Query
@@ -1053,11 +1053,11 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  '/copilot/v3/validate/test/{validateTestId}':
+  '/mds/copilot/v3/validate/test/{validateTestId}':
     get:
       tags:
         - CopilotV3Query
-      summary: Endpoint to get the validate test details by ID
+      summary: Endpoint to get the validate test details by id
       description: "\nRequired roles: Admin"
       parameters:
         - name: validateTestId
@@ -1098,7 +1098,7 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  /copilot/v3/validate/test:
+  /mds/copilot/v3/validate/test:
     get:
       tags:
         - CopilotV3Query
@@ -1176,7 +1176,7 @@ components:
           description: Additional comment for the instruction
           nullable: true
       additionalProperties: false
-      description: Administrative details for the instruction
+      description: Admisnitrative details for the instruction
     AliasDictionaryRequestModel:
       type: object
       properties:
@@ -1192,7 +1192,7 @@ components:
           nullable: true
         id:
           type: string
-          description: ID for the alias
+          description: Id for the alias
           nullable: true
           readOnly: true
         enabled:
@@ -1276,7 +1276,7 @@ components:
       properties:
         exampleId:
           type: string
-          description: Example ID of the example
+          description: Example Id of the example
           nullable: true
         userQuestion:
           type: string
@@ -1299,10 +1299,10 @@ components:
           type: array
           items:
             type: string
-          description: Linked instruction list
+          description: Linked istruction list
           nullable: true
       additionalProperties: false
-      description: POCO, for example,  query patch request
+      description: POCO for example query patch request
     FeedbackEnum:
       enum:
         - Neutral
@@ -1332,7 +1332,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InstructionInfo'
-          description: List of Instruction Info objects
+          description: LIst of Instrution Info objects
           nullable: true
       additionalProperties: false
       description: Instruction Info Response Model
@@ -1342,17 +1342,17 @@ components:
         status:
           $ref: '#/components/schemas/Status'
       additionalProperties: false
-      description: Model for Instruction Patch Request
+      description: Model for Instruction Patch Requet
     InstructionRequestModel:
       type: object
       properties:
         instructionId:
           type: string
-          description: The instruction ID provided by user. It isn't unique
+          description: The instruction Id provided by user. It won't be unique
           nullable: true
         instructionVersion:
           type: string
-          description: The instruction version provided by the user for corresponding InstructionId
+          description: The insruction version provided by the user for corresponding InstructionId
           nullable: true
         status:
           $ref: '#/components/schemas/Status'
@@ -1417,7 +1417,7 @@ components:
       properties:
         operationId:
           type: string
-          description: The Operation ID
+          description: The Operation Id
           nullable: true
         operationStatus:
           $ref: '#/components/schemas/OperationStatus'
@@ -1469,7 +1469,7 @@ components:
           description: The Natural Language query from the user.
           nullable: true
       additionalProperties: false
-      description: Request object for the Copilot Query endpoint.
+      description: This is the request object for the Copilot Query endpoint.
     QueryResponse:
       type: object
       properties:
@@ -1482,7 +1482,7 @@ components:
           description: Summary of the Resultant Query Query or Query query execution response (JArray string)
           nullable: true
       additionalProperties: false
-      description: Result attribute of the response object for the Copilot Query endpoint.
+      description: This is the result attribute of the response object for the Copilot Query endpoint.
     QueryType:
       enum:
         - KQL
@@ -1534,7 +1534,7 @@ components:
           type: array
           items:
             type: string
-          description: List of Sample Questions
+          description: List of Saample Questions
           nullable: true
       additionalProperties: false
       description: Attributes used to perform similarity search

@@ -2,10 +2,10 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Microsoft.Industry.Manufacturing.MDS.Service",
-    "version": "0.8.0-preview"
+    "version": "1.0"
   },
   "paths": {
-    "/dmm/admin/version": {
+    "/mds/service/admin/version": {
       "get": {
         "tags": [
           "Admin"
@@ -224,7 +224,7 @@
         }
       }
     },
-    "/dmm/cleanup/{entityName}": {
+    "/mds/service/cleanup/{entityName}": {
       "delete": {
         "tags": [
           "Admin"
@@ -300,7 +300,7 @@
         }
       }
     },
-    "/dmm/cleanup/status/{jobId}": {
+    "/mds/service/cleanup/status/{jobId}": {
       "get": {
         "tags": [
           "Admin"
@@ -355,12 +355,12 @@
         }
       }
     },
-    "/dmm/health": {
+    "/mds/service/health": {
       "get": {
         "tags": [
           "MDS"
         ],
-        "summary": "Get Manufacturing data solutions health.",
+        "summary": "Get MDS health.",
         "description": "\nRequired roles: Admin, User",
         "parameters": [
           {
@@ -398,7 +398,7 @@
         }
       }
     },
-    "/dmm/entities": {
+    "/mds/service/entities": {
       "post": {
         "tags": [
           "MDS"
@@ -728,7 +728,7 @@
         }
       }
     },
-    "/dmm/entities/{entityName}": {
+    "/mds/service/entities/{entityName}": {
       "get": {
         "tags": [
           "MDS"
@@ -813,7 +813,7 @@
         }
       }
     },
-    "/dmm/entities/{entityName}/metadata": {
+    "/mds/service/entities/{entityName}/metadata": {
       "get": {
         "tags": [
           "MDS"
@@ -885,7 +885,7 @@
         }
       }
     },
-    "/dmm/mappings/{name}": {
+    "/mds/service/mappings/{name}": {
       "post": {
         "tags": [
           "MDS"
@@ -1268,7 +1268,7 @@
         }
       }
     },
-    "/dmm/opcuamappings/{entityName}": {
+    "/mds/service/opcuamappings/{entityName}": {
       "post": {
         "tags": [
           "MDS"
@@ -1607,7 +1607,7 @@
         }
       }
     },
-    "/dmm/entities/validate": {
+    "/mds/service/entities/validate": {
       "post": {
         "tags": [
           "MDS"
@@ -1699,7 +1699,7 @@
         }
       }
     },
-    "/dmm/entities/status/{type}/{jobId}": {
+    "/mds/service/entities/status/{type}/{jobId}": {
       "get": {
         "tags": [
           "MDS"
@@ -1800,7 +1800,7 @@
         }
       }
     },
-    "/dmm/query": {
+    "/mds/service/query": {
       "post": {
         "tags": [
           "Query"
@@ -1857,7 +1857,7 @@
         }
       }
     },
-    "/dmm/query/relatedNodes": {
+    "/mds/service/query/relatedNodes": {
       "post": {
         "tags": [
           "Query"
@@ -1914,7 +1914,7 @@
         }
       }
     },
-    "/dmm/query/relatedEntitiesData": {
+    "/mds/service/query/relatedEntitiesData": {
       "post": {
         "tags": [
           "Query"
@@ -1971,7 +1971,7 @@
         }
       }
     },
-    "/dmm/query/ingestionStatus": {
+    "/mds/service/query/ingestionStatus": {
       "get": {
         "tags": [
           "Query"
@@ -2019,7 +2019,7 @@
         }
       }
     },
-    "/dmm/query/relatedEntitiesDataHistory": {
+    "/mds/service/query/relatedEntitiesDataHistory": {
       "post": {
         "tags": [
           "Query"
