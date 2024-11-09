@@ -1,0 +1,280 @@
+{
+    "name": "Operations Material Bill Item",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a billitem.Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information ofthe operations material bill item.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "materialClass",
+            "description": "Identifies the associated materialclass or set of material classesrequired.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "materialDefinition",
+            "description": "Identifies the associated materialdefinition or set of materialdefinitions required.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "useType",
+            "description": "Defines the use of the material.EXAMPLE 1Consumed: indicates thatoperations material bill items areall consumed material.EXAMPLE 2Produced: indicates thatoperations material bill items areall produced materials.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Consumed",
+                "Produced",
+                "Mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyType",
+            "description": "Defines the type of the assembly.Defined types are\uf02d physical: the components ofthe assembly are physicallyconnected or in the samearea;\uf02d logical: the components of theassembly are not necessarilyphysically connected or in thesame area.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Logical",
+                "Physical"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyRelationship",
+            "description": "Defines the type of therelationships.Defined types are\uf02d permanent: an assembly thatis not intended to be splitduring the production process;\uf02d transient: a temporaryassembly using duringproduction, such as a pallet ofdifferent materials or a batchkit.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Permanent",
+                "Transient"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "Specifies the amount ofresources required",
+            "type": "Double",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "The unit of measure of theassociated quantity.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsMaterialBillItem;1",
+        "@type": "Interface",
+        "displayName": "Operations material bill item",
+        "description": "The items that make up the complete operations material bill shall be presented as operations material bill items.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isAssembledFrom",
+                "displayName": "Is Assembled From",
+                "description": "The child operations material bill item(s) makes up part of this operations material bill item as the whole.",
+                "target": "dtmi:digitaltwins:isa95:OperationsMaterialBillItem;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isUseOf",
+                "displayName": "Is Use Of",
+                "description": "The material specification(s) defines this specified operation material bill item(s).",
+                "target": "dtmi:digitaltwins:isa95:MaterialSpecification;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "materialClass",
+                "displayName": "Material Class",
+                "description": "Identifies the associated material class or set of material classes.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "materialDefinition",
+                "displayName": "Material Definition",
+                "description": "Identifies the associated material definition or set of material.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "useType",
+                "displayName": "use type",
+                "description": "Defines the use of the material",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "consumed",
+                            "enumValue": "Consumed",
+                            "description": "indicates that operations material bill items are all consumed material."
+                        },
+                        {
+                            "name": "produced",
+                            "enumValue": "Produced",
+                            "description": "indicates that operations material bill items are all produced materials. "
+                        },
+                        {
+                            "name": "mixed",
+                            "enumValue": "Mixed",
+                            "description": "indicates that operations material bill items are both consumed and produced materials. "
+                        }
+                    ]
+                },
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyType",
+                "displayName": "Assembly type",
+                "writable": true,
+                "description": "Defines the type of the assembly",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "physical",
+                            "enumValue": "Physical",
+                            "description": "the components of the assembly are physically connected or in the same area"
+                        },
+                        {
+                            "name": "logical",
+                            "enumValue": "Logical",
+                            "description": "the components of the assembly are not necessarily physically connected or in the same area"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyRelationship",
+                "displayName": "Assembly relationship",
+                "writable": true,
+                "description": "Defines the type of the relationships",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "permanent",
+                            "enumValue": "Permanent",
+                            "description": "an assembly that is not intended to be split during the production process"
+                        },
+                        {
+                            "name": "transient",
+                            "enumValue": "Transient",
+                            "description": "a temporary assembly using during production, such as a pallet of different materials or a batch kit"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "Specifies the personnel resource required for the parent process segment",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

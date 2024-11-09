@@ -1,0 +1,15 @@
+{
+    "name": "TestableObjectProperty",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:TestableObjectProperty;1",
+        "@type": "Interface",
+        "displayName": "Testable object property",
+        "description": "The testable object and testable object property are represented as abstract interface objects to simplify the operations test model diagram. The interface objects represent the objects that are able to be tested by a test specification(s)",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018"
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

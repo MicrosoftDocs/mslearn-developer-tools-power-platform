@@ -1,0 +1,286 @@
+{
+    "name": "Process Segment",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a process segment, within the scope of the information exchanged (operations capability, operations schedule, operations  The ID is used in other parts of the model when the process segment needs to be identified, such as the operations capability for this segment, or an operations response identifying the segment. performance \u2026)",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Additional information about the process segment.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationsType",
+            "description": "Describes the category of the activity. Required attribute. Defined values are production, maintenance, quality, inventory, or mixed. \u201cMixed\u201d can be used when the activity contains several categories of process segments.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Production",
+                "Maintenance",
+                "Quality",
+                "Inventory",
+                "Mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based equipment hierarchy. Optionally, hierarchy scope defines the scope of the process segment class definition, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "definitionType",
+            "description": "Defines the type of the process segment.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Pattern",
+                "Instance"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "duration",
+            "description": "Duration of process segment.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "durationUnitOfMeasure",
+            "description": "The units of measure of the duration.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "erpsystemrefid",
+            "description": "ERP or operations management System of Record Identifier for process segment",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Manufacturing system Ref ID for process segment",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ProcessSegment;1",
+        "@type": "Interface",
+        "displayName": "Process segment",
+        "description": "A process segment lists the classes of personnel, equipment, physical assets, and material needed, and/or it may present specific resources, such as specific equipment needed for the process segment. A process segment may list the quantity of the resource needed. A process segment is something that occurs or can occur during manufacturing operations",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:Resource;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "This parent process segment is whole of the child process segment(s) as the part",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "includesPropertiesOf",
+                "displayName": "Includes properties of",
+                "description": "This process segment class(s) include properties of the process segment class",
+                "maxMultiplicity": 1,
+                "target": "dtmi:digitaltwins:isa95:ProcessSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasAnExecutionDependencyOn",
+                "displayName": "Has an execution dependency on",
+                "description": "Process segment has an association class relationship with segment dependency. The process segment(s) applying the ordering / sequencing rules from the segment dependency related to the process segment execution",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasAnExecutionDependencyOnSegment",
+                "displayName": "Has an execution dependency on",
+                "description": "Process segment has an association class relationship with segment dependency. The ordering / sequencing rules related to the process segment execution",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegmentDependency;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsParameter",
+                "displayName": "Contains",
+                "description": "The process parameter specifications related to this process segment",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegmentParameter;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsPersonnelSpecification",
+                "displayName": "Contains",
+                "description": "The personnel specification(s) defining part of this process segment",
+                "target": "dtmi:digitaltwins:isa95:PersonnelSegmentSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsEquipmentSpecification",
+                "displayName": "Contains",
+                "description": "The equipment specification(s) defining part of this process segment",
+                "target": "dtmi:digitaltwins:isa95:EquipmentSegmentSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsPhysicalAssetSpecification",
+                "displayName": "Contains",
+                "description": "The physical asset specification(s) defining part of this process segment",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetSegmentSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsMaterialSpecification",
+                "displayName": "Contains",
+                "description": "The material specification(s) defining part of this process segment",
+                "target": "dtmi:digitaltwins:isa95:MaterialSegmentSpecification;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the process segment",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "operationsType",
+                "displayName": "Operations type",
+                "description": "Describes the category of the activity",
+                "comment": "Required attribute. Possible values are: production, maintenance, quality, inventory, or mixed",
+                "writable": true,
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "production",
+                            "enumValue": "Production"
+                        },
+                        {
+                            "name": "maintenance",
+                            "enumValue": "Maintenance"
+                        },
+                        {
+                            "name": "quality",
+                            "enumValue": "Quality"
+                        },
+                        {
+                            "name": "inventory",
+                            "enumValue": "Inventory"
+                        },
+                        {
+                            "name": "mixed",
+                            "enumValue": "Mixed",
+                            "comment": " can be used when the activity contains several categories of process segments"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "definitionType",
+                "displayName": "Definition type",
+                "description": "Defines the type of the process segment",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "pattern",
+                            "enumValue": "Pattern",
+                            "description": "a process segment used as a template for other process segments"
+                        },
+                        {
+                            "name": "instance",
+                            "enumValue": "Instance",
+                            "description": "a process segment that may be directly scheduled and tracked"
+                        }
+                    ]
+                },
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "duration",
+                "displayName": "Duration",
+                "description": "Duration of process segment",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "durationUnitOfMeasure",
+                "displayName": "Duration unit of measure",
+                "description": "The units of measure of the duration",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

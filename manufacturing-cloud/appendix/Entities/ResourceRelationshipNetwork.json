@@ -1,0 +1,139 @@
+{
+    "name": "ResourceRelationshipNetwork",
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Hot"
+    },
+    "semanticRelevantFlag": "True",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Objects in the information model which require unique identifications contain an ID attribute, which are unique within the scope of the exchanged information",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "True",
+            "primaryKey": "True",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information and descriptions",
+            "mandatory": "False",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "False",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "relationshipType",
+            "description": "Defines the type of relationship. ",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "False",
+            "type": "Enum",
+            "enumValues": [
+                "physical",
+                "logical"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "relationshipForm",
+            "description": "Defines the form of the relationships.  ",
+            "mandatory": "False",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "False",
+            "type": "Enum",
+            "enumValues": [
+                "permanent",
+                "transient"
+            ],
+            "isProperNoun": "false"
+        }
+    ],
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ResourceRelationshipNetwork;1",
+        "@type": "Interface",
+        "displayName": "Resource relationship network",
+        "description": "A resource relationship network shall be a composition of one or more resource network connections.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isACollectionOf",
+                "displayName": "Is a collection of",
+                "description": "The resource network connections related to this resource relationship network as a whole.",
+                "target": "dtmi:digitaltwins:isa95:ResourceNetworkConnection;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasPropertiesOf",
+                "displayName": "Has properties of",
+                "description": "The resource relationship network property(s) of this resource relationship network.",
+                "target": "dtmi:digitaltwins:isa95:ResourceRelationshipNetworkProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "relationshipType",
+                "displayName": "Relationship Type",
+                "description": "Defines the type of relationship. ",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "physical",
+                            "enumValue": "physical",
+                            "comment": "the elements of the relationship are physically connected or in the same area"
+                        },
+                        {
+                            "name": "logical",
+                            "enumValue": "logical",
+                            "comment": "the elements of the relationship are not necessarily physically connected or in the same area. "
+                        }
+                    ]
+                },
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "relationshipForm",
+                "displayName": "Relationship Form",
+                "description": "Defines the form of the relationships.  ",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "permanent",
+                            "enumValue": "permanent",
+                            "comment": "the relationship is not intended to be split or changed during operations processes;"
+                        },
+                        {
+                            "name": "transient",
+                            "enumValue": "transient",
+                            "comment": "the elements of the relationship are not necessarily physically connected or in the same area. "
+                        }
+                    ]
+                },
+                "writable": true
+            }
+        ]
+    }
+}

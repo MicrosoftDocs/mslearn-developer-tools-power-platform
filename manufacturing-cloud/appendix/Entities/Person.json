@@ -1,0 +1,192 @@
+{
+    "name": "Person",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a specific person, within the scope of the information exchanged (operations capability, operations schedule, operations performance, \u2026). The ID is used in other parts of the model when the person needs to be identified, such as the operations capability for this person, or an operations response identifying the person.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "description",
+            "description": "Additional information about the resource.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based equipment hierarchy. Optionally, hierarchy scope defines the scope of the personnel class definition, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "name",
+            "description": "The name of the individual. This is meant as an additional identification of the resource, but only as information and not as a unique value.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "operationalLocation",
+            "description": "Identifies the operational location of the person.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationalLocationType",
+            "description": "Indicates whether the operational location attribute refers to an operational location object or contains a description of the operational location. Mandatory where an operational location attribute is specified. Defined values are operational location: operational location attribute references an operational location; description: operational location attribute contains a description of the operational location, such as a street address.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Operational Location",
+                "description"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hrsystemrefid",
+            "description": "Workforce System of Record Identifier for Person (PersonID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Manufacturing system Ref ID (MES Person Referrence ID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:Person;1",
+        "@type": "Interface",
+        "displayName": "Person",
+        "description": "A  representation  of  a  specifically  identified  individual shall  be  presented  as  a person. A person may be a member of zero or more personnel classes.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:Resource;1",
+            "dtmi:digitaltwins:isa95:TestableObject;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "definedBy",
+                "displayName": "Defined by",
+                "description": "Personnel classes supported by this person.This person supports the personnel class property(s) associated with the personnel class.",
+                "target": "dtmi:digitaltwins:isa95:PersonnelClass;1",
+                "comment": "Relationship type: Association"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasValuesOf",
+                "displayName": "Has values of",
+                "description": "The person property values of this person.",
+                "target": "dtmi:digitaltwins:isa95:PersonProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the resource.",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role-based equipment hierarchy. Optionally, hierarchy scope defines the scope of the person definition.",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "name",
+                "displayName": "Name",
+                "description": "The name of the individual.This is meant as an additional identification of the resource, but only as information and not as a unique value.",
+                "schema": "string"
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the personas a zero-dimensional point, one-dimensional line, or two-dimensional shape or three-dimensional solid,/ / WKT / POLYGON ( ( -646.99 676.18, -645.14 683.09, -",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "operationalLocation",
+                "displayName": "Operational location",
+                "description": "Identifies the operational location of the person.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "operationalLocationType",
+                "displayName": "Operational location type",
+                "description": "Indicates whether the operational location attribute refers to an operational location object or contains a description of the operational location.Mandatory where an operational location attribute is specified.Defined values are operational location:operational location attribute references an operational location;description:operational location attribute contains a description of the operational location, such as a street address.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "operationalLocation",
+                            "enumValue": "Operational Location",
+                            "displayName": "Operational Location",
+                            "description": "operational location attribute references an operational location;"
+                        },
+                        {
+                            "name": "description",
+                            "enumValue": "description",
+                            "displayName": "Description",
+                            "description": "operational location attribute contains a description of the operational location, such as a street address."
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

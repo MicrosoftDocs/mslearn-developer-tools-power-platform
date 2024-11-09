@@ -1,0 +1,17 @@
+{
+    "name": "ResourceClass",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ResourceClass;1",
+        "@type": "Interface",
+        "displayName": "Resource class",
+        "description": "Abstract model for all resource class models (person class, equipment class, physical asset class, material class)",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ]
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

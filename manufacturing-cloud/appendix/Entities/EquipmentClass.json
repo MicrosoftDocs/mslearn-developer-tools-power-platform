@@ -1,0 +1,216 @@
+{
+    "name": "Equipment Class",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a specific equipment class, within the scope of the information exchanged (operations capability, operations schedule, operations performance, \u2026) Required attribute. The ID is used in other parts of the model when the equipment class needs to be identified, such as the production capability for this equipment class, or an operations response identifying the equipment class used.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "description",
+            "description": "Additional information and description about the equipment class.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based equipment hierarchy. Optionally, hierarchy scope defines the scope of the personnel class definition, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "equipmentLevel",
+            "description": "An identification of the level in the role-based equipment hierarchy.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "enterprise",
+                "site",
+                "area",
+                "workCenter",
+                "workUnit",
+                "processCell",
+                "unit",
+                "productionLine",
+                "productionUnit",
+                "workCell",
+                "storageZone",
+                "Storage Unit"
+            ],
+            "isProperNoun": "true"
+        },
+        {
+            "name": "assetsystemrefid",
+            "description": "ERP or asset management System of Record Identifier",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Manufacturing system Ref ID",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Hot"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:EquipmentClass;1",
+        "@type": "Interface",
+        "displayName": "Equipment class",
+        "description": "A representation of a grouping of equipment with similar characteristics for a definite purpose such as manufacturing operations definition, scheduling, capability and performance shall be presented as an equipment class. Any piece of equipment may be a member of zero or more equipment classes. An equipment class may be defined as a specialization of zero or more equipment classes. An equipment class may be made up of zero or more equipment classes.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:ResourceClass;1",
+            "dtmi:digitaltwins:isa95:TestableObject;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "includesPropertiesOf",
+                "displayName": "Includes properties of",
+                "target": "dtmi:digitaltwins:isa95:EquipmentClass;1",
+                "description": "This equipment class(s) include properties of the equipment class."
+            },
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "target": "dtmi:digitaltwins:isa95:EquipmentClass;1",
+                "description": "This parent equipment class is whole of the child equipment class(s) as the part."
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasPropertiesOf",
+                "displayName": "Has properties of",
+                "target": "dtmi:digitaltwins:isa95:EquipmentClassProperty;1",
+                "description": "The equipment class property(s) of this equipment class."
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the equipment class",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. Optionally, hierarchy scope defines the scope of the equipment class, such as the site or area where it is defined.",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "equipmentLevel",
+                "displayName": "Equipment level",
+                "writable": true,
+                "description": "An identification of the level in the role-based equipment hierarchy",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "Enterprise",
+                            "displayName": "Enterprise",
+                            "enumValue": "enterprise"
+                        },
+                        {
+                            "name": "Site",
+                            "displayName": "Site",
+                            "enumValue": "site"
+                        },
+                        {
+                            "name": "Area",
+                            "displayName": "Area",
+                            "enumValue": "area"
+                        },
+                        {
+                            "name": "WorkCenter",
+                            "displayName": "Work Center",
+                            "enumValue": "workCenter"
+                        },
+                        {
+                            "name": "WorkUnit",
+                            "displayName": "Work Unit",
+                            "enumValue": "workUnit"
+                        },
+                        {
+                            "name": "ProcessCell",
+                            "displayName": "Process Cell",
+                            "enumValue": "processCell"
+                        },
+                        {
+                            "name": "Unit",
+                            "displayName": "Unit",
+                            "enumValue": "unit"
+                        },
+                        {
+                            "name": "ProductionLine",
+                            "displayName": "Production Line",
+                            "enumValue": "productionLine"
+                        },
+                        {
+                            "name": "ProductionUnit",
+                            "displayName": "Production Unit",
+                            "enumValue": "productionUnit"
+                        },
+                        {
+                            "name": "WorkCell",
+                            "displayName": "Work Cell",
+                            "enumValue": "workCell"
+                        },
+                        {
+                            "name": "StorageZone",
+                            "displayName": "Storage Zone",
+                            "enumValue": "storageZone"
+                        },
+                        {
+                            "name": "StorageUnit",
+                            "displayName": "Storage Unit",
+                            "enumValue": "Storage Unit"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

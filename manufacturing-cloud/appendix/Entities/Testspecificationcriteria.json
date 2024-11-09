@@ -1,0 +1,161 @@
+{
+    "name": "Test specification criteria",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Identification of the testspecification criteria.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Description of the testspecification criteria.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "sequence",
+            "description": "Specifies the sequence ofevaluation of testspecification criteria.The sequence shall beexecuted lowest first.Duplicate sequence valuesshall be executed in parallelwith worst case resultreported if both criteria areevaluated as true.",
+            "type": "Integer",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "expression",
+            "description": "An expression of the testspecification criteria to beevaluated. If the expressionis empty, then the testspecification criteriarepresents the else criterion.EXAMPLE 1If (criterion 1) then \u2018pass\u2019else if (criterion 2) then\u2018warn\u2019else \u2018fail\u2019",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "result",
+            "description": "The value to be given to theresult of the test if the testspecification criteriaexpression is evaluated astrue.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Warn",
+                "Other",
+                "Fail",
+                "Pass"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "otherResult",
+            "description": "Not part of the Standard. But makes 'result' property value list extensible",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:TestSpecificationCriteria;1",
+        "@type": "Interface",
+        "displayName": "Test specification criteria",
+        "description": "The test specification criteria object defines the set of criterion to evaluate and the test result to be reported when a testable object satisfies those criteria.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "references",
+                "displayName": "References",
+                "description": "This test specification criteria used to evaluate the evaluated property of a testable object property",
+                "target": "dtmi:digitaltwins:isa95:EvaluatedProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Description of the test specification criteria",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "sequence",
+                "displayName": "Sequence",
+                "description": "Specifies the sequence of evaluation of test specification criteria. The sequence shall be executed lowest first. Duplicate sequence values shall be executed in parallel with worst case result reported if both criteria are evaluated as true",
+                "schema": "integer",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "expression",
+                "displayName": "Expression",
+                "description": "An expression of the test specification criteria to be evaluated. If the expression is empty, then the test specification criteria represents the else criterion",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "result",
+                "displayName": "Result",
+                "description": "The value to be given to the result of the test if the test specification criteria expression is evaluated as true",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "pass",
+                            "displayName": "Pass",
+                            "enumValue": "Pass"
+                        },
+                        {
+                            "name": "fail",
+                            "displayName": "Fail",
+                            "enumValue": "Fail"
+                        },
+                        {
+                            "name": "warn",
+                            "displayName": "Warn",
+                            "enumValue": "Warn"
+                        },
+                        {
+                            "name": "other",
+                            "displayName": "Other",
+                            "enumValue": "Other",
+                            "comment": "See additional property 'otherResult'"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "otherResult",
+                "displayName": "Other result",
+                "description": "Not part of the Standard. But makes 'result' property value list extensible",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

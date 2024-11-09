@@ -1,0 +1,80 @@
+{
+    "name": "Operational location property",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a specific operational location property within the operational location.Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Additional information about theoperational location property.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The value, set of values, or range of the property",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The unit of measure of the associated property value.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationalLocationProperty;1",
+        "@type": "Interface",
+        "displayName": "Operational location property",
+        "description": "Properties of operational locations shall be presented as operational location properties. Anoperational location shall have zero or more operational location properties. These specify the current property values of the operational location for the associated operational location class property. Operational location properties may include a unit of measure.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:ResourceProperty;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The child operational location property(s) of this operational location property.",
+                "target": "dtmi:digitaltwins:isa95:OperationalLocationProperty;1",
+                "comment": "Relationship type: Composition hierarchy"
+            },
+            {
+                "@type": "Relationship",
+                "name": "mapsTo",
+                "displayName": "Maps to",
+                "description": "The operational location class property to which this operational location class property maps.",
+                "target": "dtmi:digitaltwins:isa95:OperationalLocationClassProperty;1",
+                "comment": "Relationship type: Dependency"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

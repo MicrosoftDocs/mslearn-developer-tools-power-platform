@@ -1,0 +1,9 @@
+WITH result AS 
+(
+    SELECT
+        udf.wrap(data_base64)
+    FROM
+        [input]
+)
+SELECT wrap.body.* INTO [output-data] FROM result WHERE wrap.type = 'ua-data'
+SELECT wrap.body.* INTO [output-meta] FROM result WHERE wrap.type = 'ua-metadata'

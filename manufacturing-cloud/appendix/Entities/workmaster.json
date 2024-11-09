@@ -1,0 +1,183 @@
+{
+    "name": "work master",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification as thework master ID",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "version",
+            "description": "An identification of the versionof the work master version.In cases where there aremultiple versions of a workdefinition, then the versionattribute shall contain theadditional identificationinformation to differentiate eachversion.",
+            "type": "Alphanumeric",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the workmaster",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "workType",
+            "description": "Describes the category of work.Defined values areproduction, maintenance, quality,inventory, or mixed.\u201cMixed\u201d can be used when theoperations definition containsseveral types of operationsrequests and/or segmentrequirements..\u201cMixed\u201d can be used when theoperations definition containsseveral types of operationsrequests and/or segmentrequirements.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "production",
+                "maintenance",
+                "quality",
+                "inventory",
+                "mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "duration",
+            "description": "Duration, if known",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "durationUnitOfMeasure",
+            "description": "The units of measure of theduration, if defined",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "publishedDate",
+            "description": "The date and time on which thework master or work directivewas published or generated",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role- based equipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "definitionType",
+            "description": "Defines the type of the work master. Defined types are\u2022 pattern: a work master used as a template for other work masters;instance: a work master directly scheduled, dispatched and executed",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "pattern",
+                "instance"
+            ],
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Stream",
+        "ingestionRate": "Weekly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:WorkMaster;1",
+        "@type": "Interface",
+        "displayName": "Work master",
+        "description": "The resources and instructions required to perform a unit of work without reference to a specific job order shall be defined as a work master",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:WorkDefinition;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "includesPropertiesOf",
+                "displayName": "Includes properties of",
+                "target": "dtmi:digitaltwins:isa95:WorkMaster;1",
+                "description": "This work master(s) includes properties of the parent work master."
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToProcess",
+                "displayName": "Corresponds to",
+                "description": "The process segment(s) associated to this work master",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToDefinition",
+                "displayName": "Corresponds to",
+                "description": "The operations defintion(s) associated to this work master",
+                "target": "dtmi:digitaltwins:isa95:operationDefinition;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToOperations",
+                "displayName": "Corresponds to",
+                "description": "The operations segment(s) associated to this work master",
+                "target": "dtmi:digitaltwins:isa95:OperationsSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasA",
+                "displayName": "Has A",
+                "description": "This work master defined in part by the workflow specification(s)",
+                "target": "dtmi:digitaltwins:isa95:WorkflowSpecification;1"
+            },
+            {
+                "@type": "Property",
+                "name": "definitionType",
+                "displayName": "Definition type",
+                "writable": true,
+                "description": "Defines the type of the work master.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "pattern",
+                            "enumValue": "pattern",
+                            "comment": "a work master used as a template for other work masters."
+                        },
+                        {
+                            "name": "instance",
+                            "enumValue": "instance",
+                            "comment": ": a work master directly scheduled, dispatched and executed."
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

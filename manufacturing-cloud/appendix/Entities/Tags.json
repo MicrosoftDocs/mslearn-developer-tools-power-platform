@@ -1,0 +1,51 @@
+{
+    "name": "Tags",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ext:Tags;1",
+        "@type": "Interface",
+        "displayName": "Tags",
+        "description": "You can use the concept of tags to further identify and categorize your digital twins",
+        "comment": "Not part of the AAS meta model. Makes querying easier. See https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-tags",
+        "contents": [
+            {
+                "@type": "Property",
+                "name": "markers",
+                "description": "A marker tag is a simple string that is used to mark or categorize a digital twin, such as 'blue' or 'red'. This string is the tag's name, and marker tags have no meaningful value\u00e2\u20ac\u201dthe tag is significant just by its presence (or absence).",
+                "schema": {
+                    "@type": "Map",
+                    "mapKey": {
+                        "name": "tagName",
+                        "schema": "string"
+                    },
+                    "mapValue": {
+                        "name": "tagValue",
+                        "schema": "boolean"
+                    }
+                },
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "values",
+                "description": "A value tag is a key-value pair that is used to give each tag a value, such as 'color': 'blue' or 'color': 'red'. Once a value tag is created, it can also be used as a marker tag by ignoring the tag's value.",
+                "schema": {
+                    "@type": "Map",
+                    "mapKey": {
+                        "name": "tagName",
+                        "schema": "string"
+                    },
+                    "mapValue": {
+                        "name": "tagValue",
+                        "schema": "string"
+                    }
+                },
+                "writable": true
+            }
+        ]
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

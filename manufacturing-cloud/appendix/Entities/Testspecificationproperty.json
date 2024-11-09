@@ -1,0 +1,71 @@
+{
+    "name": "Test specification property",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Identification of thetest specificationproperty",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "description",
+            "description": "Description of thetest specificationproperty",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "true"
+        },
+        {
+            "name": "value",
+            "description": "The value, set ofvalues, or range ofthe property.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The unit ofmeasure of theassociated propertyvalues, ifapplicable.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "true"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:TestSpecificationProperty;1",
+        "@type": "Interface",
+        "displayName": "Test specification property",
+        "description": "The test specification property object defines properties of the test specification. These properties are not the characteristics to be tested",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:ResourceProperty;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The child test specification property(s) of this test specification property",
+                "target": "dtmi:digitaltwins:isa95:TestSpecificationProperty;1"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

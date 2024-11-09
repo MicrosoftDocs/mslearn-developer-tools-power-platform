@@ -1,0 +1,387 @@
+{
+    "name": "Material Lot",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a specific material lot, within the scope of the information exchanged (operations capability, operations schedule, operations performance, \u2026) Required attribute. The ID is used in other parts of the model when the material lot needs to be identified, such as the operations capability for this material lot or an operations response identifying the material lot used.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Additional information about the material lot.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the rolebased equipment hierarchy. Optionally, hierarchy scope defines the scope of the material definition, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyType",
+            "description": "Defines the type of the assembly. Defined types are -  physical: the components of the assembly are physically connected or in the same area; logical: the components of the assembly are not necessarily physically connected or in the same area.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Physical",
+                "Logical"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyRelationship",
+            "description": "Defines the type of the relationships. Defined types are -  permanent: an assembly that is not intended to be split during the production process; transient: a temporary assembly using during production, such as a pallet of different materials or a batch kit.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Permanent",
+                "Transient"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "storageLocation",
+            "description": "Identifies the storage location of the material lot.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "storageLocationType",
+            "description": "Indicates whether the storage location attribute refers to an operational location, equipment or physical asset object, or contains a description of the storage location. Mandatory where a storage location is specified. Defined values are operational location: storage location attribute references an operational location;  equipment: storage location attribute references an equipment object;  physical asset; storage location attribute references a physical asset; and description: storage location attribute contains a description of the storage location, such as a street address.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Description",
+                "Physical asset",
+                "Equipment",
+                "Operational location"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "status",
+            "description": "Status of the material lot in manufacturing operations. Values defined by implementation.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "disposition",
+            "description": "Planning and logistics disposition of a material lot or assembly of material lots. Defined values for the disposition of a material lot are planned: a material lot that does not yet physically exist, is assigned to an operations request (segment requirement) or work request (Part 4 object) or job order (Part 4 object); in process: the material lot is in the process of being worked on; restricted: a material lot is not permitted for normal use due to a restriction condition. EXAMPLE 5 A material lot can be awaiting a quality decision, or a material lot can be physically inaccessible. unrestricted: material lot is permitted for normal use without restriction; and closed: material lot has been reconciled as completely consumed, sold or disposed of.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Planned",
+                "In process",
+                "Restricted",
+                "Unrestricted",
+                "Closed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "The quantity of the material lot.",
+            "type": "Double",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "The unit of measure of the associated quantity.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "inventorymangementsystemrefid",
+            "description": "Reference to Material and Inventory Management System Lot/considnment ID",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Reference to Material and Inventory Management MES Material Master ID",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Daily",
+        "storage": "Hot"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:MaterialLot;1",
+        "@type": "Interface",
+        "displayName": "Material lot",
+        "description": "A uniquely identified specific amount of material, either countable or weighable shall be presented as a material lot. A material lot describes the planned or actual total quantity or amount of material available, its current state, and its specific property values",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:Resource;1",
+            "dtmi:digitaltwins:isa95:TestableObject;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isAssembledFrom",
+                "displayName": "Is assembled from",
+                "description": "This material lot is part of the related object as the whole",
+                "target": "dtmi:digitaltwins:isa95:MaterialLot;1",
+                "comment": "Relationship type: Composition"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasValuesOf",
+                "displayName": "Has values of",
+                "description": "The material lot property(s) of this material lot",
+                "target": "dtmi:digitaltwins:isa95:MaterialLotProperty;1",
+                "comment": "Relationship type: Composition"
+            },
+            {
+                "@type": "Relationship",
+                "name": "definedBy",
+                "displayName": "Defined by",
+                "description": "The material definition that defines this material lot",
+                "target": "dtmi:digitaltwins:isa95:MaterialDefinition;1",
+                "comment": "Relationship type: Association"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isAssembledFromSublot",
+                "displayName": "Is assembled from",
+                "description": "This material lot is part of the related object as the whole",
+                "target": "dtmi:digitaltwins:isa95:MaterialSublot;1",
+                "comment": "Relationship type: Aggregation"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the material definition",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "storageLocation",
+                "displayName": "Storage location",
+                "description": "Identifies the storage location of the material lot.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "storageLocationType",
+                "displayName": "Storage location type",
+                "description": "Indicates whether the storage location attribute refers to anoperational location, equipmentor physical asset object, or contains a description of the storage location.",
+                "comment": "Mandatory where a storage location is specified",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "operationalLocation",
+                            "enumValue": "Operational location",
+                            "comment": "storage location attribute references an operational location"
+                        },
+                        {
+                            "name": "equipment",
+                            "enumValue": "Equipment",
+                            "comment": "storage location attribute references an equipment object"
+                        },
+                        {
+                            "name": "physicalAsset",
+                            "enumValue": "Physical asset",
+                            "comment": " storage location attribute references a physical asset"
+                        },
+                        {
+                            "name": "description",
+                            "enumValue": "Description",
+                            "comment": "storage location attribute contains a description of the storage location, such as a street address"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyType",
+                "displayName": "Assembly type",
+                "writable": true,
+                "description": "Defines the type of the assembly",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "physical",
+                            "enumValue": "Physical",
+                            "description": "the components of the assembly are physically connected or in the same area"
+                        },
+                        {
+                            "name": "logical",
+                            "enumValue": "Logical",
+                            "description": "the components of the assembly are not necessarily physically connected or in the same area"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyRelationship",
+                "displayName": "Assembly relationship",
+                "writable": true,
+                "description": "Defines the type of the relationships",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "permanent",
+                            "enumValue": "Permanent",
+                            "description": "an assembly that is not intended to be split during the production process"
+                        },
+                        {
+                            "name": "transient",
+                            "enumValue": "Transient",
+                            "description": "a temporary assembly using during production, such as a pallet of different materials or a batch kit"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "status",
+                "displayName": "Status",
+                "description": "Status of the material lot in manufacturing operations. Values defined by implementation",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "disposition",
+                "displayName": "Disposition",
+                "writable": true,
+                "description": "Planning and logistics disposition of a material lot or assembly of material lots. ",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "planned",
+                            "enumValue": "Planned",
+                            "description": "a material lot that does not yet physically exist, is assigned to an operations request (segment requirement) or work request (Part 4 object) or job order (Part 4 object)"
+                        },
+                        {
+                            "name": "inProcess",
+                            "enumValue": "In process",
+                            "description": "the material lot is in the process of being worked on"
+                        },
+                        {
+                            "name": "restricted",
+                            "enumValue": "Restricted",
+                            "description": "a material lot is not permitted for normal use due to a restriction condition"
+                        },
+                        {
+                            "name": "unrestricted",
+                            "enumValue": "Unrestricted",
+                            "description": "material lot is permitted for normal use without restriction"
+                        },
+                        {
+                            "name": "closed",
+                            "enumValue": "Closed",
+                            "description": "material lot has been reconciled as completely consumed, sold or disposed of"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "The quantity of the material lot. ",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

@@ -1,0 +1,222 @@
+{
+    "name": "Personnel requirement",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of aspecific personnel requirement.Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationof the personnel requirement",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationalLocation",
+            "description": "Identifies the operationallocation of the personnelresource(s) specified by thispersonnel requirement.",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationalLocationType",
+            "description": "Indicates whether the operationallocation attribute refers to anoperational location object orcontains a description of theoperational location.Mandatory where an operationallocation attribute is specified.Defined values areoperational location: operationallocation attribute references anoperational location;description: operational locationattribute contains a description ofthe operational location, such asa street address.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "OperationalLocation",
+                "Description"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "personnelUse",
+            "description": "Defines the expected use of thepersonnel class or person in thecontext of the  segment requirement",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "Specifies the amount ofpersonnel resources requiredfor the parent segment. Appliesto each member of the personand personnel class sets.",
+            "type": "Double",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "The unit of measure of theassociated quantity.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Weekly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:PersonnelRequirement;1",
+        "@type": "Interface",
+        "displayName": "Personnel requirement",
+        "description": "The identification of the number, type, duration, and scheduling of specific certifications and job classifications needed to support the current operations request shall be presented as personnel requirements.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1",
+            "dtmi:digitaltwins:isa95:OperationsTestRequirement;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "The related object(s) makes up part of this personnel requirement as the whole",
+                "target": "dtmi:digitaltwins:isa95:PersonnelRequirement;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasValuesOf",
+                "displayName": "has values of",
+                "description": "The values in the personnel requirement property are for this personnel requirement.",
+                "target": "dtmi:digitaltwins:isa95:PersonnelRequirementProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToPersonnelClass",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the personnel model as explained in Clause 3.3.8. Identifies the associated personnel class or set of personnel classes specified",
+                "target": "dtmi:digitaltwins:isa95:PersonnelClass;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToPerson",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the personnel model as explained in Clause 3.3.8. Identifies the associated person or set of persons specified. Typically, either personnel class or person is specified, but not both",
+                "target": "dtmi:digitaltwins:isa95:Person;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the process segment",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "operationalLocation",
+                "displayName": "Operational location",
+                "description": "Identifies the operational location of the personnel resource(s)  specified by this personnel segment specification",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "operationalLocationType",
+                "displayName": "Operational location type",
+                "description": "Indicates whether the operational location attribute refers to an operational location object or contains a description of the operational location. Mandatory where an operational location attribute is specified",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "operationalLocation",
+                            "enumValue": "OperationalLocation",
+                            "displayName": "Operational Location",
+                            "description": "operational location attribute references an operational location;"
+                        },
+                        {
+                            "name": "description",
+                            "enumValue": "Description",
+                            "displayName": "Description",
+                            "description": "operational location attribute contains a description of the operational location, such as a street address."
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "personnelUse",
+                "displayName": "Personnel use",
+                "description": "Defines the expected use of the personnel class or person in the context of the process segment.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "Specifies the personnel resource required for the parent process segment",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

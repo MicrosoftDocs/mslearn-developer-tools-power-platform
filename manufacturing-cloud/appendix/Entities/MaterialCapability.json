@@ -1,0 +1,540 @@
+{
+    "name": "Material Capability",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Defines a unique instance of thematerial capability for a specifiedelement of the equipmenthierarchy model.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the materialcapability definition.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role-based Material hierarchy. Optionally, hierarchy scope defines the scope of the Material class Schedule, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyType",
+            "description": "Defines the type of the assembly.Defined types are - physical: the components ofthe assembly are physicallyconnected or in the samearea;logical: the components of theassembly are not necessarilyphysically connected or in thesame area.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Physical",
+                "Logical"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "assemblyRelationship",
+            "description": "Defines the type of therelationships.Defined types are - permanent: an assembly thatis not intended to be splitduring the production process;transient: a temporaryassembly using duringproduction, such as a pallet ofdifferent materials or a batchkit.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Permanent",
+                "Transient"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "capabilityType",
+            "description": "Defines the type ofcapability.Defined types are:committed: capacity thatis committed for futureproductive use;unattainable: capacitythat is not attainable forfuture productive usegiven the equipmentcondition, equipmentutilization, personnelavailability or materialavailability;\uf02d available: capacity that isavailable for additionalfuture productive use;\uf02d used: a historical valuethat defines the portion ofthe capacity withacceptable quality;\uf02d unused: a historical valuethat defines the portion ofthe capacity that was notused or had unacceptablequality; and\uf02d total: the sum of usedand unused capability orthe sum of available,unattainable andcommitted capability.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "committed",
+                "unattainable",
+                "available",
+                "used",
+                "unused",
+                "total"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "reason",
+            "description": "Defines the reason for thecapability type.",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "confidenceFactor",
+            "description": "Measure of the confidenceof the ability to obtain thecapacity value",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "storageLocation",
+            "description": "Describes the storage location ofthe material resource(s) specifiedby this material capability",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "storageLocationType",
+            "description": "Indicates whether the storagelocation attribute refers to anoperational location, equipmentor physical asset object, orcontains a description of thestorage location.Mandatory where a storagelocation is specified.Defined values are\uf02d operational location: storagelocation attribute referencesan operational location;\uf02d equipment: storage locationattribute references anequipment object;\uf02d physical asset: storagelocation attribute references aphysical asset; and\uf02d description: storage locationattribute contains a descriptionof the storage location, suchas a street address.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Operational location",
+                "Equipment",
+                "Physical asset",
+                "Description"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "materialUse",
+            "description": "Defines the expected use of thematerial class, material definition,material lot, or material sublot inthe context of the operationscapability.Defined values for productionoperations areconsumable, consumed,produced, by-product produced,co-product produced, and yieldproduced.Defined values for maintenanceoperations areconsumable, material consumed,and material produced.Defined values for quality testoperations areconsumable, destructive sample,returned sample, and retainedsample.Defined values for inventoryoperations areconsumable, material consumed,material produced, andinventoried.",
+            "type": "Enum",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "enumValues": [
+                "Consumable",
+                "Material consumed",
+                "Material produced",
+                "By-Product produced",
+                "Co-Product produced",
+                "Yield produced",
+                "Destructive sample",
+                "Returned sample",
+                "Retained sample",
+                "Inventoried"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "startTime",
+            "description": "The starting time associated withthe material capability.If omitted, then the capability isassociated to the parentoperations capability start time.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "endTime",
+            "description": "The ending time associated withthe material capability.If omitted, then the capability isassociated to the parentoperations capability end time.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "Specifies the quantity of thematerial capability defined",
+            "type": "Double",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "The unit of measure of theassociated quantity.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "inventorysystemrefid",
+            "description": "Inventory/ERP System of Record Identifier for Material (AssetID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "messystemrefid",
+            "description": "Manufacturing system Ref ID (MES Person Referrence ID)",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:MaterialCapability;1",
+        "@type": "Interface",
+        "displayName": "Material capability",
+        "description": "A representation of the capability of material that is committed, available, or unattainable for a specific time shall be presented as a material capability.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "IsAssembledFrom",
+                "displayName": "Is assembled from",
+                "description": "The related object(s) makes up part of this material capability as the whole",
+                "target": "dtmi:digitaltwins:isa95:MaterialCapability;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasValuesOf",
+                "displayName": "has values of",
+                "description": "The values in the material capability property are for this material capability.",
+                "target": "dtmi:digitaltwins:isa95:MaterialSpecificationProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToClass",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material class or set of material classes of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:MaterialClass;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToDefinition",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material definition or set of material definition of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:MaterialDefinition;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToLot",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material lot or set of material lot of the specification for a specific process segment",
+                "target": "dtmi:digitaltwins:isa95:MaterialLot;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToSublot",
+                "displayName": "Corresponds to",
+                "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material sublot or set of material sublot of the specification for a specific process segment. Typically, either a material class or material definition is specified",
+                "target": "dtmi:digitaltwins:isa95:MaterialSublot;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the process segment",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "capabilityType",
+                "displayName": "capability type",
+                "description": "Defines the type of capability. ",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "committed",
+                            "enumValue": "committed",
+                            "comment": ": capacity that is committed for future productive use."
+                        },
+                        {
+                            "name": "unattainable",
+                            "enumValue": "unattainable",
+                            "comment": "capacity that is not attainable for future productive use given the equipment condition, equipment utilization, personnel availability or material availability."
+                        },
+                        {
+                            "name": "available",
+                            "enumValue": "available",
+                            "comment": "capacity that is available for additional future productive use."
+                        },
+                        {
+                            "name": "used",
+                            "enumValue": "used",
+                            "comment": "a historical value that defines the portion of the capacity with acceptable quality."
+                        },
+                        {
+                            "name": "unused",
+                            "enumValue": "unused",
+                            "comment": " a historical value that defines the portion of the capacity that was not used or had unacceptable quality."
+                        },
+                        {
+                            "name": "total",
+                            "enumValue": "total",
+                            "comment": "the sum of used and unused capability or the sum of available, unattainable and committed capability."
+                        }
+                    ]
+                },
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "reason",
+                "displayName": "Reason",
+                "description": "Defines the reason for the capability type.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "confidenceFactor",
+                "displayName": "Confidence Factor",
+                "description": "Measure of the confidence of the ability to obtain the capacity value.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            },
+            {
+                "@type": "Property",
+                "name": "storageLocation",
+                "displayName": "Storage location",
+                "description": "Identifies the storage location of  the material resource(s) specified by this material segment specification",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "storageLocationType",
+                "displayName": "Storage location type",
+                "description": "Indicates whether the storage location attribute refers to an operational location, equipment or physical asset object, or contains a description of the storage location",
+                "comment": "Mandatory where a storage location is specified",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "operationalLocation",
+                            "enumValue": "Operational location",
+                            "comment": "storage location attribute references an operational location"
+                        },
+                        {
+                            "name": "equipment",
+                            "enumValue": "Equipment",
+                            "comment": "storage location attribute references an equipment object"
+                        },
+                        {
+                            "name": "physicalAsset",
+                            "enumValue": "Physical asset",
+                            "comment": " storage location attribute references a physical asset"
+                        },
+                        {
+                            "name": "description",
+                            "enumValue": "Description",
+                            "comment": "storage location attribute contains a description of the storage location, such as a street address"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "materialUse",
+                "displayName": "Material use",
+                "description": "Defines the use of the material class, material definition, material lot, or material sublot in the context of the process segment.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "consumable",
+                            "displayName": "Consumable",
+                            "enumValue": "Consumable"
+                        },
+                        {
+                            "name": "materialConsumed",
+                            "displayName": "Material consumed",
+                            "enumValue": "Material consumed"
+                        },
+                        {
+                            "name": "materialProduced",
+                            "displayName": "Material produced",
+                            "enumValue": "Material produced"
+                        },
+                        {
+                            "name": "byProductProduced",
+                            "displayName": "By-Product produced",
+                            "enumValue": "By-Product produced"
+                        },
+                        {
+                            "name": "coProductProduced",
+                            "displayName": "Co-Product produced",
+                            "enumValue": "Co-Product produced"
+                        },
+                        {
+                            "name": "yieldProduced",
+                            "displayName": "Yield produced",
+                            "enumValue": "Yield produced"
+                        },
+                        {
+                            "name": "destructiveSample",
+                            "displayName": "Destructive sample",
+                            "enumValue": "Destructive sample"
+                        },
+                        {
+                            "name": "returnedSample",
+                            "displayName": "Returned sample",
+                            "enumValue": "Returned sample"
+                        },
+                        {
+                            "name": "retainedSample",
+                            "displayName": "Retained sample",
+                            "enumValue": "Retained sample"
+                        },
+                        {
+                            "name": "inventoried",
+                            "displayName": "Inventoried",
+                            "enumValue": "Inventoried"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "startTime",
+                "displayName": "Start Time",
+                "description": "The starting time associated with the material capability.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "endTime",
+                "displayName": "End Time",
+                "description": "The ending time associated with the material capability.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "Specifies the amount of material produced or used by the parent segment.",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyType",
+                "displayName": "Assembly type",
+                "writable": true,
+                "description": "Defines the type of the assembly",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "physical",
+                            "enumValue": "Physical",
+                            "description": "the components of the assembly are physically connected or in the same area"
+                        },
+                        {
+                            "name": "logical",
+                            "enumValue": "Logical",
+                            "description": "the components of the assembly are not necessarily physically connected or in the same area"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "assemblyRelationship",
+                "displayName": "Assembly relationship",
+                "writable": true,
+                "description": "Defines the type of the relationships",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "permanent",
+                            "enumValue": "Permanent",
+                            "description": "an assembly that is not intended to be split during the production process"
+                        },
+                        {
+                            "name": "transient",
+                            "enumValue": "Transient",
+                            "description": "a temporary assembly using during production, such as a pallet of different materials or a batch kit"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

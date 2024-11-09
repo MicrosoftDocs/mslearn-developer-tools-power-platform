@@ -1,0 +1,131 @@
+{
+    "name": "Work calendar entry property",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of the property. Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Additional information about the property.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The default value, set of values, or range of the property.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The unit of measure of the associated property values.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferenceid",
+            "description": "Reference ID of an external dictionary entry, meta-model reference ID, ontology value or column in a DB table",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferencedictionary",
+            "description": "Reference of an external dictionary, meta-model reference, ontology or a DB table",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferenceuri",
+            "description": "URI locator for External reference",
+            "type": "URIreference",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Stream",
+        "ingestionRate": "Weekly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:WorkCalendarEntryProperty;1",
+        "@type": "Interface",
+        "displayName": "Work calendar entry property",
+        "description": "The work calendar entry property shall be defined as a property on a work calendar entry.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "mapsTo",
+                "displayName": "Maps to",
+                "description": "The work calendar definition entry property that defines this work calendar entry property.",
+                "target": "dtmi:digitaltwins:isa95:WorkCalendarDefinitionEntryProperty;1",
+                "comment": "Mandatory - Cardinality 1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The work calendar entry properties of this work calendar entry property.",
+                "target": "dtmi:digitaltwins:isa95:WorkCalendarEntryProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the work calendar entry property",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The value, set of values, or range of the property.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The unit of measure of the associated property value",
+                "schema": "string"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

@@ -1,0 +1,172 @@
+{
+    "name": "Physical Asset requirement property",
+    "columns": [
+        {
+            "name": "id",
+            "description": "An identification of the associatedequipment property or equipmentclass property for a specificsegment requirement.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the equipmentrequirement property definition.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The value, set of values, or rangeof the property. ",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The unit of measure of the associated property values.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantity",
+            "description": "Specifies the anount of Physical Asset resourcerequired.",
+            "type": "Double",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "quantityUnitOfMeasure",
+            "description": "Specifies the amount of physicalasset requirement propertyrequired for the parent physicalasset.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferenceid",
+            "description": "Reference ID of an external dicitonary, meta-model or ontology",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferencedictionary",
+            "description": "Dictionary / Ontology / Meta-model name",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferenceuri",
+            "description": "URI locator for External reference",
+            "type": "URIreference",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Weekly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:PhysicalAssetRequirementProperty;1",
+        "@type": "Interface",
+        "displayName": "Physical Asset requirement property",
+        "description": "Specific properties that are required for physical asset requirements shall be presented as physical asset requirement property(s)",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The physical asset requirement property(s) of this physical asset requirement property",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetRequirementProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "mapsToClassProperty",
+                "displayName": "Maps to",
+                "description": "A cross-model dependency to element in the physical asset model as explained in Clause 3.3.8",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetClassProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "mapsToProperty",
+                "displayName": "Maps to",
+                "description": "A cross-model dependency to element in the physical asset model as explained in Clause 3.3.8",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions of the property",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The value, set of values, or range of the property.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The unit of measure of the associated property value",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "quantity",
+                "displayName": "Quantity",
+                "schema": "double",
+                "description": "Specifies the amount of resources required",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "quantityUnitOfMeasure",
+                "displayName": "Quantity unit of measure",
+                "description": "The unit of measure of the associated quantity",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

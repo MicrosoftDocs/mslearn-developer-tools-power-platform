@@ -1,0 +1,162 @@
+{
+    "name": "Job order parameter",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Identification of the Job Order parameter. Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the job orderparameter.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The value, set of values, or rangeof acceptable values.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The engineering units of measure of values",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferenceid",
+            "description": "Reference ID of an external dicitonary, meta-model or ontology",
+            "type": "Alphanumeric",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferencedictionary",
+            "description": "Dictionary / Ontology / Meta-model name",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "externalreferenceuri",
+            "description": "URI locator for External reference",
+            "type": "URIreference",
+            "mandatory": "false",
+            "semanticRelevantFlag": "false",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Stream",
+        "ingestionRate": "Daily",
+        "storage": "Hot"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:JobOrderParameter;1",
+        "@type": "Interface",
+        "displayName": "Job order parameter",
+        "description": "Specific parameters required for a job order shall be presented as job order parameters.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The child job order parameter(s) that are part of this job order parameter.",
+                "target": "dtmi:digitaltwins:isa95:JobOrderParameter;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToSpecification",
+                "displayName": "Corresponds To",
+                "description": "This job order parameter(s) corresponds to the parameter specification(s) in the operations definition.",
+                "target": "dtmi:digitaltwins:isa95:ParameterSpecification;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToProcess",
+                "displayName": "Corresponds To",
+                "description": "This job order parameter(s) corresponds to the parameter specification(s) in the process segment.",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegmentParameter;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. Optionally, hierarchy scopedefines the scope of the physical asset class, such as the site or area where it is defined",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The value, set of values, or range of acceptable values",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The engineering units in which the value is defined. ",
+                "schema": "string"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

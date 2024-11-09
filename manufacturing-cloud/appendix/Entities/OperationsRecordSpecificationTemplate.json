@@ -1,0 +1,160 @@
+{
+    "name": "Operations record specification template",
+    "columns": [
+        {
+            "name": "id",
+            "description": "The identifier of the operations record specification template.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+          "name": "description",
+          "description": "Contains additional information and description of the operations record specification template",
+          "type": "String",
+          "mandatory": "false",
+          "semanticRelevantFlag": "true",
+          "groupBy": "false",
+          "primaryKey": "false",
+          "isProperNoun": "false"
+        },
+        {
+            "name": "informationObjectType",
+            "description": "Permitted set of information objects allowed in the operations record template occurrence. An operations record entry template contains the reference to the information object for operations record template. NOTE 1 An unconstrained set of values can be represented with the * entry.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "informationObjectTypeMultiplicity",
+            "description": "The range of the information object(s) in operations record entry template allowed in the operations record template occurrence. If no limit is explicitly specified, the unbounded keyword is specified. If no multiplicity entry is specified, this is equivalent to no constraint. EXAMPLE 2 {Min: 0, Max: Unbounded}.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "action",
+            "description": "The permitted set of actions applied to the operations record entry template object in the operations record template by the publisher. Defined values for action are added, changed, deleted, and observed. If no action is specified, this is equivalent to all actions being allowed.",
+            "type": "Enum",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "added",
+                "changed",
+                "deleted",
+                "observed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "actionMultiplicity",
+            "description": "The range of actions allowed to be represented in the operations record template occurrence. If no limit is explicitly specified, the unbounded keyword is specified. If no multiplicity entry is specified, this is equivalent to no constraint. EXAMPLE 3 {Min: 0, Max: Unbounded}.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsRecordSpecificationTemplate;1",
+        "@type": "Interface",
+        "displayName": "Operations record specification template",
+        "description": "Specification of the permitted content and form of objects in an operations record template shall be defined in an associated operations record specification template",
+        "comment": "Abstract - According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "This parent operations record specification template is whole of the child operations record specification template(s) as the part",
+                "target": "dtmi:digitaltwins:isa95:OperationsRecordSpecificationTemplate;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and description of the operations record specification template",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "informationObjectType",
+                "displayName": "Information object type",
+                "description": "Permitted set of information objects allowed in the operations record template occurrence. An operations record entry template contains the reference to the information object for operations record template. NOTE 1 An unconstrained set of values can be represented with the * entry",
+                "comment": "Since DTDLv2 doesn't support array, use strings like [Equipment, Personnel] or [JobList]",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "informationObjectTypeMultiplicity",
+                "displayName": "Information object type multiplicity",
+                "description": "The range of the information object(s) in operations record entry template allowed in the operations record template occurrence. If no limit is explicitly specified, the unbounded keyword is specified. If no multiplicity entry is specified, this is equivalent to no constraint. EXAMPLE 2 {Min: 0, Max: Unbounded}",
+                "comment": "Samples: {Min: 1, Max: 1}, Min:1, Max: Unbounded}",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "action",
+                "displayName": "Action",
+                "description": "The permitted set of actions applied to the operations record entry template object in the operations record template by the publisher. Defined values for action are added, changed, deleted, and observed. If no action is specified, this is equivalent to all actions being allowed",
+                "writable": true,            
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "added",
+                            "enumValue": "added"
+                        },
+                        {
+                            "name": "changed",
+                            "enumValue": "changed"
+                        },
+                        {
+                            "name": "deleted",
+                            "enumValue": "deleted"
+                        },
+                        {
+                            "name": "observed",
+                            "enumValue": "observed"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "actionMultiplicity",
+                "displayName": "Action multiplicity",
+                "description": "The range of actions allowed to be represented in the operations record template occurrence.If no limit is explicitly specified, the unbounded keyword is specified. If no multiplicity entry is specified, this is equivalent to no constraint. EXAMPLE 3 {Min: 0, Max: Unbounded}",
+                "comment": "Samples: {Min: 1, Max: 1}, Min:1, Max: Unbounded}",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

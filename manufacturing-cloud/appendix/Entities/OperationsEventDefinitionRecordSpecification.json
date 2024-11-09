@@ -1,0 +1,49 @@
+{
+    "name": "Operations event definition record specification",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Identification of the Operations event definition record specification.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationsEventDefinitionRecordSpecification;1",
+        "@type": "Interface",
+        "displayName": "Operations event definition record specification",
+        "description": "Specification of the allowed content of operations event record shall be defined as the operations event definition record specification. Information object contents in an operations event vary depending on the process context of the operations event. The operations event definition record specification describes and specifies the information objects and associated actions that are allowed in the operations event occurrence. The publisher/sender shall follow this specification to construct the message",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "mapsTo",
+                "displayName": "Maps to",
+                "description": "If the operations event supports an operations event class, the operations event class record specification(s) is applied in this operations event definition record specification. This operations event definition record specification maps to the corresponding operations event class record specification",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventClassRecordSpecification;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "This parent operations event definition record specification is whole of the child operations event definition record specification (s) as the part",
+                "target": "dtmi:digitaltwins:isa95:OperationsEventDefinitionRecordSpecification;1"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

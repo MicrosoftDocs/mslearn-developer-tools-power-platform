@@ -1,0 +1,137 @@
+{
+    "name": "Operational location class property",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a specific operational location class property within the operational location class.Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Additional information about theoperational location classproperty.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The value, set of values, or range of the property",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The unit of measure of the associated property value.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "propertyType",
+            "description": "Defines the type of the property. Defined types areclass type: the property value is defined for the class and there is no value associated with an instance;instance type: the property value of the class is undefined; anddefault type: the property value is defined for the class as the default instance value, but individual instances of the class may redefine specific values.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "ClassType",
+                "InstanceType",
+                "DefaultType"
+            ],
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationalLocationClassProperty;1",
+        "@type": "Interface",
+        "displayName": "Operational location class property",
+        "description": "Properties of an operational location class shall be defined as operational location class property(s). An operational location class property may contain nested operational location class property(s). An operational location class property may have zero or more operational location property(s) mapping to it.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The child operational location class property(s) of this operational location class property.",
+                "target": "dtmi:digitaltwins:isa95:OperationalLocationClassProperty;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the operational location class property",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The value, set of values, or range of the property.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The unit of measure of the associated property value",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "propertyType",
+                "displayName": "Property type",
+                "description": "Defines the type of the property.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "classType",
+                            "enumValue": "ClassType",
+                            "displayName": "Class Type",
+                            "description": "The property value is defined for the class and there is no value associated with an instance"
+                        },
+                        {
+                            "name": "instanceType",
+                            "enumValue": "InstanceType",
+                            "displayName": "Instance Type",
+                            "description": "the property value of the class is undefined"
+                        },
+                        {
+                            "name": "defaultType",
+                            "enumValue": "DefaultType",
+                            "displayName": "Default Type",
+                            "description": "The property value is defined for the class as the default instance value, but individual instances of the class may redefine specific values."
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

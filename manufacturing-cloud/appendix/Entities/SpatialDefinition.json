@@ -1,0 +1,48 @@
+{
+    "name": "SpatialDefinition",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:SpatialDefinition;1",
+        "@type": "Interface",
+        "displayName": "Spatial definition",
+        "description": "The spatial definition provides a means of communicating zero-dimensional point, one-dimensional line, or two-dimensional shape or three-dimensional solid geospatial location data for planning/scheduling, actuals, resources, and analytics.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "contents": [
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "A string to uniquely identify a spatial definition. EXAMPLE 1 UN/CEFACT CCTS: TextType) of the geospatial information in the format indicated in the format attribute.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "format",
+                "displayName": "Format",
+                "description": "An enumerator that determines the format of the value attribute. E.g. GPX, WKT, ...",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "SRID",
+                "description": "SRID is the Spatial Reference Identifier which identifies the coordinate reference system to identify a predefined coordinate",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "SRIDauthority",
+                "displayName": "SRID authority",
+                "description": "The SRID authority identifies the authority that defines the coordinate reference system identified by the SRID. ",
+                "schema": "string",
+                "writable": true
+            }
+        ]
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

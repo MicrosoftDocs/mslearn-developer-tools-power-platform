@@ -1,0 +1,6 @@
+Source type,Source PrimaryKey,Target Type,Target PrimaryKey,Relationship Type
+Equipment,BREADBLAST04,Hierarchy Scope,HS-BREADBLAST04BREADBLAST04WorkCell,hierarchyScopeRel
+Equipment,BREADBLAST07,Hierarchy Scope,HS-BREADBLAST07BREADBLAST07WorkCell,hierarchyScopeRel
+Equipment,BREADBLAST06,Hierarchy Scope,HS-BREADBLAST06BREADBLAST06WorkCell,hierarchyScopeRel
+Equipment,BREADBLAST05,Hierarchy Scope,HS-BREADBLAST05BREADBLAST05WorkCell,hierarchyScopeRel
+Equipment,HYD,Hierarchy Scope,HS-HYDHYDSite,hierarchyScopeRel

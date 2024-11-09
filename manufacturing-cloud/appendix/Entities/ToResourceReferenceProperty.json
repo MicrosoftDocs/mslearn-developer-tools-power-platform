@@ -1,0 +1,89 @@
+{
+    "name": "ToResourceReferenceProperty",
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Hot"
+    },
+    "semanticRelevantFlag": "True",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Objects in the information model which require unique identifications contain an ID attribute, which are unique within the scope of the exchanged information",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "True",
+            "primaryKey": "True",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The value, set of values, or range of the property.",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "True",
+            "type": "String",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The unit of measure of the associated property value",
+            "mandatory": "True",
+            "semanticRelevantFlag": "True",
+            "groupBy": "False",
+            "primaryKey": "True",
+            "type": "String",
+            "isProperNoun": "false"
+        }
+    ],
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ToResourceReferenceProperty;1",
+        "@type": "Interface",
+        "displayName": "To resource reference property",
+        "description": "A 'to' reference to a resource shall be defined as a to resource reference.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "contains",
+                "displayName": "Contains",
+                "description": "The nested 'to' resource reference properties of this 'to' resource reference property.",
+                "target": "dtmi:digitaltwins:isa95:ToResourceReferenceProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "mapsToClassProperty",
+                "displayName": "Maps To",
+                "description": "A cross-model association to element in the [resource] model as explained in Clause 3.3.8.",
+                "target": "dtmi:digitaltwins:isa95:ResourceClassProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "mapsToProperty",
+                "displayName": "Maps To",
+                "description": "A cross-model association to element in the [resource] model as explained in Clause 3.3.8.",
+                "target": "dtmi:digitaltwins:isa95:ResourceProperty;1"
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The value, set of values, or range of the property.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The unit of measure of the associated property value",
+                "schema": "string"
+            }
+        ]
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "name": "LangStringSet",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:LangStringSet;1",
+        "@type": "Interface",
+        "displayName": "Language String Set",
+        "description": "A set of strings, each annotated by the language of the string. The meaning of the string in each language shall be the same.",
+        "comment": "Not part of the ISA95 standard. But enables multi language strings",
+        "contents": [
+            {
+                "@type": "Property",
+                "name": "langString",
+                "description": "A set of strings, each annotated by the language of the string. The meaning of the stringin each language shall be the same.",
+                "schema": {
+                    "@type": "Map",
+                    "mapKey": {
+                        "name": "iso2Code",
+                        "description": "ISO 3166-1 alpha-2 codes are two-letter country codes defined in ISO 3166-1, part of the ISO 3166 standard",
+                        "schema": "string"
+                    },
+                    "mapValue": {
+                        "name": "langSpecString",
+                        "description": "A string in a specified language",
+                        "schema": "string"
+                    }
+                },
+                "writable": true
+            }
+        ]
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

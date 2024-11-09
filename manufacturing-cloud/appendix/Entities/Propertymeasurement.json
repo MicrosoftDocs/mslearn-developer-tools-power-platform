@@ -1,0 +1,137 @@
+{
+    "name": "Property measurement",
+    "columns": [
+        {
+            "name": "id",
+            "description": "An identification ofthe specificpropertymeasurement.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Additionalinformation aboutthe propertymeasurement.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "measurementDate",
+            "description": "The date and timewhen themeasurement wasobtained.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "value",
+            "description": "The measuredvalue for thetestable objectproperty.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "valueUnitOfMeasure",
+            "description": "The date of theexpiration of thepropertymeasurement.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "expiration",
+            "description": "Sample size required to perform the test.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:PropertyMeasurement;1",
+        "@type": "Interface",
+        "displayName": "Property measurement",
+        "description": "The measurement obtained during execution of work master (defined in Part 4 of this standard) shall be presented as a property measurement. A property measurement reports the measurement obtained for a single testable object property corresponding to an evaluated property of a test specification for a specific person, equipment, physical asset, material lot or material sublot",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "recordsMeasurementOf",
+                "displayName": "Records measurement of",
+                "description": "The testable object property ID for which this property measurement is records the measurement result",
+                "target": "dtmi:digitaltwins:isa95:TestableObjectProperty;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Relationship",
+                "name": "measuredWithMethodOf",
+                "displayName": "Measured with method of",
+                "description": "The work master ID or work directive ID which is applied test method to obtain the measurement of this property measurement for test specification of the testable object property ID",
+                "target": "dtmi:digitaltwins:isa95:WorkDefinition;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the property measurement",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "measurementDate",
+                "displayName": "Measurement date",
+                "description": "The date and time when the measurement was obtained",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "value",
+                "displayName": "Value",
+                "description": "The measured value for the testable object property",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "valueUnitOfMeasure",
+                "displayName": "Value unit of measure",
+                "description": "The unit of measure of the measured value, if applicable",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "expiration",
+                "displayName": "Expiration",
+                "description": "The date of the expiration of the property measurement",
+                "schema": "dateTime",
+                "writable": true
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

@@ -1,0 +1,106 @@
+{
+    "name": "Operational location",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of a specific operational location, within the hierarchy scope of the operational location.Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional information and descriptions of the operational location.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchanged information fits within the role- based equipment hierarchy.Optionally, hierarchy scope defines the scope of the operational location, such as the site or area where it is defined.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:OperationalLocation;1",
+        "@type": "Interface",
+        "displayName": "Operational location",
+        "description": "A logical or physical location where a material lot, material sublot, equipment, physical asset or person is located or expected to be located shall be presented as an operational location. Operational locations may be made up of other operational locations.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:Resource;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "definedBy",
+                "displayName": "Defined by",
+                "description": "The operational location class(s) to which this operational location belongs",
+                "target": "dtmi:digitaltwins:isa95:OperationalLocationClass;1",
+                "comment": "Relationship type: Association"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hasValuesOf",
+                "displayName": "Has values of",
+                "description": "The operational location property(s) of this operational location.",
+                "target": "dtmi:digitaltwins:isa95:OperationalLocationProperty;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "The child operational location(s) contained within this operational location.",
+                "target": "dtmi:digitaltwins:isa95:OperationalLocation;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information and descriptions of the operational location.",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. Optionally, hierarchy scopedefines the scope of the physical asset class, such as the site or area where it is defined.",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Component",
+                "name": "spatialDefinition",
+                "displayName": "Spatial definition",
+                "description": "Spatially defines the equipment as a zero-dimensional point, one dimensional line, or two dimensional shape or three dimensional solid.",
+                "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

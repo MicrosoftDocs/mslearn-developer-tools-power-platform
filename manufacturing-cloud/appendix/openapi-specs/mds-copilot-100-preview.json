@@ -1,0 +1,2560 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Microsoft.Industry.Manufacturing.MDS.Copilot.Server",
+    "version": "1.0"
+  },
+  "paths": {
+    "/mds/copilot/v3/exampleQuery": {
+      "put": {
+        "tags": [
+          "CopilotExamples"
+        ],
+        "summary": "Endpoint to create the example query",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-09-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExampleQuery"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExampleQuery"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExampleQuery"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "CopilotV3Examples"
+        ],
+        "summary": "Endpoint to get all the example query",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "instructionId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExampleQuery"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExampleQuery"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExampleQuery"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/aliases": {
+      "put": {
+        "tags": [
+          "CopilotV3AliasDictionary"
+        ],
+        "summary": "Upserts the Alias information",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AliasDictionaryRequestModel"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AliasDictionaryRequestModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AliasDictionaryRequestModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AliasDictionaryRequestModel"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStatus"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStatus"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStatus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "CopilotV3AliasDictionary"
+        ],
+        "summary": "Gets all the aliases",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/aliases/{id}": {
+      "delete": {
+        "tags": [
+          "CopilotV3AliasDictionary"
+        ],
+        "summary": "deletes the Alias information",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "CopilotV3AliasDictionary"
+        ],
+        "summary": "Get alias by key",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "CopilotV3AliasDictionary"
+        ],
+        "summary": "Updates the status of the Alias",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestAliasSliasUpdateRequestModel"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestAliasSliasUpdateRequestModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestAliasSliasUpdateRequestModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestAliasSliasUpdateRequestModel"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AliasDictionaryResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/exampleQuery/{exampleId}": {
+      "patch": {
+        "tags": [
+          "CopilotV3Examples"
+        ],
+        "summary": "Endpoint to update the example query linked instruction",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "exampleId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExampleQueryPatchRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExampleQueryPatchRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExampleQueryPatchRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExampleQueryPatchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "CopilotV3Examples"
+        ],
+        "summary": "Endpoint to get the example query with example id",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "exampleId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExampleQuery"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CopilotV3Examples"
+        ],
+        "summary": "Endpoint to delete the example query",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "exampleId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/instructions": {
+      "get": {
+        "tags": [
+          "CopilotV3Instructions"
+        ],
+        "summary": "Gets all instructions. showOnlyActive flag is used to filter out the inactive instructions.",
+        "description": "\nRequired roles: Admin, User",
+        "parameters": [
+          {
+            "name": "showOnlyActive",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstructionInfoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstructionInfoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstructionInfoResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CopilotV3Instructions"
+        ],
+        "summary": "Upserts a list of Instructions",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InstructionRequestModel"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InstructionRequestModel"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InstructionRequestModel"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/InstructionRequestModel"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/instructions/{instructionId}": {
+      "get": {
+        "tags": [
+          "CopilotV3Instructions"
+        ],
+        "summary": "Gets the instruction with the given instructionId and version. If not found, return the active version. If that is also not found, return the latest version.",
+        "description": "\nRequired roles: Admin, User",
+        "parameters": [
+          {
+            "name": "instructionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstructionResponseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstructionResponseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstructionResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CopilotV3Instructions"
+        ],
+        "summary": "Delete instruction with the given instructionId and version.",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "instructionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "forceDelete",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "deleteAll",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/instructions/{instructionId}/versions/{instructionVersion}": {
+      "patch": {
+        "tags": [
+          "CopilotV3Instructions"
+        ],
+        "summary": "Patches an instruction with the given instructionId and version.",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "instructionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instructionVersion",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstructionPatchRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstructionPatchRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstructionPatchRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstructionPatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CopilotV3Instructions"
+        ],
+        "summary": "Delete instruction with the given instructionId and version.",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "instructionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instructionVersion",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/operations/{operationId}": {
+      "get": {
+        "tags": [
+          "CopilotV3Operations"
+        ],
+        "summary": "Operations endpoint to get an OperationDoc for an operationId",
+        "description": "\nRequired roles: Admin, User",
+        "parameters": [
+          {
+            "name": "operationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponseModel"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/query": {
+      "post": {
+        "tags": [
+          "CopilotV3Query"
+        ],
+        "summary": "Copilot Query Endpoint.Takes Natural Language Query as input and returns the tabular results from the underlying data stores.",
+        "description": "\nRequired roles: Admin, User",
+        "parameters": [
+          {
+            "name": "dataTableFormat",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/DataTableFormat"
+            }
+          },
+          {
+            "name": "maxRetry",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "includeSummary",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The query request containing the input parameters",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequestV3"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequestV3"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequestV3"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryRequestV3"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/feedback": {
+      "post": {
+        "tags": [
+          "CopilotV3Query"
+        ],
+        "summary": "Copilot feedback endpoint for V3 Pipeline.",
+        "description": "\nRequired roles: Admin, User",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The feedback request",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopilotFeedbackRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopilotFeedbackRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopilotFeedbackRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopilotFeedbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/validate": {
+      "post": {
+        "tags": [
+          "CopilotV3Query"
+        ],
+        "summary": "Copilot Validate endpoint for V3 Pipeline.",
+        "description": "\nRequired roles: Admin, User",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateV3Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateV3Request"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateV3Request"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateV3Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/validate/test/{validateTestId}": {
+      "get": {
+        "tags": [
+          "CopilotV3Query"
+        ],
+        "summary": "Endpoint to get the validate test details by id",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "validateTestId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateTestDetailsResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateTestDetailsResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidateTestDetailsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mds/copilot/v3/validate/test": {
+      "get": {
+        "tags": [
+          "CopilotV3Query"
+        ],
+        "summary": "Endpoint to get the list of Validate Tests",
+        "description": "\nRequired roles: Admin",
+        "parameters": [
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "searchedTestId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "2024-06-30-preview"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidateTestSummary"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidateTestSummary"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ValidateTestSummary"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdministrativeDetails": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/Source"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "User info who created this instruction",
+            "nullable": true
+          },
+          "lastUpdatedBy": {
+            "type": "string",
+            "description": "User info who updated this instruction",
+            "nullable": true
+          },
+          "creationDateTime": {
+            "type": "string",
+            "description": "Creation date time of the instruction",
+            "format": "date-time"
+          },
+          "updatedDateTime": {
+            "type": "string",
+            "description": "Updation date time of the instruction",
+            "format": "date-time",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "Additional comment for the instruction",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Admisnitrative details for the instruction"
+      },
+      "AliasDictionaryRequestModel": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key for the alias",
+            "nullable": true
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of aliases",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Id for the alias",
+            "nullable": true,
+            "readOnly": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates if the alias is enabled"
+          },
+          "isCustom": {
+            "type": "boolean",
+            "description": "Indicates if the alias is custom or Internal"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines the CustomAliasRequestModel"
+      },
+      "AliasDictionaryResponseModel": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": ""
+          },
+          "isCustom": {
+            "type": "boolean",
+            "description": ""
+          }
+        },
+        "additionalProperties": false,
+        "description": "Initializes a new instance of the \"AliasDictionaryResponseModel\" record."
+      },
+      "Category": {
+        "enum": [
+          "Transactional",
+          "Analytical",
+          "Trend",
+          "KPI"
+        ],
+        "type": "string",
+        "description": "Instruction Category Enums"
+      },
+      "ContentProperties": {
+        "type": "object",
+        "properties": {
+          "semanticContent": {
+            "$ref": "#/components/schemas/SemanticContent"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The content of the instruction"
+      },
+      "CopilotFeedbackRequest": {
+        "type": "object",
+        "properties": {
+          "operationId": {
+            "type": "string",
+            "description": "Gets or sets the operation ID.",
+            "nullable": true
+          },
+          "conversationId": {
+            "type": "string",
+            "description": "Gets or sets the conversation ID.",
+            "nullable": true
+          },
+          "feedback": {
+            "$ref": "#/components/schemas/FeedbackEnum"
+          }
+        },
+        "additionalProperties": false,
+        "description": "model class for copilot feedback request"
+      },
+      "DataTableFormat": {
+        "enum": [
+          "Markdown",
+          "Json"
+        ],
+        "type": "string",
+        "description": "Format for data table in result"
+      },
+      "Domain": {
+        "enum": [
+          "MOM",
+          "SCM",
+          "DE"
+        ],
+        "type": "string",
+        "description": "Instruction Domain Enums"
+      },
+      "ExampleQuery": {
+        "type": "object",
+        "properties": {
+          "exampleId": {
+            "type": "string",
+            "description": "Example Id of the example",
+            "nullable": true
+          },
+          "userQuestion": {
+            "type": "string",
+            "description": "User natural language",
+            "nullable": true
+          },
+          "linkedInstructions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Internal instructions which are linked to this sample query",
+            "nullable": true
+          },
+          "sampleQuery": {
+            "$ref": "#/components/schemas/SampleQuery"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Example Query response API response POCO"
+      },
+      "ExampleQueryPatchRequest": {
+        "type": "object",
+        "properties": {
+          "linkedInstructionList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Linked istruction list",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "POCO for example query patch request"
+      },
+      "FeedbackEnum": {
+        "enum": [
+          "Neutral",
+          "ThumbsUp",
+          "ThumbsDown"
+        ],
+        "type": "string",
+        "description": "Format for data table in result"
+      },
+      "InstructionInfo": {
+        "type": "object",
+        "properties": {
+          "instructionId": {
+            "type": "string",
+            "description": "Instruction ID of the Instruction",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "description": "Version of the Instruction",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          }
+        },
+        "additionalProperties": false,
+        "description": "POCO to hold key information of an instruction"
+      },
+      "InstructionInfoResponse": {
+        "type": "object",
+        "properties": {
+          "instructionInfoList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstructionInfo"
+            },
+            "description": "LIst of Instrution Info objects",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Instruction Info Response Model"
+      },
+      "InstructionPatchRequest": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Model for Instruction Patch Requet"
+      },
+      "InstructionRequestModel": {
+        "type": "object",
+        "properties": {
+          "instructionId": {
+            "type": "string",
+            "description": "The instruction Id provided by user. It won't be unique",
+            "nullable": true
+          },
+          "instructionVersion": {
+            "type": "string",
+            "description": "The insruction version provided by the user for corresponding InstructionId",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/Domain"
+          },
+          "subDomain": {
+            "$ref": "#/components/schemas/SubDomain"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "language": {
+            "$ref": "#/components/schemas/Language"
+          },
+          "retrieval": {
+            "$ref": "#/components/schemas/RetrievalProperties"
+          },
+          "content": {
+            "$ref": "#/components/schemas/ContentProperties"
+          },
+          "relationships": {
+            "$ref": "#/components/schemas/Relationships"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Comment for the instruction",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Instruction Request Model for create/update scenarios"
+      },
+      "InstructionResponseModel": {
+        "type": "object",
+        "properties": {
+          "instructionId": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "instructionVersion": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/Domain"
+          },
+          "subDomain": {
+            "$ref": "#/components/schemas/SubDomain"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "language": {
+            "$ref": "#/components/schemas/Language"
+          },
+          "retrieval": {
+            "$ref": "#/components/schemas/RetrievalProperties"
+          },
+          "content": {
+            "$ref": "#/components/schemas/ContentProperties"
+          },
+          "relationships": {
+            "$ref": "#/components/schemas/Relationships"
+          },
+          "administrative": {
+            "$ref": "#/components/schemas/AdministrativeDetails"
+          }
+        },
+        "additionalProperties": false,
+        "description": ""
+      },
+      "Language": {
+        "enum": [
+          "EN"
+        ],
+        "type": "string",
+        "description": "Instruction Language Enums"
+      },
+      "OperationResponseModel": {
+        "type": "object",
+        "properties": {
+          "operationId": {
+            "type": "string",
+            "description": "The Operation Id",
+            "nullable": true
+          },
+          "operationStatus": {
+            "$ref": "#/components/schemas/OperationStatus"
+          },
+          "errorMessage": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The Error message list",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The Operations Response Model"
+      },
+      "OperationStatus": {
+        "enum": [
+          "Accepted",
+          "InProgress",
+          "TransientFailure",
+          "Succeeded",
+          "Failed",
+          "Deleting",
+          "Canceled",
+          "Unknown",
+          "Skipped"
+        ],
+        "type": "string"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "QueryRequestV3": {
+        "type": "object",
+        "properties": {
+          "ask": {
+            "type": "string",
+            "description": "The Natural Language query from the user.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "This is the request object for the Copilot Query endpoint."
+      },
+      "QueryResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "string",
+            "description": "Resultant Query Query or Query query execution response (JArray string)",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary of the Resultant Query Query or Query query execution response (JArray string)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "This is the result attribute of the response object for the Copilot Query endpoint."
+      },
+      "QueryType": {
+        "enum": [
+          "KQL"
+        ],
+        "type": "string",
+        "description": ""
+      },
+      "Relationships": {
+        "type": "object",
+        "properties": {
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of dependent instructions",
+            "nullable": true
+          },
+          "exclusions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of InstructionIds to be excluded",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Class for information regarding relationships to different instructions"
+      },
+      "RequestAliasSliasUpdateRequestModel": {
+        "required": [
+          "enabled"
+        ],
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates whether the alias is enabled or not"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines the RequestAliasSliasUpdateRequestModel"
+      },
+      "RetrievalProperties": {
+        "type": "object",
+        "properties": {
+          "subTopics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of Subtopics",
+            "nullable": true
+          },
+          "keyWords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of Keywords",
+            "nullable": true
+          },
+          "sampleQuestions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of Saample Questions",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Attributes used to perform similarity search"
+      },
+      "SampleQuery": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "$ref": "#/components/schemas/QueryType"
+          },
+          "query": {
+            "type": "string",
+            "description": "Internal instructions context creation status",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Sample query class"
+      },
+      "SemanticContent": {
+        "type": "object",
+        "properties": {
+          "context": {
+            "type": "string",
+            "description": "The context of the instruction",
+            "nullable": true
+          },
+          "steps": {
+            "type": "string",
+            "description": "The steps to be followed for that instruction",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Content with semantic information"
+      },
+      "Source": {
+        "enum": [
+          "OutOfTheBox",
+          "Custom"
+        ],
+        "type": "string",
+        "description": "Instruction Source Enums"
+      },
+      "Status": {
+        "enum": [
+          "Active",
+          "Inactive"
+        ],
+        "type": "string",
+        "description": "Instruction Status Enums"
+      },
+      "SubDomain": {
+        "enum": [
+          "Production",
+          "Quality",
+          "Maintenance",
+          "Inventory",
+          "Downtime",
+          "Scrap",
+          "Mixed"
+        ],
+        "type": "string",
+        "description": "Instruction Sub Domain Enums"
+      },
+      "TestCaseResult": {
+        "type": "object",
+        "properties": {
+          "ask": {
+            "type": "string",
+            "description": "Natural Language Question",
+            "nullable": true
+          },
+          "expectedKQLQuery": {
+            "type": "string",
+            "description": "Expected Query Query",
+            "nullable": true
+          },
+          "consolidatedScore": {
+            "type": "number",
+            "description": "Consolidated Score based on the metrics evaluation.",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Validate Response Payload for Pipeline v2"
+      },
+      "ValidateTestCase": {
+        "type": "object",
+        "properties": {
+          "ask": {
+            "type": "string",
+            "description": "Gets or sets the natural language query",
+            "nullable": true
+          },
+          "expectedKQLQuery": {
+            "type": "string",
+            "description": "Gets or sets the expected KQL query",
+            "nullable": true
+          },
+          "skip": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the test case should be skipped"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Validate Test Case POCO"
+      },
+      "ValidateTestDetailsResponse": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "string",
+            "description": "Gets or sets the TestId",
+            "nullable": true
+          },
+          "testRunStatus": {
+            "$ref": "#/components/schemas/OperationStatus"
+          },
+          "testResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCaseResult"
+            },
+            "description": "Gets or sets the TestResults",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Validate Test Details Response"
+      },
+      "ValidateTestSummary": {
+        "type": "object",
+        "properties": {
+          "testId": {
+            "type": "string",
+            "description": "Gets or sets the TestId",
+            "nullable": true
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "Gets or sets the test created time",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Gets or sets the test created by",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Validate Test Response"
+      },
+      "ValidateV3Request": {
+        "required": [
+          "runAsConversation",
+          "testCases",
+          "testName"
+        ],
+        "type": "object",
+        "properties": {
+          "testName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Test Name"
+          },
+          "testCases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidateTestCase"
+            },
+            "description": "Validate Test Cases"
+          },
+          "runAsConversation": {
+            "type": "boolean",
+            "description": "Run as Conversation"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Validate V2 Request Payload"
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://login.microsoftonline.com/Add-Your-Tenant-Id/oauth2/v2.0/authorize",
+            "scopes": {
+              "api://Add-Your-App-Registration-Id/ManufacturingAdmin": "MCI4M",
+              "api://Add-Your-App-Registration-Id/ManufacturingUser": "MCI4M"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": [ ]
+    }
+  ]
+}

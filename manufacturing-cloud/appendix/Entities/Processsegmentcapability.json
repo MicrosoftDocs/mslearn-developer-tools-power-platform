@@ -1,0 +1,304 @@
+{
+    "name": "Process segment capability",
+    "columns": [
+        {
+            "name": "id",
+            "description": "Defines a unique instance of aprocess segment capability fora specified element of theequipment hierarchy model(enterprise, site, area, workcenter, or work unit).Required attribute.",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of theProcess Segment capability definition",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "operationsType",
+            "description": "Describes the category of activity.Required attribute.Describes the category ofoperation.Required attribute.Defined values areproduction, maintenance, quality,inventory, or mixed.\u201cMixed\u201d can be used when theProcess Segment Request containsseveral types of Process Segmentrequests and/or segmentrequirements..\u201cMixed\u201d can be used when theProcess Segment Request containsseveral types of Process Segmentrequests and/or segmentrequirements.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Production",
+                "Maintenance",
+                "Quality",
+                "Inventory",
+                "Mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "capabilityType",
+            "description": "Defines the type of capability.Defined values are\uf02d committed: capacity that iscommitted for futureproductive use;\uf02d unattainable: capacity that isnot attainable for futureproductive use given theequipment condition,equipment utilization,personnel availability ormaterial availability;\uf02d available: capacity that isavailable for additional futureproductive use;\uf02d used: a historical value thatdefines the portion of thecapacity with acceptablequality;\uf02d unused: a historical valuethat defines the portion of thecapacity that was not used orhad unacceptable quality;and\uf02d total: the sum of used andunused capability or the sumof available, unattainable andcommitted capability.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "committed",
+                "unattainable",
+                "available",
+                "used",
+                "unused",
+                "total"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "reason",
+            "description": "Defines the reason for thecapability type.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "confidenceFactor",
+            "description": "Measure of the confidence ofthe ability to obtain the capacityvalue.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "startTime",
+            "description": "The starting time of the timespan defining the capabilitytype.If omitted, then the capability isassociated to the parentprocess segment capabilitystart time.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "endTime",
+            "description": "The ending time of the timespan defining the capabilitytype.If omitted, then the capability isassociated to the parentprocess segment capabilityend time.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Batch",
+        "ingestionRate": "Hourly",
+        "storage": "Cold"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ProcessSegmentCapability;1",
+        "@type": "Interface",
+        "displayName": "Process segment capability",
+        "description": "A representation of a logical grouping of personnel resources, equipment resources, physical asset resources, and material that is committed, available, or unavailable for a given process segment for a specific time shall be presented as a process segment capability.",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "correspondsTo",
+                "displayName": "Corresponds To",
+                "description": "The process segment related to this process segment capability.",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegment;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isMadeUpOf",
+                "displayName": "Is made up of",
+                "description": "The nested process segment capability(s) makes up part of this process segment capability as the whole.",
+                "target": "dtmi:digitaltwins:isa95:ProcessSegmentCapability;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isACollectionOfPersonnel",
+                "displayName": "Is a collection of",
+                "description": "The personnel capability(s) related to this process segment capability.",
+                "target": "dtmi:digitaltwins:isa95:PersonnelCapability;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isACollectionOfEquipment",
+                "displayName": "Is a collection of",
+                "description": "The equipment capability(s) related to this process segment capability.",
+                "target": "dtmi:digitaltwins:isa95:EquipmentCapability;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isACollectionOfPhysicalAsset",
+                "displayName": "Is a collection of",
+                "description": "The physical asset capability(s) related to this process segment capability.",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetCapability;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "isACollectionOfMaterial",
+                "displayName": "Is a collection of",
+                "description": "The material capability(s) related to this process segment capability.",
+                "target": "dtmi:digitaltwins:isa95:MaterialCapability;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Contains additional information",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "operationsType",
+                "displayName": "Operations type",
+                "description": "Describes the category of the activity",
+                "comment": "Required attribute. Possible values are: production, maintenance, quality, inventory, or mixed",
+                "writable": true,
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "production",
+                            "enumValue": "Production"
+                        },
+                        {
+                            "name": "maintenance",
+                            "enumValue": "Maintenance"
+                        },
+                        {
+                            "name": "quality",
+                            "enumValue": "Quality"
+                        },
+                        {
+                            "name": "inventory",
+                            "enumValue": "Inventory"
+                        },
+                        {
+                            "name": "mixed",
+                            "enumValue": "Mixed",
+                            "comment": " can be used when the activity contains several categories of process segments"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "capabilityType",
+                "displayName": "capability type",
+                "description": "Defines the type of capability. ",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "committed",
+                            "enumValue": "committed",
+                            "comment": ": capacity that is committed for future productive use."
+                        },
+                        {
+                            "name": "unattainable",
+                            "enumValue": "unattainable",
+                            "comment": "capacity that is not attainable for future productive use given the equipment condition, equipment utilization, personnel availability or material availability."
+                        },
+                        {
+                            "name": "available",
+                            "enumValue": "available",
+                            "comment": "capacity that is available for additional future productive use."
+                        },
+                        {
+                            "name": "used",
+                            "enumValue": "used",
+                            "comment": "a historical value that defines the portion of the capacity with acceptable quality."
+                        },
+                        {
+                            "name": "unused",
+                            "enumValue": "unused",
+                            "comment": " a historical value that defines the portion of the capacity that was not used or had unacceptable quality."
+                        },
+                        {
+                            "name": "total",
+                            "enumValue": "total",
+                            "comment": "the sum of used and unused capability or the sum of available, unattainable and committed capability."
+                        }
+                    ]
+                },
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "reason",
+                "displayName": "Reason",
+                "description": "Defines the reason for the capability type.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "confidenceFactor",
+                "displayName": "Confidence Factor",
+                "description": "Measure of the confidence of the ability to obtain the capacity value.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "startTime",
+                "displayName": "Start Time",
+                "description": "The starting time of this capability type.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "endTime",
+                "displayName": "End Time",
+                "description": "The ending time of this capability type.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}

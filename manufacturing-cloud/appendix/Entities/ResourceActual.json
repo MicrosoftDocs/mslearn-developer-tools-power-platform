@@ -1,0 +1,24 @@
+{
+    "name": "ResourceActual",
+    "columns": [],
+    "tags": {},
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:ResourceActual;1",
+        "@type": "Interface",
+        "displayName": "Resource actual",
+        "description": "/Abstract/ The resource actual represents an abstract interface object to simplify the operations test model diagram. The interface object represents the objects that can report test result(s)",
+        "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 2: Objects and Attributes for - Approved 24 May 2018",
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "reports",
+                "displayName": "Reports",
+                "description": "This resource actual reports the test result in a segment response or job response (Defined in Part 4).",
+                "target": "dtmi:digitaltwins:isa95:TestResult;1"
+            }
+        ]
+    },
+    "isBaseEntity": true,
+    "semanticRelevantFlag": true
+}

@@ -1,0 +1,400 @@
+{
+    "name": "Job Order",
+    "columns": [
+        {
+            "name": "id",
+            "description": "A unique identification of the joborder.Required attribute.The ID is used in other parts ofthe model when the job orderneeds to be identified",
+            "type": "String",
+            "mandatory": "true",
+            "semanticRelevantFlag": "true",
+            "groupBy": "true",
+            "primaryKey": "true",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "description",
+            "description": "Contains additional informationand descriptions of the job order",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "workType",
+            "description": "Describes the category of work.Defined values are:\u2022 production\u2022 maintenance\u2022 quality\u2022 inventory\u2022 mixed\u201cMixed\u201d can be used when the joborder contains several types ofwork.",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "Production",
+                "Maintenance",
+                "Quality",
+                "Inventory",
+                "Mixed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "hierarchyScope",
+            "description": "Identifies where the exchangedinformation fits within the rolebasedequipment hierarchy.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "workMasterId",
+            "description": "Identifies the associated workmaster to be used",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "workMasterVersion",
+            "description": "Identifies the version of theassociated work master to beused.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "startTime",
+            "description": "When work is to be started.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "endTime",
+            "description": "When work is to be completed.",
+            "type": "DateTime",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "priority",
+            "description": "The priority of the job order.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "segmentRequirementId",
+            "description": "A unique identification of thesegment requirement within thescope of an operations requestthat specifically relates to the joborder.EXAMPLE:The segment requirement(s)corresponding to the job order.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "command",
+            "description": "Identifies the action the executionmanagement activity is to performon the job order",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        },
+        {
+            "name": "dispatchStatus",
+            "description": "Identifies the status of the entryfrom the perspective of thedispatch activity.Defined values are:\u2022 waiting\u2022 pending\u2022 cancelled\u2022 dispatched\u2022 ready\u2022 running\u2022 completed\u2022 aborted\u2022 held\u2022 suspended\u2022 closed",
+            "type": "Enum",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "enumValues": [
+                "forecast",
+                "released",
+                "cancelled",
+                "waiting",
+                "ready",
+                "running",
+                "completed",
+                "aborted",
+                "held",
+                "suspended",
+                "closed"
+            ],
+            "isProperNoun": "false"
+        },
+        {
+            "name": "commandRule",
+            "description": "Instruction to executionmanagement activities specifyingconditions to execute thecommand.",
+            "type": "String",
+            "mandatory": "false",
+            "semanticRelevantFlag": "true",
+            "groupBy": "false",
+            "primaryKey": "false",
+            "isProperNoun": "false"
+        }
+    ],
+    "tags": {
+        "ingestionFormat": "Stream",
+        "ingestionRate": "Daily",
+        "storage": "Hot"
+    },
+    "dtdlSchema": {
+        "@context": "dtmi:dtdl:context;2",
+        "@id": "dtmi:digitaltwins:isa95:JobOrder;1",
+        "@type": "Interface",
+        "displayName": "Job order",
+        "description": "The unit of work requested for execution in a job list and a work request shall be defined as a job order. A job order references an associated work master.",
+        "comment": "According to ANSI/ISA-95.00.04-2018 Enterprise-Control System Integration \u00e2\u02c6\u2019 Part 4: Objects and Attributes for - Approved 24 May 2018",
+        "extends": [
+            "dtmi:digitaltwins:isa95:BaseModel;1"
+        ],
+        "contents": [
+            {
+                "@type": "Relationship",
+                "name": "correspondsToWorkMaster",
+                "displayName": "Corresponds to",
+                "description": "The work master applied to this job order.",
+                "target": "dtmi:digitaltwins:isa95:WorkMaster;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "correspondsToRequirement",
+                "displayName": "Corresponds to",
+                "description": "The segment requirement(s) within the scope of an operations request that specifically relates to this job order.",
+                "target": "dtmi:digitaltwins:isa95:SegmentRequirement;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsParameter",
+                "displayName": "Contains",
+                "description": "The job order parameters related to this job order",
+                "target": "dtmi:digitaltwins:isa95:JobOrderParameter;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsPersonnel",
+                "displayName": "Contains",
+                "description": "The personnel requirement(s) related to this job order",
+                "target": "dtmi:digitaltwins:isa95:PersonnelRequirement;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsEquipment",
+                "displayName": "Contains",
+                "description": "The equipment requirement(s) related to this job order",
+                "target": "dtmi:digitaltwins:isa95:EquipmentRequirement;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsPhysicalAsset",
+                "displayName": "Contains",
+                "description": "The physical asset requirement(s) related to this job order",
+                "target": "dtmi:digitaltwins:isa95:PhysicalAssetRequirement;1"
+            },
+            {
+                "@type": "Relationship",
+                "name": "containsMaterial",
+                "displayName": "Contains",
+                "description": "The material requirement(s) related to this job order",
+                "target": "dtmi:digitaltwins:isa95:MaterialRequirement;1"
+            },
+            {
+                "@type": "Component",
+                "name": "description",
+                "displayName": "Description",
+                "description": "Additional information about the process segment",
+                "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
+            },
+            {
+                "@type": "Property",
+                "name": "hierarchyScope",
+                "displayName": "Hierarchy scope",
+                "description": "Identifies where the exchanged information fits within the role based equipment hierarchy. ",
+                "schema": "string"
+            },
+            {
+                "@type": "Relationship",
+                "name": "hierarchyScopeRel",
+                "displayName": "fits hierarchy scope",
+                "description": "Optional relationship to hierarchy.",
+                "comment": "Not part of the Standard Specs.",
+                "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+                "maxMultiplicity": 1
+            },
+            {
+                "@type": "Property",
+                "name": "workType",
+                "displayName": "Work type",
+                "description": "Describes the category of the activity",
+                "comment": "Required attribute. Possible values are: production, maintenance, quality, inventory, or mixed",
+                "writable": true,
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "production",
+                            "enumValue": "Production"
+                        },
+                        {
+                            "name": "maintenance",
+                            "enumValue": "Maintenance"
+                        },
+                        {
+                            "name": "quality",
+                            "enumValue": "Quality"
+                        },
+                        {
+                            "name": "inventory",
+                            "enumValue": "Inventory"
+                        },
+                        {
+                            "name": "mixed",
+                            "enumValue": "Mixed",
+                            "comment": " can be used when the activity contains several categories of process segments"
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "Property",
+                "name": "workMasterId",
+                "displayName": "Work master id",
+                "description": "Identifies the associated work master to be used",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "workMasterVersion",
+                "displayName": "Work master version",
+                "description": "Identifies the version of the associated work master to be used.",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "segmentRequirementId",
+                "displayName": "Segment requirement id",
+                "description": "A unique identification of the segment requirement within the scope of an operations request that specifically relates to the job order",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "startTime",
+                "displayName": "Start time",
+                "description": "When work is to be started.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "endTime",
+                "displayName": "End time",
+                "description": "When work is to be completed.",
+                "schema": "dateTime",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "priority",
+                "displayName": "Priority",
+                "description": "The priority of the job order. ",
+                "schema": "string",
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "dispatchStatus",
+                "displayName": "Dispatch status",
+                "description": "Identifies the status of the entry from the perspective of the dispatch activity.",
+                "schema": {
+                    "@type": "Enum",
+                    "valueSchema": "string",
+                    "enumValues": [
+                        {
+                            "name": "forecast",
+                            "enumValue": "forecast"
+                        },
+                        {
+                            "name": "released",
+                            "enumValue": "released"
+                        },
+                        {
+                            "name": "cancelled",
+                            "enumValue": "cancelled"
+                        },
+                        {
+                            "name": "waiting",
+                            "enumValue": "waiting"
+                        },
+                        {
+                            "name": "ready",
+                            "enumValue": "ready"
+                        },
+                        {
+                            "name": "running",
+                            "enumValue": "running"
+                        },
+                        {
+                            "name": "completed",
+                            "enumValue": "completed"
+                        },
+                        {
+                            "name": "aborted",
+                            "enumValue": "aborted"
+                        },
+                        {
+                            "name": "held",
+                            "enumValue": "held"
+                        },
+                        {
+                            "name": "suspended",
+                            "enumValue": "suspended"
+                        },
+                        {
+                            "name": "closed",
+                            "enumValue": "closed"
+                        }
+                    ]
+                },
+                "writable": true
+            },
+            {
+                "@type": "Property",
+                "name": "command",
+                "displayName": "Command",
+                "description": "Identifies the action the execution management activity is to perform on the job order.",
+                "schema": "string"
+            },
+            {
+                "@type": "Property",
+                "name": "commandRule",
+                "displayName": "Command rule",
+                "description": "Instruction to execution management activities specifying conditions to execute the command.",
+                "schema": "string"
+            }
+        ]
+    },
+    "semanticRelevantFlag": true
+}
