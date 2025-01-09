@@ -1107,11 +1107,13 @@ paths:
       parameters:
         - name: dateFrom
           in: query
+          description: This filter includes date starting from
           schema:
             type: string
             format: date-time
         - name: dateTo
           in: query
+          description: This filter includes the date until
           schema:
             type: string
             format: date-time
