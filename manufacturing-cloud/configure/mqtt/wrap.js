@@ -2,20 +2,8 @@ function main(arg) {
   var data = JSON.parse(atob(arg));
   var type = data.MessageType;
 
-  var wrap = {
+  return {
       type: type,
-      body: null
+      body: data
   };
-
-  if (type == "ua-data") {
-    wrap.body = {
-      "DmmDatasetMessage": [
-        data
-      ]
-    };
-  } else {
-    wrap.body = data;
-  }
-
-  return wrap;
 }
