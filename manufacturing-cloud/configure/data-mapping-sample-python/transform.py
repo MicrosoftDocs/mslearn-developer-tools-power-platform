@@ -10,7 +10,7 @@ import pandas as pd
 
 # variables
 DATE_FORMAT = "%Y-%m-%dT%H:%M:%S"
-SOURCE_DATE_FORMATS = ['%d-%m-%Y %H:%M:%S', '%Y-%m-%d %H:%M:%S.%f', '%d-%m-%Y %H:%M'] # potential source datetime formats; to be extended upon further use case
+SOURCE_DATE_FORMATS = ['%d-%m-%Y %H:%M:%S', '%Y-%m-%d %H:%M:%S.%f', '%m/%d/%Y %H:%M:%S', '%d-%m-%Y %H:%M'] # potential source datetime formats; to be extended upon further use case
 # dictionary containing metadata for all entities
 ENTITIES = {}
 MAPPING_COLUMN_NAMES = ['Source type', 'Source PrimaryKey',
@@ -542,7 +542,8 @@ def write_entity_data(input_folder, output_folder, output_mapping_folder, entity
             to_field_names.insert(0, "PrimaryKey")
             input_file_name = os.path.basename(input_file_paths)
             try:
-                with open(input_file_paths, 'r') as csv_file:
+                # add encoding='utf-8-sig' in order to trim the "ï»¿" at the beginning of the csv file read
+                with open(input_file_paths, 'r', encoding='utf-8-sig') as csv_file:
                     reader = csv.DictReader(csv_file)
                     for index, item in enumerate(reader):
                         try:
