@@ -36,11 +36,7 @@ param(
 
     # A switch which enables use of the contributor-level Power BI APIs
     [Parameter(Mandatory=$false)]
-    [switch]$Contributor,
-
-    # The tenant to log in to for Power BI & Azure
-    [Parameter(Mandatory=$false)]
-    [string]$TenantId
+    [switch]$Contributor
 )
 
 Write-Output "Installing required modules..."
@@ -74,21 +70,13 @@ if ($PSCmdlet.ParameterSetName -like '*FetchFnId*')
 
 # For automation, might need additional args such as:
 # -ServicePrincipal -CertificateThumbprint $thumbprint -ApplicationId $aadAppId
-if ($TenantId) {
-    Connect-PowerBIServiceAccount -Tenant $TenantId
-} else {
-    Connect-PowerBIServiceAccount
-}
+Connect-PowerBIServiceAccount
 
 if ($PSCmdlet.ParameterSetName -like '*FetchFnId*')
 {
     # For automation, might need additional args such as:
     # -ServicePrincipal -CertificateThumbprint $thumbprint -ApplicationId $aadAppId
-    if ($TenantId) {
-        Connect-AzAccount -Subscription $SubscriptionId -Tenant $TenantId
-    } else {
-        Connect-AzAccount -Subscription $SubscriptionId
-    }
+    Connect-AzAccount -Subscription $SubscriptionId
 
     Write-Output "Retrieving function app details..."
 
