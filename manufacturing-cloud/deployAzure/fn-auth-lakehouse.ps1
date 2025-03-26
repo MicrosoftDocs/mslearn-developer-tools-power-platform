@@ -9,7 +9,7 @@ param(
     [Parameter(Mandatory=$true, ParameterSetName='FetchFnId_WithWsId')]
     [string]$SubscriptionId,
     
-    # The resrouce group where the function was deployed
+    # The resource group where the function was deployed
     [Parameter(Mandatory=$true, ParameterSetName='FetchFnId_FetchWsId')]
     [Parameter(Mandatory=$true, ParameterSetName='FetchFnId_WithWsId')]
     [string]$ResourceGroupName,
