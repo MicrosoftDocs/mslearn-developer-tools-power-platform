@@ -161,7 +161,7 @@ def create_entity_mappings_config(excel_mapping_file, config_dictionary=None):
             mapping_dict = OrderedDict()
             enums = {}
             mapping_list = []
-        elif cols[2] == "id":
+        elif cols[2] == "id" and cols[0] == "":
             for i in range(2, len(cols)):
                 to_value = cols[i]
                 if to_value:
