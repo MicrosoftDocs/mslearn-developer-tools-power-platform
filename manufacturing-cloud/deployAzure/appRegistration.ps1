@@ -34,7 +34,7 @@ function Add-AadApplicationWithServicePrincipal {
     $createdApplication = New-AzADApplication `
                             -DisplayName $DisplayName `
                             -ReplyUrls $ReplyUrls `
-                            -AvailableToOtherTenants $true `
+                            -AvailableToOtherTenants $false `
                             -AppRole $appRolesObjectCollection 
 
     Write-Verbose -Message "Created application $($createdApplication.appId)."
