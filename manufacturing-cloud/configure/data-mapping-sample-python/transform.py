@@ -10,7 +10,7 @@ import pandas as pd
 
 # variables
 DATE_FORMAT = "%Y-%m-%dT%H:%M:%S"
-SOURCE_DATE_FORMATS = ['%d-%m-%Y %H:%M:%S', '%Y-%m-%d %H:%M:%S.%f', '%m/%d/%Y %H:%M:%S', '%d-%m-%Y %H:%M'] # potential source datetime formats; to be extended upon further use case
+SOURCE_DATE_FORMATS = ['%d-%m-%Y %H:%M:%S', '%Y-%m-%d %H:%M:%S.%f', '%m/%d/%Y %H:%M:%S', '%d-%m-%Y %H:%M', '%Y-%m-%dT%H:%M:%SZ'] # potential source datetime formats; to be extended upon further use case
 # dictionary containing metadata for all entities
 ENTITIES = {}
 MAPPING_COLUMN_NAMES = ['Source type', 'Source PrimaryKey',
@@ -683,8 +683,8 @@ def write_entity_data(input_folder, output_folder, output_mapping_folder, entity
     for entity_file in list_of_entities:
         try:
             write_csv(list_of_entities[entity_file], entity_file)
-        except Exception:
-            print(f"can't write the file: {entity_file}")
+        except Exception as e:
+            print(f"can't write the file: {entity_file}; {e}")
             continue
 
     for relationship_file in list_of_relationships:
