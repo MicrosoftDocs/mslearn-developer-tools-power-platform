@@ -1,6 +1,7 @@
 Param (
     [Parameter(Mandatory=$true, HelpMessage="The name of the App Registration within Microsoft Entra ID, used by the MDS Service.")]
-    [string]$mdsServiceAppName
+    [string]$mdsServiceAppName,
+    [string]$serviceTreeId
 )
 
 Import-Module Az.Resources
@@ -30,12 +31,22 @@ function Add-AadApplicationWithServicePrincipal {
         $appRolesObjectCollection += [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphAppRole]::FromJsonString($appRoleJsonString)
     })
 
-    # Output matches a manifest file
-    $createdApplication = New-AzADApplication `
+    if (-not $serviceTreeId) {
+        $createdApplication = New-AzADApplication `
                             -DisplayName $DisplayName `
                             -ReplyUrls $ReplyUrls `
                             -AvailableToOtherTenants $false `
                             -AppRole $appRolesObjectCollection 
+    }
+    else{
+        $createdApplication = New-AzADApplication `
+                                -DisplayName $DisplayName `
+                                -ReplyUrls $ReplyUrls `
+                                -AvailableToOtherTenants $false `
+                                -AppRole $appRolesObjectCollection `
+                                -ServiceManagementReference $serviceTreeId `
+                                -SignInAudience 'AzureADMyOrg' `
+    }
 
     Write-Verbose -Message "Created application $($createdApplication.appId)."
 
@@ -211,4 +222,4 @@ $ScriptOutput.MDS.ApplicationId = $mdsApplicationDetails.ApplicationId
 $ScriptOutput.MDS.ObjectId = $mdsApplicationDetails.ObjectId
 $ScriptOutput.MDS.EnterpriseApplicationObjectId = $mdsApplicationDetails.EnterpriseApplicationObjectId
 
-$ScriptOutput | ConvertTo-Json | Write-Output
+$ScriptOutput.MDS.ApplicationId | Write-Output
