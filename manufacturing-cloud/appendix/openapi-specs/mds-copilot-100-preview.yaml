@@ -977,11 +977,11 @@ paths:
             text/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
-  /mds/copilot/v3/feedback:
+  /mds/copilot/feedback:
     post:
       tags:
         - CopilotV3Query
-      summary: Copilot feedback endpoint for V3 Pipeline.
+      summary: Copilot feedback endpoint.
       description: "\nRequired roles: Admin, User"
       parameters:
         - name: api-version
@@ -1258,6 +1258,8 @@ components:
           nullable: true
         feedback:
           $ref: '#/components/schemas/FeedbackEnum'
+        copilotFlowName:
+          $ref: '#/components/schemas/CopilotFlowName'
       additionalProperties: false
       description: model class for copilot feedback request
     DataTableFormat:
@@ -1312,6 +1314,12 @@ components:
         - ThumbsDown
       type: string
       description: Format for data table in result
+    CopilotFlowName:
+      enum:
+        - V3
+        - Assistant
+      type: string
+      description: Copilot flow name
     InstructionInfo:
       type: object
       properties:
